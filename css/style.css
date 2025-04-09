@@ -3,6 +3,7 @@
     /*COLORES ---------------------------*/
     --azul-cielo: #A7D2DB;
     --hierba1: #67A57A;
+    --negro: #2D2B30;
 
     /*DISTANCIAS ---------------------------*/
     --distancia-suelo: 20dvh;
@@ -13,12 +14,14 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    width: 100vw;
+    height: 100vh; 
     overflow: hidden;
+    background-color: var(--negro); 
 }
 
 #bg {
-    width: 100vw;
+    width: 100dvw;
     height: 100dvh;
     overflow: hidden;
     background-color: var(--azul-cielo);
