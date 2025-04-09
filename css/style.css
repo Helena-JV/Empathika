@@ -1,0 +1,92 @@
+/*VARIABLES =====================================================================*/
+:root{
+    /*COLORES ---------------------------*/
+    --azul-cielo: #A7D2DB;
+    --hierba1: #67A57A;
+
+    /*DISTANCIAS ---------------------------*/
+    --distancia-suelo: 20dvh;
+    --distancia-personaje-izda: 10vw;
+}
+
+/*FONDO ========================================================================*/
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#bg {
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: var(--azul-cielo);
+    position: relative;
+
+}
+
+#suelo {
+    width: 100%;
+    height: var(--distancia-suelo);
+    background-color: var(--hierba1);
+    position: absolute;
+    bottom: 0;
+}
+
+
+/*PERSONAJES ========================================================================*/
+.personaje-container {
+    position: absolute;
+    bottom: var(--distancia-suelo);
+}
+
+/*LUMO Y FLORA ---------------------------*/
+#lumo-flora-container {
+    right: 10vw;
+    width: 24vw;
+    min-width: 220px;
+    height: auto;
+    display: block;
+}
+
+
+/*PERSONAJE PRINCIPAL ================================================================*/
+#personaje-principal-container {
+    transition: transform 1s ease;
+    animation: entrada 1s ease forwards;
+}
+
+#personaje-principal-container img {
+    width: 20vw;
+    min-width: 200px;
+    height: auto;
+    display: block;
+}
+
+.personaje-principal-flip {
+    transform: scaleX(-1);
+}
+
+/*ANIMACIÓN ENTRADA ----------------------------------------------*/
+@keyframes entrada {
+    0% {
+        transform: translateX(-25vw);
+    }
+    100% {
+        transform: translateX(var(--distancia-personaje-izda));
+    }
+}
+
+/*SUELO =========================================================================*/
+
+.suelo-container {
+    width: 90%;
+    height: 70%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: violet;
+
+}
