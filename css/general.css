@@ -10,6 +10,7 @@
     --negro: #2D2B30;
     --blanco: #F6F4E7;
     --blanco-oscuro: #D3D0C1;
+    --dark-clr: #263c40;
 
     /*DISTANCIAS Y TAMAÑOS---------------------------*/
     --distancia-suelo: 26%;
@@ -27,4 +28,32 @@
     font-family: Grandstander;
     src: url(../assets/fonts/Grandstander-VariableFont_wght.ttf);
   }
+
+/*ANIMATIONS =====================================================================*/
+/*BOTONES HUD---------------------------*/
+.anim-btn-hud {
+  transition: 0.2s;
+}
+
+.anim-btn-hud:hover {
+  transform: scale(1.2);
+  transition: 0.2s;
+}
+
+.anim-btn-hud:active {
+  filter:hue-rotate(168deg) saturate(3);
+}
+
+/*SKEW---------------------------*/
+.anim-skew {
+  animation: skew 5s ease-in-out infinite alternate;
+}
+@keyframes skew {
+  70% {
+      transform: skew(0) translateX(0);
+  }
+  100% {
+      transform: skew(-5deg) translateX(2%);
+  }
+}
 

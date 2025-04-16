@@ -35,7 +35,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
 }
 
 #general-wrapper {
-    background-color: var(--azul-cielo);
+    background: linear-gradient(#AFD3D6, #D6EBEC 15%);
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -66,49 +66,128 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
     opacity: 0.5;
 }
 
-#bg-nubes {
-    position: absolute;
-    top: 4%;
-    width: 68%;
-    right: -4%;
-}
+/*NUBES ----------------------------------------------*/ 
+    #bg-nubes {
+        position: absolute;
+        top: 4%;
+        width: 68%;
+        right: -4%;
+        animation: nubes 5s ease-in-out infinite alternate;
+    }
 
-#bg-back {
-    position: absolute;
-    top: 8%;
-    right: 3%;
-    width: 100%;
-    transform: scale(1.2);
-}
+    @keyframes nubes {
+        0% {
+            transform: translateY(-8%);
+        }
+        100% {
+            transform: translateY(8%);
+        }
+    }
 
-#bg-mid {
-    position: absolute;
-    top: 4%;
-    left: -15%;
-    width: 80%;
-}
+/*MONTAÑAS ----------------------------------------------*/ 
+    #bg-back {
+        position: absolute;
+        top: 8%;
+        right: 3%;
+        width: 100%;
+        transform: scale(1.2);
+    }
 
-#bg-rayos {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 70%;
-    mix-blend-mode: color-dodge;
-    opacity: 0.3;
-    fill: rgb(216, 203, 57);
-  }
+/*ÁRBOLES Y RAYOS ----------------------------------------------*/ 
+    #bg-mid {
+        position: absolute;
+        top: 4%;
+        left: -15%;
+        width: 80%;
+    }
 
-#bg-front {
+    #bg-rayos {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70%;
+        mix-blend-mode: color-dodge;
+        opacity: 0.3;
+        fill: rgb(216, 203, 57);
+    }
+
+/*SUELO BOSQUE ----------------------------------------------*/ 
+    #bg-front {
+        position: absolute;
+        height: 100%;
+    }  
+
+    #arbusto1 {
+        position: absolute;
+        bottom: 29%;
+        left: 26%;
+        width: 22%;
+    }
+
+/* HUD INFERIOR ======================================================================== */
+
+#hud-inferior {
     position: absolute;
-    width: 100%;
-}  
-#suelo {
-    width: 100%;
-    height: var(--distancia-suelo);
-    position: absolute;
+    width: 90%;
+    height: 19%;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/*FLECHAS ----------------------------------------------*/ 
+    .flecha {
+        height: 70%;
+        display: inline;
+    }
+
+/*OBJETOS USABLES ----------------------------------------------*/ 
+    .usables-container {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    .usable {
+        height: 60%;
+        aspect-ratio: 1/1;
+        background-color: #82842D;
+        border-radius: 15%;
+    }
+
+/* HUD SUPERIOR ======================================================================== */
+#hud-superior {
+    position: absolute;
+    width: 20%;
+    top: 3%;
+    right: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10%;
+}
+
+.estrella-puntos {
+    position: relative;
+}
+
+.estrella-puntos p {
+    position: absolute;
+    top: 58%;
+    left: 50%; /* Añade esta línea para el centrado horizontal */
+    transform: translate(-50%, -50%);
+    font-family: 'Grandstander', Arial, Helvetica, sans-serif;
+    font-size: 5vw;
+    font-weight: 700;
+    color: var(--dark-clr);
+}
 
 /*PERSONAJES ========================================================================*/
 .personaje-container {
@@ -117,14 +196,14 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
 }
 
 /*LUMO Y FLORA ---------------------------*/
-#lumo-flora-container {
-    right: 10%;
-    width: 15%;
-    height: auto;
-    display: block;
-    user-select: none;
-    cursor: pointer;
-}
+    #lumo-flora-container {
+        right: 10%;
+        width: 15%;
+        height: auto;
+        display: block;
+        user-select: none;
+        cursor: pointer;
+    }
 
 
 /*PERSONAJE PRINCIPAL ================================================================*/
@@ -141,14 +220,14 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
 }
 
 /*ANIMACIÓN ENTRADA ----------------------------------------------*/ 
-@keyframes entrada {
-    0% {
-        left: -25%;
+    @keyframes entrada {
+        0% {
+            left: -25%;
+        }
+        100% {
+            left: var(--distancia-personaje-izda);
+        }
     }
-    100% {
-        left: var(--distancia-personaje-izda);
-    }
-}
 
 /*DIALOGO ================================================================*/
 
