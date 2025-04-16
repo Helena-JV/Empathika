@@ -1,0 +1,30 @@
+/*VARIABLES =====================================================================*/
+:root{
+    /*COLORES ---------------------------*/
+    --azul-cielo: #A7D2DB;
+    --azul-detalle-claro: #5F9CAD;
+    --azul-detalle: #337C8A;
+    --rojo: #CC6262;
+    --rojo-oscuro: #AA3D28;
+    --hierba1: #67A57A;
+    --negro: #2D2B30;
+    --blanco: #F6F4E7;
+    --blanco-oscuro: #D3D0C1;
+
+    /*DISTANCIAS Y TAMAÑOS---------------------------*/
+    --distancia-suelo: 26%;
+    --distancia-personaje-izda: 5%;
+    --tamaño-bordes: 0.5vw;
+}
+
+/*FONTS =====================================================================*/
+@font-face {
+    font-family: Sniglet-Regular;
+    src: url(../assets/fonts/Sniglet-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: Grandstander;
+    src: url(../assets/fonts/Grandstander-VariableFont_wght.ttf);
+  }
+

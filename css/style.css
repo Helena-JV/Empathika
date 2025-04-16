@@ -1,38 +1,110 @@
-/*VARIABLES =====================================================================*/
-:root{
-    /*COLORES ---------------------------*/
-    --azul-cielo: #A7D2DB;
-    --hierba1: #67A57A;
-    --negro: #2D2B30;
-
-    /*DISTANCIAS ---------------------------*/
-    --distancia-suelo: 20dvh;
-    --distancia-personaje-izda: 10vw;
-}
-
-/*FONDO ========================================================================*/
+/* FONDO ======================================================================== */
 html, body {
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100vh; 
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     background-color: var(--negro); 
+    font-family: "Sniglet-Regular", Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    text-wrap: balance;
 }
 
-#bg {
-    width: 100dvw;
-    height: 100dvh;
-    overflow: hidden;
+html * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* ESCALA CONTENEDOR ======================================================================== */
+
+/* Permitir selección en elementos que necesitan ser interactivos */
+button, input, textarea, a, [role="button"], [tabindex="0"] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    cursor: pointer;
+}
+
+#general-wrapper {
     background-color: var(--azul-cielo);
     position: relative;
-
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
+/* Ajustar la proporción según el tamaño de la pantalla */
+@media (min-aspect-ratio: 16/9) {
+    /* Pantallas más anchas que 16:9 */
+    #general-wrapper {
+        width: 177.78vh; /* 16/9 * 100vh para mantener la proporción 16:9 */
+        height: 100vh;
+        margin: 0 auto;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    /* Pantallas más estrechas que 16:9 */
+    #general-wrapper {
+        width: 100vw;
+        height: 56.25vw; /* 9/16 * 100vw para mantener la proporción 16:9 */
+    }
+}
+
+
+/*FONDO ========================================================================*/
+#bg-ej {
+    opacity: 0.5;
+}
+
+#bg-nubes {
+    position: absolute;
+    top: 4%;
+    width: 68%;
+    right: -4%;
+}
+
+#bg-back {
+    position: absolute;
+    top: 8%;
+    right: 3%;
+    width: 100%;
+    transform: scale(1.2);
+}
+
+#bg-mid {
+    position: absolute;
+    top: 4%;
+    left: -15%;
+    width: 80%;
+}
+
+#bg-rayos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    mix-blend-mode: color-dodge;
+    opacity: 0.3;
+    fill: rgb(216, 203, 57);
+  }
+
+#bg-front {
+    position: absolute;
+    width: 100%;
+}  
 #suelo {
     width: 100%;
     height: var(--distancia-suelo);
-    background-color: var(--hierba1);
     position: absolute;
     bottom: 0;
 }
@@ -46,50 +118,150 @@ html, body {
 
 /*LUMO Y FLORA ---------------------------*/
 #lumo-flora-container {
-    right: 10vw;
-    width: 24vw;
-    min-width: 220px;
+    right: 10%;
+    width: 15%;
     height: auto;
     display: block;
+    user-select: none;
+    cursor: pointer;
 }
 
 
 /*PERSONAJE PRINCIPAL ================================================================*/
-#personaje-principal-container {
-    transition: transform 1s ease;
+#protagonista-container {
+    position: absolute;
+    bottom: var(--distancia-suelo);
+    transition: left 1s ease; 
     animation: entrada 1s ease forwards;
+    width: 15%;
 }
 
-#personaje-principal-container img {
-    width: 20vw;
-    min-width: 200px;
-    height: auto;
-    display: block;
-}
-
-.personaje-principal-flip {
+.protagonista-flip {
     transform: scaleX(-1);
 }
 
-/*ANIMACIÓN ENTRADA ----------------------------------------------*/
+/*ANIMACIÓN ENTRADA ----------------------------------------------*/ 
 @keyframes entrada {
     0% {
-        transform: translateX(-25vw);
+        left: -25%;
     }
     100% {
-        transform: translateX(var(--distancia-personaje-izda));
+        left: var(--distancia-personaje-izda);
     }
 }
 
-/*SUELO =========================================================================*/
+/*DIALOGO ================================================================*/
 
-.suelo-container {
-    width: 90%;
-    height: 70%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: violet;
-
+dialog {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    display: none;
+    
 }
+
+dialog .dialog-fondo-hierba {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--hierba1);
+    width: 100%;
+    height: 45%;
+}
+
+dialog form {
+    width: 100%;
+    height: 100%;
+}
+
+/*CONTENEDOR DE DIÁLOGO ----------------------------------------------*/ 
+    dialog form .dialog-container {
+        width: 80%;
+        height:fit-content;
+        min-height: 35%;
+        padding: 3% 5%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -65%);
+        background-color: white;
+        display: flex; 
+        align-items: center;  
+        border-radius: 1rem;
+    }
+
+    /*IMAGEN DEL PERSONAJE */
+    dialog form .dialog-container img {
+        position: absolute;
+        width: 43%;
+        right: -5%;
+    }
+
+
+    /*NOMBRE DEL PERSONAJE*/
+    dialog form .dialog-container::before {
+        content: 'Lumo';
+        position: absolute;
+        top: -1.5rem;
+        left: 4%;
+        padding: 1% 6%;
+        background-color: var(--azul-detalle);
+        border: var(--tamaño-bordes) solid var(--azul-detalle-claro);
+        color: white;
+        font-family: "Grandstander", Arial, Helvetica, sans-serif;
+        font-size: 4vw;
+        font-weight: 700;
+        border-radius: 100px;
+    }
+
+    /*TEXTO DEL DIÁLOGO */
+    dialog form .dialog-container .dialogo-txt {
+       padding-top: 4%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 60%;
+        font-size: 2.5vw;
+    }
+
+    /*AJUSTES SEGÚN PERSONAJE ----------------------------------------------*/ 
+    dialog form .dialog-container .dialog-lumo {
+        top: -45%;
+    }
+
+    /*BOTONES -------------------------------------------------------------*/ 
+
+    dialog form .dialog-btns-container {
+        position: absolute;
+        bottom: 10%;
+        width: 94%;
+        height: 20%;
+
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    dialog form .dialog-btns-container button {
+        flex: 1;
+        text-align: center;
+        height: 80%;
+        background-color: var(--rojo);
+        border: var(--tamaño-bordes) solid var(--rojo-oscuro);
+        border-radius: 100rem;
+        color: white;
+        font-size: 2vw;
+        cursor: pointer;
+    }
+
+    dialog form .dialog-btns-container button:hover {
+        transform: scale(1.05) rotate(-2deg);
+        transition: 0.3s;
+    }
+
+

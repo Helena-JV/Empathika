@@ -10,17 +10,34 @@
     <title>Empathika. El bosque mágico</title>
 
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/general.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <!--BODY===========================================================================================-->
 <body>
     <main>
-        <div id="bg">
+        <div id="general-wrapper">
+
+            <!--BG_____________________________________________________________-->
+            <div class="bg-container">
+                <img id="bg-nubes" src="./assets/img/bg/bg-nubes.svg" alt="Fondo con montículos y árboles">
+                <img id="bg-back" src="./assets/img/bg/bg-back.svg" alt="Fondo con montículos y árboles">
+                <img id="bg-mid" src="./assets/img/bg/bg-mid.svg" alt="Fondo con montículos y árboles">
+                <svg id="bg-rayos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1689.88 1082.79">
+                    <g>
+                      <polygon points="1689.88 1033.25 1255.66 1082.79 372.8 0 515.29 0 1689.88 1033.25" />
+                      <polygon points="1135.05 1082.53 290.83 1066.73 0 0 219.47 0 1135.05 1082.53" />
+                    </g>
+                </svg>
+                <img id="bg-front" src="./assets/img/bg/bg-front.svg" alt="">
+                  
+
+
+            </div>
             <!--SUELO_____________________________________________________________-->
             <div id="suelo">
                 <div class="suelo-container">
-                    <button id="pantallaCompletaBtn">PANTALLA COMPLETA</button>
-                    <p class="hud">aasssaaaa</p>
+                    <button class="hud" id="pantallaCompletaBtn">ELEMETO DEL HUD</button>
                     <div class="flecha"></div>
                     <div class="usables-container">
                         <div class="usable"></div>
@@ -31,16 +48,40 @@
                 </div>
             </div>
             <!--PERSONAJE PRINCIPAL________________________________________________-->
-            <div id="personaje-principal-container" class="personaje-container">
+            <div id="protagonista-container" class="personaje-container">
                 <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
             </div>
             <!--LUMO Y FLORA_______________________________________________________-->
-            <div id="lumo-flora-container" class="personaje-container">
+            <div id="lumo-flora-container" class="personaje-container personaje" onclick="abrirDialogo()">
                 <img class="target" src="./assets/img/personajes/lumo-flora.svg" alt="Lumo y Flora. Dos seres mágicos. Flora está dormida sobre Lumo">
             </div>
+
+            <!--DIALOGOS__________________________________________________________-->
+             <dialog id="dialogoLumo" class="dialogo">
+                <div class="dialog-fondo-hierba"></div>
+                <form method="dialog">
+
+                    <!--DIALOGO-->
+                    <div class="dialog-container">
+                        <div class="dialogo-txt">
+                            <p>Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
+                            <p>— ¿Qué hago ahora?</p>
+                        </div>
+                        <img class="dialog-lumo" src="./assets/img/personajes/lumo.svg" alt="">
+                    </div>
+                    
+                    <!--BOTONES-->
+                    <div class="dialog-btns-container">
+                        <button>Vamos a buscarla juntos.</button>
+                        <button>Díselo a Floris, seguro que lo entiende.</button>
+                        <button>No digas nada, igual no se da cuenta.</button>
+                    </div> 
+                  </form>
+            </dialog> 
         </div>
     </main>
     
     <script src="./js/movimientoPersonaje.js"></script>
+    <!-- <script src="./js/dialogos.js"></script> -->
 </body>
 </html>
