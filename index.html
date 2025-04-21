@@ -2,8 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="black">
 
@@ -12,84 +10,92 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/general.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
+
 <!--BODY===========================================================================================-->
 <body>
-    <main>
-        <div id="general-wrapper">
+    <div class="general-wrapper sky-index">
 
-            <!--BG_____________________________________________________________-->
-            <div class="bg-container">
-                <img id="bg-nubes" src="./assets/img/bg/bg-nubes.svg" alt="Fondo con montículos y árboles">
-                <img id="bg-back" src="./assets/img/bg/bg-back.svg" alt="Fondo con montículos y árboles">
-                <img id="bg-mid" src="./assets/img/bg/bg-mid.svg" alt="Fondo con montículos y árboles">
-                <svg id="bg-rayos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1689.88 1082.79">
-                    <g>
-                      <polygon points="1689.88 1033.25 1255.66 1082.79 372.8 0 515.29 0 1689.88 1033.25" />
-                      <polygon points="1135.05 1082.53 290.83 1066.73 0 0 219.47 0 1135.05 1082.53" />
-                    </g>
-                </svg>
-                <img id="bg-front" src="./assets/img/bg/bg-front.svg" alt="Fondo y suelo del bosque">
-                <img id="arbusto1" class="anim-skew" src="./assets/img/bg/arbusto1.svg" alt="Arbusto que se mueve al viento">
-                  
-
-
-            </div>
-            <!--HUD INFERIOR_____________________________________________________________-->
-            <div id="hud-inferior">
-                    <img class="flecha hud anim-btn-hud" src="./assets/img/hud/flecha-izda.svg" alt="Ir a la izquierda">
-                    <div class="usables-container">
-                        <div class="usable"></div>
-                        <div class="usable"></div>
-                        <div class="usable"></div>
-                    </div>
-                    <img class="flecha hud anim-btn-hud" src="./assets/img/hud/flecha-dcha.svg" alt="Ir a la derecha">
-            </div>
-
-            <!--HUD SUPERIOR_____________________________________________________________-->
-            <div id="hud-superior">
-                <img class="btn-help hud anim-btn-hud" src="./assets/img/hud/btn-help.svg" alt="Botón ayuda">
-                <div class="hud estrella-puntos">
-                    <img src="./assets/img/hud/star.svg" alt="Estrellas">
-                    <p>5</p>
-                </div>
-            </div>
-
-            <!--PERSONAJE PRINCIPAL________________________________________________-->
-            <div id="protagonista-container" class="personaje-container">
-                <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
-            </div>
-            <!--LUMO Y FLORA_______________________________________________________-->
-            <div id="lumo-flora-container" class="personaje-container personaje" onclick="abrirDialogo()">
-                <img class="target" src="./assets/img/personajes/lumo-flora.svg" alt="Lumo y Flora. Dos seres mágicos. Flora está dormida sobre Lumo">
-            </div>
-
-            <!--DIALOGOS__________________________________________________________-->
-             <dialog id="dialogoLumo" class="dialogo">
-                <div class="dialog-fondo-hierba"></div>
-                <form method="dialog">
-
-                    <!--DIALOGO-->
-                    <div class="dialog-container">
-                        <div class="dialogo-txt">
-                            <p>Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
-                            <p>— ¿Qué hago ahora?</p>
-                        </div>
-                        <img class="dialog-lumo" src="./assets/img/personajes/lumo.svg" alt="">
-                    </div>
-                    
-                    <!--BOTONES-->
-                    <div class="dialog-btns-container">
-                        <button>Vamos a buscarla juntos.</button>
-                        <button>Díselo a Floris, seguro que lo entiende.</button>
-                        <button>No digas nada, igual no se da cuenta.</button>
-                    </div> 
-                  </form>
-            </dialog> 
-        </div>
-    </main>
+        <!--BG===========================================================================================-->
+        <img id="index-cesped" src="./assets/img/index-elem/cesped-index.svg" alt="Cesped">
+        
+        <!--PLANTAS_____________________________________________________________-->
+        <!--PLANTAS 1____________________________________-->
+        <div class="plantagrow-index-1">
+            <!--Planta 1-1-->
+            <svg class="plant1-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.01 976.23" width="863.01" height="976.23">
+                <path  class="plant1-linea" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.62"
+                  d="M3.81,3.81c9.28,42.5,20.61,85.14,38.58,124.52,20.97,46.79,48.06,93.44,88.56,121.97,60.03,41.89,138.25,43.68,205.6,23.55,47-13.69,88.84-42.23,133.74-62.43,33.35-14.95,70.07-24.3,106.08-21.2,80.25,5.75,147.73,72.12,165.51,157.6,22.75,103.91-17.51,210.21-69.69,295.93-26.26,44.18-55.32,87.48-68.73,138.45-12.7,46.65-10.43,95.89,11.48,138.11,9.2,18.39,20.88,35.32,32.47,52.14"/>
+                <path class="plant-1-hoja" fill="#fff" d="M117.07,230.7s-30.41-62.33,0-100.67c.3-.38.61-.76.92-1.14,32.63-39.95,97.71-11.75,89.98,39.25-1.23,8.12-3.75,15.67-8.1,21.95-23,33.22-82.8,40.61-82.8,40.61Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M290.48,285.97s-12.89,38.28,0,71.5c.23.59.47,1.18.72,1.76,14.62,33.87,66.11,18.92,60.81-17.59-.62-4.25-1.48-8.36-2.64-12.2-8.94-29.48-58.89-43.48-58.89-43.48Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M563.31,195.19s-40.17-33.21-38.89-74.1c.11-3.64.59-7.23,1.37-10.77,10.06-45.84,78.05-39.24,77.89,7.69,0,.6-.01,1.19-.04,1.79-1.28,33.23-40.33,75.38-40.33,75.38Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M730.59,302.14s23.6-57.71,81.66-66.64c.58-.09,1.16-.18,1.73-.26,44.59-6.39,67.48,51.28,30.74,77.35-9.27,6.58-18.9,11.64-28.3,13.7-40.67,8.89-85.83-24.15-85.83-24.15Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M720.29,553.91s-20.94-63.54-79.72-80.15c-3.06-.87-6.07-1.62-9.02-2.26-54.83-11.99-76.96,68.77-23.44,85.66,3.87,1.22,7.88,1.99,12.02,2.22,47.28,2.56,100.16-5.46,100.16-5.46Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M603.14,844.45s36.56-75.53,67.22-90.86c7.63-3.81,16.67-5.73,25.97-6.46,35.74-2.8,60.89,34.26,44.58,66.18-6.81,13.34-17,25.27-32.21,31.14-46,17.75-105.56,0-105.56,0Z"/>
+              </svg>
+              
     
-    <script src="./js/movimientoPersonaje.js"></script>
-    <!-- <script src="./js/dialogos.js"></script> -->
+            <!--Planta 1-2-->
+            <svg class="plant1-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.01 976.23" width="863.01" height="976.23">
+                <path class="plant1-linea" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.62"
+                  d="M3.81,3.81c9.28,42.5,20.61,85.14,38.58,124.52,20.97,46.79,48.06,93.44,88.56,121.97,60.03,41.89,138.25,43.68,205.6,23.55,47-13.69,88.84-42.23,133.74-62.43,33.35-14.95,70.07-24.3,106.08-21.2,80.25,5.75,147.73,72.12,165.51,157.6,22.75,103.91-17.51,210.21-69.69,295.93-26.26,44.18-55.32,87.48-68.73,138.45-12.7,46.65-10.43,95.89,11.48,138.11,9.2,18.39,20.88,35.32,32.47,52.14"/>
+                <path class="plant-1-hoja" fill="#fff" d="M117.07,230.7s-30.41-62.33,0-100.67c.3-.38.61-.76.92-1.14,32.63-39.95,97.71-11.75,89.98,39.25-1.23,8.12-3.75,15.67-8.1,21.95-23,33.22-82.8,40.61-82.8,40.61Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M290.48,285.97s-12.89,38.28,0,71.5c.23.59.47,1.18.72,1.76,14.62,33.87,66.11,18.92,60.81-17.59-.62-4.25-1.48-8.36-2.64-12.2-8.94-29.48-58.89-43.48-58.89-43.48Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M563.31,195.19s-40.17-33.21-38.89-74.1c.11-3.64.59-7.23,1.37-10.77,10.06-45.84,78.05-39.24,77.89,7.69,0,.6-.01,1.19-.04,1.79-1.28,33.23-40.33,75.38-40.33,75.38Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M730.59,302.14s23.6-57.71,81.66-66.64c.58-.09,1.16-.18,1.73-.26,44.59-6.39,67.48,51.28,30.74,77.35-9.27,6.58-18.9,11.64-28.3,13.7-40.67,8.89-85.83-24.15-85.83-24.15Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M720.29,553.91s-20.94-63.54-79.72-80.15c-3.06-.87-6.07-1.62-9.02-2.26-54.83-11.99-76.96,68.77-23.44,85.66,3.87,1.22,7.88,1.99,12.02,2.22,47.28,2.56,100.16-5.46,100.16-5.46Z"/>
+                <path class="plant-1-hoja" fill="#fff" d="M603.14,844.45s36.56-75.53,67.22-90.86c7.63-3.81,16.67-5.73,25.97-6.46,35.74-2.8,60.89,34.26,44.58,66.18-6.81,13.34-17,25.27-32.21,31.14-46,17.75-105.56,0-105.56,0Z"/>
+            </svg>
+        </div>
+
+        <!--PLANTAS 2____________________________________-->
+        <div class="plantagrow-index-2">
+            <!--Planta 2-1-->
+            <svg class="plant2-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 859.72 434.87" width="859.72" height="434.87">
+                <path class="plant2-linea" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.62"
+                  d="M830.98,18.08c-40.79,24.38-65.07,47.24-73.01,95.59-6.36,37.95-.72,76.81-2.2,115.18-.77,22.4-3.97,44.85-11.74,65.92-30.39,84.19-134.67,111.07-220.69,83.3-126.76-40.92-105.94-124.88-204.56-253.81-23.83-31.15-55.77-55.14-91.63-71C156.85,22.74,79.33,13.05,3.81,3.81"/>
+                <path class="plant-2-hoja" fill="#fff" d="M737.69,309.48s56.92,8.48,74.67,36.89c3.12,4.99,5.28,10.73,6.72,16.78,7.69,32.3-27.8,57.61-55.88,39.91-9.93-6.26-19.16-13.65-25.51-22.07-22.1-29.3,0-71.52,0-71.52Z"/>
+                <path class="plant-2-hoja" fill="#fff" d="M755.75,196.21s24.47-53.15,65.85-57.59c.41-.04.82-.09,1.23-.13,31.45-3.18,49.42,35.18,26.65,57.11-7.42,7.14-16.61,12.59-27.89,14.05-41.2,5.33-65.85-13.44-65.85-13.44Z"/>
+                <path class="plant-2-hoja" fill="#fff" d="M593.07,388.6s-40.84-47.56-29.3-92.84c1.05-4.11,2.3-8.09,3.71-11.92,14.1-38.33,71.27-29.81,72.98,11,.21,5-.11,9.92-1.11,14.64-7.99,37.78-46.29,79.12-46.29,79.12Z"/>
+                <path class="plant-2-hoja" fill="#fff" d="M448.16,335.92s-40.65-2.86-74.39,28.21c-1.48,1.36-2.89,2.74-4.23,4.14-30.97,32.12,7.91,83.21,46.79,61.32,4.92-2.77,9.72-6.19,14.27-10.41,36.4-33.74,17.56-83.26,17.56-83.26Z"/>
+                <path class="plant-2-hoja" fill="#fff" d="M291.98,95.15s-56.72-11.58-80.69,23.94c-1.17,1.73-2.27,3.47-3.33,5.22-19.17,31.92,15.19,69.58,48.58,53.1,5.65-2.79,10.83-5.94,15.12-9.49,25.75-21.31,20.31-72.77,20.31-72.77Z"/>
+            </svg>
+            
+            <!--Planta 2-2-->
+            <svg class="plant2-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 859.72 434.87" width="859.72" height="434.87">
+               <path class="plant2-linea" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.62"
+                 d="M830.98,18.08c-40.79,24.38-65.07,47.24-73.01,95.59-6.36,37.95-.72,76.81-2.2,115.18-.77,22.4-3.97,44.85-11.74,65.92-30.39,84.19-134.67,111.07-220.69,83.3-126.76-40.92-105.94-124.88-204.56-253.81-23.83-31.15-55.77-55.14-91.63-71C156.85,22.74,79.33,13.05,3.81,3.81"/>
+               <path class="plant-2-hoja" fill="#fff" d="M737.69,309.48s56.92,8.48,74.67,36.89c3.12,4.99,5.28,10.73,6.72,16.78,7.69,32.3-27.8,57.61-55.88,39.91-9.93-6.26-19.16-13.65-25.51-22.07-22.1-29.3,0-71.52,0-71.52Z"/>
+               <path class="plant-2-hoja" fill="#fff" d="M755.75,196.21s24.47-53.15,65.85-57.59c.41-.04.82-.09,1.23-.13,31.45-3.18,49.42,35.18,26.65,57.11-7.42,7.14-16.61,12.59-27.89,14.05-41.2,5.33-65.85-13.44-65.85-13.44Z"/>
+               <path class="plant-2-hoja" fill="#fff" d="M593.07,388.6s-40.84-47.56-29.3-92.84c1.05-4.11,2.3-8.09,3.71-11.92,14.1-38.33,71.27-29.81,72.98,11,.21,5-.11,9.92-1.11,14.64-7.99,37.78-46.29,79.12-46.29,79.12Z"/>
+               <path class="plant-2-hoja" fill="#fff" d="M448.16,335.92s-40.65-2.86-74.39,28.21c-1.48,1.36-2.89,2.74-4.23,4.14-30.97,32.12,7.91,83.21,46.79,61.32,4.92-2.77,9.72-6.19,14.27-10.41,36.4-33.74,17.56-83.26,17.56-83.26Z"/>
+               <path class="plant-2-hoja" fill="#fff" d="M291.98,95.15s-56.72-11.58-80.69,23.94c-1.17,1.73-2.27,3.47-3.33,5.22-19.17,31.92,15.19,69.58,48.58,53.1,5.65-2.79,10.83-5.94,15.12-9.49,25.75-21.31,20.31-72.77,20.31-72.77Z"/>
+             </svg>   
+        </div>
+          
+          
+          
+
+        <!--ELEMENTOS SUPERIOR===========================================================================================-->
+
+        <button id="btn-jugar">JUGAR</button>
+        <div id="empathika-logo">
+            <img src="./assets/img/index-elem/empathika-logo.svg" alt="Empathika logo">
+            <h2>el bosque mágico</h2>
+        </div>
+
+        <div id="burbuja-index">
+            <img src="./assets/img/index-elem/burbuja-index.svg" alt=" burbuja">
+        </div>
+
+        <img id="btn-info" class="anim-btn-hud" src="./assets/img/index-elem/info-btn.svg" alt="Botón de información">
+        
+        <img class="img-ref" src="./Diseño-fondos-index2.jpg" alt="">
+        
+    </div>
+
+    <script src="./js/gsap/gsap.min.js"></script>
+    <script src="./js/gsap/DrawSVGPlugin.min.js"></script>
+    <script src="./js/index.js"></script>
 </body>
-</html>

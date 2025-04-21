@@ -3,7 +3,7 @@
 //ABRIR
     function abrirDialogo() {
         const dialogo = document.getElementById("dialogoLumo");
-        dialogo.showModal();
+        dialogo.classList.toggle("dialog-close");
     }
 
  //CERRAR

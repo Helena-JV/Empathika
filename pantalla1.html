@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="black">
+
+    <title>Empathika. El bosque mágico</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/general.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<!--BODY===========================================================================================-->
+<body>
+    <main>
+        <div class="general-wrapper sky-juego">
+
+            <!--BG_____________________________________________________________-->
+            <div class="bg-container">
+                <img id="bg-nubes" src="./assets/img/bg/bg-nubes.svg" alt="Fondo con montículos y árboles">
+                <img id="bg-back" src="./assets/img/bg/bg-back.svg" alt="Fondo con montículos y árboles">
+                <img id="bg-mid" src="./assets/img/bg/bg-mid.svg" alt="Fondo con montículos y árboles">
+                <svg id="bg-rayos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1689.88 1082.79">
+                    <g>
+                      <polygon points="1689.88 1033.25 1255.66 1082.79 372.8 0 515.29 0 1689.88 1033.25" />
+                      <polygon points="1135.05 1082.53 290.83 1066.73 0 0 219.47 0 1135.05 1082.53" />
+                    </g>
+                </svg>
+                <img id="bg-front" src="./assets/img/bg/bg-front.svg" alt="Fondo y suelo del bosque">
+                <img id="arbusto1" class="anim-skew" src="./assets/img/bg/arbusto1.svg" alt="Arbusto que se mueve al viento">
+                  
+
+
+            </div>
+            <!--HUD INFERIOR_____________________________________________________________-->
+            <div id="hud-inferior">
+                    <img class="flecha hud anim-btn-hud" src="./assets/img/hud/flecha-izda.svg" alt="Ir a la izquierda">
+                    <div class="usables-container">
+                        <div class="usable"></div>
+                        <div class="usable"></div>
+                        <div class="usable"></div>
+                    </div>
+                    <img class="flecha hud anim-btn-hud" src="./assets/img/hud/flecha-dcha.svg" alt="Ir a la derecha">
+            </div>
+
+            <!--HUD SUPERIOR_____________________________________________________________-->
+            <div id="hud-superior">
+                <img class="btn-help hud anim-btn-hud" src="./assets/img/hud/btn-help.svg" alt="Botón ayuda">
+                <div class="hud estrella-puntos">
+                    <img src="./assets/img/hud/star.svg" alt="Estrellas">
+                    <p>5</p>
+                </div>
+            </div>
+
+            <!--PERSONAJE PRINCIPAL________________________________________________-->
+            <div id="protagonista-container" class="personaje-container">
+                <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
+            </div>
+            <!--LUMO Y FLORA_______________________________________________________-->
+            <div id="lumo-flora-container" class="personaje-container personaje" onclick="abrirDialogo()">
+                <img class="target" src="./assets/img/personajes/lumo-flora.svg" alt="Lumo y Flora. Dos seres mágicos. Flora está dormida sobre Lumo">
+            </div>
+
+            <!--DIALOGOS__________________________________________________________-->
+             <div id="dialogoLumo" class="dialog dialog-close">
+                <img class="dialog-fondo-hierba" src="./assets/img/dialogos/dialog-hierba.svg" alt="Fondo de hierba">
+                <div class= "dialog-wrapper">
+
+                    <!--DIALOGO-->
+                    <div class="dialog-container">
+                        <div class="dialogo-txt">
+                            <p>Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
+                            <p>— ¿Qué hago ahora?</p>
+                        </div>
+                        <img class="dialog-lumo" src="./assets/img/personajes/lumo.svg" alt="">
+                    </div>
+                    
+                    <!--BOTONES-->
+                    <div class="dialog-btns-container">
+                        <button>Vamos a buscarla juntos.</button>
+                        <button>Díselo a Floris, seguro que lo entiende.</button>
+                        <button>No digas nada, igual no se da cuenta.</button>
+                    </div> 
+                  </form>
+                </div> 
+        </div>
+    </main>
+    
+    <script src="./js/movimientoPersonaje.js"></script>
+    <script src="./js/dialogos.js"></script>
+</body>
+</html>

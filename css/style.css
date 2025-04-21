@@ -1,71 +1,4 @@
-/* FONDO ======================================================================== */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: var(--negro); 
-    font-family: "Sniglet-Regular", Arial, Helvetica, sans-serif;
-    font-size: 2vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    text-wrap: balance;
-}
-
-html * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-
-/* ESCALA CONTENEDOR ======================================================================== */
-
-/* Permitir selección en elementos que necesitan ser interactivos */
-button, input, textarea, a, [role="button"], [tabindex="0"] {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-    cursor: pointer;
-}
-
-#general-wrapper {
-    background: linear-gradient(#AFD3D6, #D6EBEC 15%);
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Ajustar la proporción según el tamaño de la pantalla */
-@media (min-aspect-ratio: 16/9) {
-    /* Pantallas más anchas que 16:9 */
-    #general-wrapper {
-        width: 177.78vh; /* 16/9 * 100vh para mantener la proporción 16:9 */
-        height: 100vh;
-        margin: 0 auto;
-    }
-}
-
-@media (max-aspect-ratio: 16/9) {
-    /* Pantallas más estrechas que 16:9 */
-    #general-wrapper {
-        width: 100vw;
-        height: 56.25vw; /* 9/16 * 100vw para mantener la proporción 16:9 */
-    }
-}
-
-
 /*FONDO ========================================================================*/
-#bg-ej {
-    opacity: 0.5;
-}
-
 /*NUBES ----------------------------------------------*/ 
     #bg-nubes {
         position: absolute;
@@ -128,7 +61,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
 
 #hud-inferior {
     position: absolute;
-    width: 90%;
+    width: 95%;
     height: 19%;
     bottom: 0;
     left: 50%;
@@ -141,8 +74,9 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
 
 /*FLECHAS ----------------------------------------------*/ 
     .flecha {
-        height: 70%;
+        height: 60%;
         display: inline;
+        cursor: pointer;
     }
 
 /*OBJETOS USABLES ----------------------------------------------*/ 
@@ -172,6 +106,10 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
     justify-content: space-between;
     align-items: center;
     gap: 10%;
+}
+
+.btn-help {
+    cursor: pointer;
 }
 
 .estrella-puntos {
@@ -231,31 +169,32 @@ button, input, textarea, a, [role="button"], [tabindex="0"] {
 
 /*DIALOGO ================================================================*/
 
-dialog {
+.dialog {
     background-color: rgba(0, 0, 0, 0.6);
     width: 100%;
     height: 100%;
     position: relative;
-    display: flex;
-    display: none;
-    
+    display: flex;    
 }
 
-dialog .dialog-fondo-hierba {
+.dialog-close {
+    display: none;
+}
+
+.dialog .dialog-fondo-hierba {
     position: absolute;
     bottom: 0;
-    background-color: var(--hierba1);
     width: 100%;
-    height: 45%;
+    scale: 1.2;
 }
 
-dialog form {
+.dialog .dialog-wrapper {
     width: 100%;
     height: 100%;
 }
 
 /*CONTENEDOR DE DIÁLOGO ----------------------------------------------*/ 
-    dialog form .dialog-container {
+    .dialog .dialog-wrapper .dialog-container {
         width: 80%;
         height:fit-content;
         min-height: 35%;
@@ -271,7 +210,7 @@ dialog form {
     }
 
     /*IMAGEN DEL PERSONAJE */
-    dialog form .dialog-container img {
+    .dialog .dialog-wrapper .dialog-container img {
         position: absolute;
         width: 43%;
         right: -5%;
@@ -279,7 +218,7 @@ dialog form {
 
 
     /*NOMBRE DEL PERSONAJE*/
-    dialog form .dialog-container::before {
+    .dialog .dialog-wrapper .dialog-container::before {
         content: 'Lumo';
         position: absolute;
         top: -1.5rem;
@@ -295,7 +234,7 @@ dialog form {
     }
 
     /*TEXTO DEL DIÁLOGO */
-    dialog form .dialog-container .dialogo-txt {
+    .dialog .dialog-wrapper .dialog-container .dialogo-txt {
        padding-top: 4%;
         display: flex;
         flex-direction: column;
@@ -305,13 +244,13 @@ dialog form {
     }
 
     /*AJUSTES SEGÚN PERSONAJE ----------------------------------------------*/ 
-    dialog form .dialog-container .dialog-lumo {
+    .dialog .dialog-wrapper .dialog-container .dialog-lumo {
         top: -45%;
     }
 
     /*BOTONES -------------------------------------------------------------*/ 
 
-    dialog form .dialog-btns-container {
+    .dialog .dialog-wrapper .dialog-btns-container {
         position: absolute;
         bottom: 10%;
         width: 94%;
@@ -326,21 +265,15 @@ dialog form {
         gap: 1rem;
     }
 
-    dialog form .dialog-btns-container button {
+    .dialog .dialog-wrapper .dialog-btns-container button {
         flex: 1;
-        text-align: center;
         height: 80%;
-        background-color: var(--rojo);
-        border: var(--tamaño-bordes) solid var(--rojo-oscuro);
-        border-radius: 100rem;
-        color: white;
         font-size: 2vw;
-        cursor: pointer;
     }
 
-    dialog form .dialog-btns-container button:hover {
-        transform: scale(1.05) rotate(-2deg);
-        transition: 0.3s;
+    .dialog .dialog-wrapper .dialog-btns-container button:active {
+        background-color: var(--azul-detalle);
+        border: var(--tamaño-bordes) solid var(--dark-clr);
     }
 
 

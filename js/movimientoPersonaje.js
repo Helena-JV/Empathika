@@ -1,9 +1,8 @@
 // DESPLAZAMIENTO DEL PERSONAJE PRINCIPAL ===============================================================
-
 //VARIABLES -----------------------------------------------------------------------
 const personaje_principal = document.querySelector("#protagonista-container");
 const personaje_principal_img = document.querySelector("#protagonista-container img");
-const generalWrapperContainer = document.querySelector("#general-wrapper");
+const generalWrapperContainer = document.querySelector(".general-wrapper");
 
 //DISTANCIA INICIAL -----------------------------------------------------------------------
 const distanciaIzdaPorcentaje = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--distancia-personaje-izda'));

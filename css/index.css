@@ -1,0 +1,131 @@
+/*ELEMENTOS SUPERIOR ========================================================================*/
+/*LOGO ----------------------------------------------*/ 
+#empathika-logo{
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 24%;
+    margin: 0 auto;
+    width: 48%;
+}
+
+#empathika-logo h2 {
+    font-size: 200%;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    font-family: "Grandstander", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 275%;
+    white-space: nowrap;
+}
+
+/*BURBUJA ----------------------------------------------*/ 
+#burbuja-index {
+    position: absolute;
+    right: 3%;
+    top: 5%;
+    width: 15%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#burbuja-index::before {
+    content: "Para edades de 5 a 8 años";
+    position: absolute;
+    text-align: center;
+    margin: 15%;
+    color: white;
+    
+
+}
+
+/*BOTÓN INFO ----------------------------------------------*/ 
+#btn-info {
+    position: absolute;
+    top: 5%;
+    left: 3%;
+    width: 8%;
+}
+
+/*BOTÓN JUGAR ----------------------------------------------*/ 
+#btn-jugar {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30%;
+    height: 13%;
+    font-size: 150%;
+}
+
+/*FONDO ========================================================================*/
+#index-cesped {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+}
+
+/*PLANTAS GROW ----------------------------------------------*/ 
+/*PLANTA 1*/
+    .plantagrow-index-1 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+    .plantagrow-index-1 svg {
+        position: absolute;
+        width: 25%;
+        bottom: -3%;
+    }
+
+    .plantagrow-index-1 svg:first-child {
+        left: -1%;
+    }
+
+    .plantagrow-index-1 svg:last-child {
+        transform: scale(-1, 1);
+        right: -1%;
+    }
+
+/*PLANTA 2*/
+    .plantagrow-index-2 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+    }
+
+    .plantagrow-index-2 svg {
+        position: absolute;
+        width: 26%;
+        top: -2%;
+    }
+
+    .plantagrow-index-2 svg:first-child {
+        left: 20%;
+    }
+
+    .plantagrow-index-2 svg:last-child {
+        transform: scale(-1, 1);
+        right: 20%;
+    }
+
+
+
+
+
+.img-ref {
+    position: absolute;
+    top: 0;
+    opacity: 0.5;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+}

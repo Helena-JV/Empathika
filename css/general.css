@@ -18,6 +18,92 @@
     --tamaño-bordes: 0.5vw;
 }
 
+/* FONDO ======================================================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--negro); 
+  font-family: "Sniglet-Regular", Arial, Helvetica, sans-serif;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  text-wrap: balance;
+}
+
+html * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ESCALA CONTENEDOR ======================================================================== */
+
+/* Permitir selección en elementos que necesitan ser interactivos */
+button, input, textarea, a, [role="button"], [tabindex="0"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  cursor: pointer;
+}
+
+.general-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Ajustar la proporción según el tamaño de la pantalla */
+@media (min-aspect-ratio: 16/9) {
+  /* Pantallas más anchas que 16:9 */
+  .general-wrapper {
+      width: 177.78vh; /* 16/9 * 100vh para mantener la proporción 16:9 */
+      height: 100vh;
+      margin: 0 auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  /* Pantallas más estrechas que 16:9 */
+  .general-wrapper {
+      width: 100vw;
+      height: 56.25vw; /* 9/16 * 100vw para mantener la proporción 16:9 */
+  }
+}
+
+/*GENERAL ASSETS =====================================================================*/
+/*CIELO--------------------------------*/
+.sky-index {
+  background: linear-gradient(#9bcbcf, #D6EBEC);
+}
+
+.sky-juego {
+  background: linear-gradient(#AFD3D6, #D6EBEC 15%);
+}
+
+/*BOTONES ------------------------------*/
+button {
+  text-align: center;
+  background-color: var(--rojo);
+  border: var(--tamaño-bordes) solid var(--rojo-oscuro);
+  border-radius: 100rem;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05) rotate(-2deg);
+  transition: 0.3s;
+}
+
+
 /*FONTS =====================================================================*/
 @font-face {
     font-family: Sniglet-Regular;
@@ -32,6 +118,7 @@
 /*ANIMATIONS =====================================================================*/
 /*BOTONES HUD---------------------------*/
 .anim-btn-hud {
+  cursor: pointer;
   transition: 0.2s;
 }
 
