@@ -51,6 +51,20 @@
     width: 8%;
 }
 
+/*MODAL ----------------------------------------------------*/ 
+#modal-info .modal-content{
+    gap: 2ch;
+}
+
+#modal-info .modal-content p:last-child{
+    font-size: 80%;
+}
+
+.ocultar-modal {
+    display: none;
+}
+
+
 /*BOTÓN JUGAR ----------------------------------------------*/ 
 #btn-jugar {
     position: absolute;

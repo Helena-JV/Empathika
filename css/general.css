@@ -45,7 +45,7 @@ html * {
 /* ESCALA CONTENEDOR ======================================================================== */
 
 /* Permitir selección en elementos que necesitan ser interactivos */
-button, input, textarea, a, [role="button"], [tabindex="0"] {
+button, input, textarea, a, [role="button"], [tabindex="0"], p {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
@@ -103,6 +103,28 @@ button:hover {
   transition: 0.3s;
 }
 
+/*MODAL ----------------------------------------------------*/ 
+.modal {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.719);
+}
+
+.modal .modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: fit-content;
+  min-height: 35%;
+  padding: 3% 5%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1rem;
+}
 
 /*FONTS =====================================================================*/
 @font-face {

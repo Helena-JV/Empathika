@@ -3,6 +3,22 @@ document.getElementById("btn-jugar").addEventListener("click", function() {
   window.location.href = "pantalla1.html";
 });
 
+// BOTÓN INFO ===========================================================
+const btnInfo = document.getElementById("btn-info");
+const modalInfo = document.getElementById("modal-info");
+
+btnInfo.addEventListener("click", function() {
+  modalInfo.classList.toggle("ocultar-modal");
+});
+
+modalInfo.addEventListener("click", function(event) {
+  // Comprobamos si el clic se hizo directamente en el modal (el contenedor oscuro)
+  if (event.target === modalInfo) {
+    modalInfo.classList.add("ocultar-modal");
+  }
+});
+
+
 // ANIMACIÓN CRECIMIENTO PLANTAS ===========================================================
 let stagger_plantas = 0.4;
 let duracion_anim_hojas = 1;
