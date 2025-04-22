@@ -55,6 +55,7 @@
 #modal-info .modal-content{
     gap: 2ch;
     transform-origin: center center;
+    text-align: center;
     animation: anim-modal 0.7s ease-in-out forwards;
 }
 
