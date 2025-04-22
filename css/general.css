@@ -27,7 +27,6 @@ html, body {
   overflow: hidden;
   background-color: var(--negro); 
   font-family: "Sniglet-Regular", Arial, Helvetica, sans-serif;
-  font-size: 2vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,6 +63,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
 @media (min-aspect-ratio: 16/9) {
   /* Pantallas más anchas que 16:9 */
   .general-wrapper {
+    font-size: 3.5vh;
       width: 177.78vh; /* 16/9 * 100vh para mantener la proporción 16:9 */
       height: 100vh;
       margin: 0 auto;
@@ -73,6 +73,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
 @media (max-aspect-ratio: 16/9) {
   /* Pantallas más estrechas que 16:9 */
   .general-wrapper {
+      font-size: 2vw;
       width: 100vw;
       height: 56.25vw; /* 9/16 * 100vw para mantener la proporción 16:9 */
   }
