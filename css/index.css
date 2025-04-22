@@ -113,11 +113,11 @@
     }
 
     .plantagrow-index-2 svg:first-child {
-        left: 20%;
+        left: 19%;
     }
 
     .plantagrow-index-2 svg:last-child {
-        right: 20%;
+        right: 19%;
     }
 
 /*FLORES----------------------------------------------*/ 
@@ -162,6 +162,12 @@
         100% {scale:1;}
     }
 
+/*CONTENEDORES----------------------------------------------*/
+    .index-monticulo, .index-mountain, .index-nubes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
 /*MONTICULO----------------------------------------------*/
     .index-monticulo img {
         width: 39%;
@@ -170,7 +176,6 @@
     }
 
 /*MONTAÑAS----------------------------------------------*/
-
     .index-mountain img {
         width: 48%;
         position: absolute;

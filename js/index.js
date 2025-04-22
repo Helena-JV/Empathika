@@ -3,7 +3,7 @@ document.getElementById("btn-jugar").addEventListener("click", function() {
   window.location.href = "pantalla1.html";
 });
 
-// ANIMACIÓN CRECIMIENTO DE PLANTAS ===========================================================
+// ANIMACIÓN CRECIMIENTO PLANTAS ===========================================================
 let stagger_plantas = 0.4;
 let duracion_anim_hojas = 1;
 let duracion_anim_lineas = 3;
@@ -27,3 +27,28 @@ for (let i = 1; i <= 2; i++) {
     );
   }
 }
+
+// ANIMACIÓN CRECIMIENTO FLORES ===========================================================
+
+for (let i = 1; i <= 2; i++){
+  gsap.fromTo(
+    document.querySelectorAll(`.index-flores .flores-${i} path`),
+    { scale: "0" },
+    { scale: "1", duration: 1, ease: "power1.inOut", stagger: 0.2 }
+  );
+}
+
+// ANIMACIÓN FONDO =========================================================================
+
+const bgAnim = [
+  document.querySelector(".index-nubes"),
+  document.querySelector(".index-sol"),
+  document.querySelector(".index-mountain"),
+  document.querySelector(".index-monticulo")
+];
+
+gsap.fromTo(
+  bgAnim,
+  { y: "80%" },
+  {y: "0", duration: 3, ease: "power1.inOut", stagger: 0.2}
+);
