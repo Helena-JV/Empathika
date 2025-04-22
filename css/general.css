@@ -124,7 +124,12 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   border-radius: 1rem;
+}
+
+.modal .modal-content > * {
+  width: 100%;
 }
 
 /*FONTS =====================================================================*/
