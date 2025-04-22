@@ -108,13 +108,14 @@ button:hover {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.719);
+  display: grid;
+  place-items: center;
 }
 
 .modal .modal-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  margin: auto;
   width: 80%;
   height: fit-content;
   min-height: 35%;

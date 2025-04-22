@@ -3,7 +3,7 @@ document.getElementById("btn-jugar").addEventListener("click", function() {
   window.location.href = "pantalla1.html";
 });
 
-// BOTÓN INFO ===========================================================
+// BOTÓN Y MODAL INFO ===========================================================
 const btnInfo = document.getElementById("btn-info");
 const modalInfo = document.getElementById("modal-info");
 
@@ -12,7 +12,6 @@ btnInfo.addEventListener("click", function() {
 });
 
 modalInfo.addEventListener("click", function(event) {
-  // Comprobamos si el clic se hizo directamente en el modal (el contenedor oscuro)
   if (event.target === modalInfo) {
     modalInfo.classList.add("ocultar-modal");
   }
@@ -65,6 +64,6 @@ const bgAnim = [
 
 gsap.fromTo(
   bgAnim,
-  { y: "80%" },
+  { y: "50%" },
   {y: "0", duration: 3, ease: "power1.inOut", stagger: 0.2}
 );
