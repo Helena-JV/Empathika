@@ -63,9 +63,9 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
 @media (min-aspect-ratio: 16/9) {
   /* Pantallas más anchas que 16:9 */
   .general-wrapper {
-    font-size: 3.5vh;
-      width: 177.78vh; /* 16/9 * 100vh para mantener la proporción 16:9 */
-      height: 100vh;
+      font-size: 3.5dvh;
+      width: 177.78dvh; /* 16/9 * 100vh para mantener la proporción 16:9 */
+      height: 100dvh;
       margin: 0 auto;
   }
 }
