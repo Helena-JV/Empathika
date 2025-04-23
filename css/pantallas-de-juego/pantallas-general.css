@@ -1,62 +1,3 @@
-/*FONDO ========================================================================*/
-/*NUBES ----------------------------------------------*/ 
-    #bg-nubes {
-        position: absolute;
-        top: 4%;
-        width: 68%;
-        right: -4%;
-        animation: nubes 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes nubes {
-        0% {
-            transform: translateY(-8%);
-        }
-        100% {
-            transform: translateY(8%);
-        }
-    }
-
-/*MONTAÑAS ----------------------------------------------*/ 
-    #bg-back {
-        position: absolute;
-        top: 8%;
-        right: 3%;
-        width: 100%;
-        transform: scale(1.2);
-    }
-
-/*ÁRBOLES Y RAYOS ----------------------------------------------*/ 
-    #bg-mid {
-        position: absolute;
-        top: 4%;
-        left: -15%;
-        width: 80%;
-    }
-
-    #bg-rayos {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 70%;
-        mix-blend-mode: color-dodge;
-        opacity: 0.3;
-        fill: rgb(216, 203, 57);
-    }
-
-/*SUELO BOSQUE ----------------------------------------------*/ 
-    #bg-front {
-        position: absolute;
-        height: 100%;
-    }  
-
-    #arbusto1 {
-        position: absolute;
-        bottom: 29%;
-        left: 26%;
-        width: 22%;
-    }
-
 /* HUD INFERIOR ======================================================================== */
 
 #hud-inferior {
@@ -133,18 +74,7 @@
     bottom: var(--distancia-suelo);
 }
 
-/*LUMO Y FLORA ---------------------------*/
-    #lumo-flora-container {
-        right: 10%;
-        width: 15%;
-        height: auto;
-        display: block;
-        user-select: none;
-        cursor: pointer;
-    }
-
-
-/*PERSONAJE PRINCIPAL ================================================================*/
+/*PERSONAJE PRINCIPAL ===============================================*/
 #protagonista-container {
     position: absolute;
     bottom: var(--distancia-suelo);
