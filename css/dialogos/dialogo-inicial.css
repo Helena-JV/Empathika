@@ -1,0 +1,89 @@
+
+/*ÁRBOL ----------------------------------------------------*/ 
+.arbol-sabio {
+    position: absolute;
+    height: 100%;
+    right: -14%;
+}
+
+/*BOCADILLO DIÁLOGO -------------------------------------------*/ 
+.bocadillo-dialog-init {
+    position: absolute;
+    background-color: white;
+    height: 70%;
+    width: 55%;
+    inset: 0;
+    right: 30%;
+    margin: auto;
+    border-radius: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 7%;
+    font-size: 135%;
+
+}
+
+.bocadillo-dialog-init::before {
+    content: 'Árbol Sabio';
+    position: absolute;
+    top: -7%;
+    left: 4%;
+    padding: 2.5% 6% 1%;
+    background-color: var(--azul-detalle);
+    border: var(--tamaño-bordes) solid var(--azul-detalle-claro);
+    color: white;
+    font-family: "Grandstander", Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    font-weight: 700;
+    border-radius: 100rem;
+}
+
+.bocadillo-dialog-init .pico-bocadillo {
+    position: absolute;
+    width: 9%;
+    right: -8%;
+    bottom: 17%;
+}
+
+/*BOTÓN SIGUIENTE*/
+.bocadillo-dialog-init .next-btn {
+    position: absolute;
+    transform-origin: center;
+    width: 7%;
+    top: 80%;
+    right: 7%;
+    z-index: 100;
+}
+
+.bocadillo-dialog-init .next-btn:hover {
+    transition: transform 0.2s ease-in-out;
+    transform: scale(1.3);
+}
+
+.bocadillo-dialog-init .next-btn:active {
+    transition: filter 0.2s ease-in-out;
+    filter: hue-rotate(180deg);
+}
+
+/*BG ----------------------------------------------------*/ 
+.dialog-fondo-planta1, .dialog-fondo-planta2 {
+    position: absolute;
+    width: 12%;
+} 
+
+.dialog-fondo-planta1{
+    left: 1%;
+    bottom: 26%;
+}
+.dialog-fondo-planta2 {
+    left: 3%;
+    bottom: 4%;
+}
+
+#dialogoArbolbtnFinal {
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    padding: 2% 3%;
+}

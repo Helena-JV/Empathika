@@ -111,13 +111,6 @@
     display: none;
 }
 
-.dialog .dialog-fondo-hierba {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    scale: 1.2;
-}
-
 .dialog .dialog-wrapper {
     width: 100%;
     height: 100%;

@@ -1,6 +1,6 @@
 // BOTÓN JUGAR ===========================================================
 document.getElementById("btn-jugar").addEventListener("click", function() {
-  window.location.href = "pantalla1.html";
+  window.location.href = "dialogo-inicial.html";
 });
 
 // BOTÓN Y MODAL INFO ===========================================================
