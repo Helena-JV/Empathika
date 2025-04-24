@@ -21,6 +21,7 @@
 // SIGUIENTE DIÁLOGO ===============================================================
 
     //ÁRBOL -------------------------------------------
+    const bocadilloDilalogInit = document.getElementById("bocadilloDilalog");
     const dialogoArbolInit = document.getElementById("dialogoArbol");
     const dialogoArbolbtnFinal = document.getElementById("dialogoArbolbtnFinal");
     const nextBtn = document.querySelector('.next-btn');
@@ -44,7 +45,7 @@
         if (indice < frasesArbolInit.length) {
             dialogoArbolInit.innerHTML = frasesArbolInit[indice];
         } else {
-            // Ocultar botón de siguiente, mostrar botón final
+            //Ocultar botón de siguiente, mostrar botón final
             nextBtn.style.display = "none";
             dialogoArbolbtnFinal.style.display = "inline-block";
         }
