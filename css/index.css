@@ -160,6 +160,12 @@
 }
 
 /*ÁRBOLES----------------------------------------------*/ 
+    .arbol-index {
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
     .arbol-index img{
         width: 38%;
         position: absolute;

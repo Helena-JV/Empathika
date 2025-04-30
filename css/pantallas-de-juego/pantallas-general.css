@@ -63,7 +63,7 @@
     left: 50%; /* Añade esta línea para el centrado horizontal */
     transform: translate(-50%, -50%);
     font-family: 'Grandstander', Arial, Helvetica, sans-serif;
-    font-size: 5vw;
+    font-size: 250%;
     font-weight: 700;
     color: var(--dark-clr);
 }

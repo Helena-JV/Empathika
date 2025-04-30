@@ -9,16 +9,12 @@
 
     <title>Empathika. El bosque mágico</title>
 
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/general.css">
-    <link rel="stylesheet" href="./css/pantallas-de-juego/pantallas-general.css">
-    <link rel="stylesheet" href="./css/pantallas-de-juego/pantalla1.css">
-
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <!--BODY===========================================================================================-->
 <body>
-    <main>
-        <div class="general-wrapper sky-juego">
+    <main class="general-wrapper" data-barba="wrapper">
+        <div class="sky sky-juego" data-barba="container" data-barba-namespace="pantalla-juego-1">
 
             <!--BG_____________________________________________________________-->
             <div class="bg-container">
@@ -90,8 +86,7 @@
                 </div> 
         </div>
     </main>
-    
-    <script src="./js/movimientoPersonaje.js"></script>
-    <script src="./js/dialogos.js"></script>
+    <script src="./js/especifico/movimientoPersonaje.js"></script>
+    <script src="./js/especifico/dialogos-lumo.js"></script>
 </body>
 </html>

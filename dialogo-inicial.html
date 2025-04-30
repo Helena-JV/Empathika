@@ -7,32 +7,29 @@
 
     <title>Empathika. El bosque mágico</title>
 
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/general.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/dialogos/dialogo-inicial.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-    <div class="general-wrapper sky-dialog">
-        <!--BG_____________________________________________________________-->
-        <img class="dialog-fondo-mountains" src="./assets/img/dialogos/dialog-mountains.svg" alt="">
-        <img class="dialog-fondo-hierba" src="./assets/img/dialogos/dialog-hierba.svg" alt="">
-        <img class="dialog-fondo-planta1" src="./assets/img/bg/planta1.svg" alt="">
-        <img class="dialog-fondo-planta2" src="./assets/img/bg/planta2.svg" alt="">
+    <main class="general-wrapper" data-barba="wrapper">
+        <div class="sky sky-dialog" data-barba="container" data-barba-namespace="dialogo-inicial">
+            <!--BG_____________________________________________________________-->
+            <img class="dialog-fondo-mountains" src="./assets/img/dialogos/dialog-mountains.svg" alt="">
+            <img class="dialog-fondo-hierba" src="./assets/img/dialogos/dialog-hierba.svg" alt="">
+            <img class="dialog-fondo-planta1" src="./assets/img/bg/planta1.svg" alt="">
+            <img class="dialog-fondo-planta2" src="./assets/img/bg/planta2.svg" alt="">
 
-        <!--BOCADILLO_____________________________________________________________-->
-        <div class="bocadillo-dialog-init anim-fade-in">
-            <img class="next-btn" src="./assets/img/dialogos/dialog-btn-next.svg" alt="Siguiente">
-            <div id="dialogoArbol">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</div>
-            <button id="dialogoArbolbtnFinal" style="display: none;">Entrar al bosque</button>
-            <img class="pico-bocadillo" src="./assets/img/dialogos/dialog-pico-bocadillo.svg" alt="">
+            <!--BOCADILLO_____________________________________________________________-->
+            <div class="bocadillo-dialog-init">
+                <img class="next-btn" src="./assets/img/dialogos/dialog-btn-next.svg" alt="Siguiente">
+                <div id="dialogoArbol">¡Qué bien que has llegado! Te estábamos esperando. Estás en Empathika, el lugar en el que viven criaturas mágicas.</div>
+                <a href="./pantalla1.html"><button id="dialogoArbolbtnFinal" style="display: none;">Entrar al bosque</button></a>
+                <img class="pico-bocadillo" src="./assets/img/dialogos/dialog-pico-bocadillo.svg" alt="">
+            </div>
+            <!--ÁRBOL SABIO_____________________________________________________________-->
+            <img class="arbol-sabio" src="./assets/img/personajes/arbol-sabio.svg" alt="Árbol sabio">
         </div>
-        <!--ÁRBOL SABIO_____________________________________________________________-->
-        <img class="arbol-sabio" src="./assets/img/personajes/arbol-sabio.svg" alt="Árbol sabio">
-    </div>
-
-    <script src="./js/dialogos.js"></script>
+    </main>
+    <script src="./js/especifico/dialogos-Arbol.js"></script>
 </body>
-
 </html>

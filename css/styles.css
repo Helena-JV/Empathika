@@ -1,0 +1,15 @@
+/*ESTILOS GENERALES --------------------------------*/
+@import url("./reset.css");
+@import url("./general.css");
+
+/*ESTILOS ESPECÍFICOS --------------------------------*/
+@import url("./index.css");
+@import url("./dialogos/dialogo-inicial.css");
+
+/*ESTILOS PANTALLAS --------------------------------*/
+@import url("./pantallas-de-juego/pantallas-general.css");
+@import url("./pantallas-de-juego/pantalla1.css");
+
+/*ANIMACIONES ----------------------------*/
+@import url("./barba/clip.css");
+@import url("./barba/fade.css");

@@ -1,8 +1,3 @@
-// BOTÓN JUGAR ===========================================================
-document.getElementById("btn-jugar").addEventListener("click", function() {
-  window.location.href = "dialogo-inicial.html";
-});
-
 // BOTÓN Y MODAL INFO ===========================================================
 const btnInfo = document.getElementById("btn-info");
 const modalInfo = document.getElementById("modal-info");
