@@ -183,6 +183,7 @@ button:active {
 }
 
 .modal .modal-content > * {
+  pointer-events: none;
   width: 100%;
 }
 

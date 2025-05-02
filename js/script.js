@@ -29,16 +29,9 @@ BARBA JS
             },{
                 namespace: 'pantalla-juego-1',
                 beforeEnter() {
-                    abrirModal();
-                    cerrarModalFondo();
                     movPersonaje();
-                    abrirDialogo();
-                    cerrarDialogo();
-                    cerrarSiFondo();
-                    crearBoton();
-                    gestionarRespuestaLumo();
-                },
-            },
+                }
+            }
         ],
     });
 
@@ -49,16 +42,11 @@ BARBA JS
         if (namespace === 'dialogo-inicial') {
           dialogoArbol();
         } else if (namespace === 'pantalla-juego-1') {
-            abrirModal();
-            cerrarModalFondo();
             movPersonaje();
-            abrirDialogo();
-            cerrarDialogo();
-            cerrarSiFondo();
-            crearBoton();
-            gestionarRespuestaLumo();
         }
       });
+
+      
 
 
 
@@ -67,6 +55,7 @@ MOVIMIENTO PERSONAJE PRINCIPAL
 =================================================================================================================*/ 
 
     function movPersonaje(){
+        
         //VARIABLES -----------------------------------------------------------------------
         const personaje_principal = document.querySelector("#protagonista-container");
         const personaje_principal_img = document.querySelector("#protagonista-container img");
@@ -129,7 +118,7 @@ MOVIMIENTO PERSONAJE PRINCIPAL
                 personaje_principal_img.classList.add("protagonista-flip");
             }
         });
-    }
+    };
 
 
 /*=================================================================================================================
@@ -145,6 +134,35 @@ function abrirModal(selector) {
       modal.classList.add('display-none');
     }
   }
+
+
+
+
+
+
+//   function abrirModal(selector) {
+//     if (!selector) {return;} //Salir si al llamar desde
+    
+//     const modal = document.querySelector(selector);
+//     if (modal) {
+//         modal.classList.remove('display-none');
+//     }
+// }
+
+
+  
+// function cerrarModalFondo(event, modal) {
+//     // Cuando se llama desde barba.js sin parámetros
+//     if (!event || !modal) {
+//         console.log("cerrarModalFondo: Inicializando eventos para cerrar modales");
+//         return; // No hacemos nada en esta fase
+//     }
+    
+//     // Cuando se llama desde el HTML onclick
+//     if (event.target === modal) {
+//         modal.classList.add('display-none');
+//     }
+// }
 /*=================================================================================================================
 DIALOGOS EXTERNOS
 =================================================================================================================*/ 
@@ -191,7 +209,7 @@ DIALOGOS EXTERNOS
                 if (dialogoArbolbtnFinal) {
                     dialogoArbolbtnFinal.style.display = "inline-block";
                 }
-                dialogoArbolInit.classList.add('ultima-frase'); 
+                dialogoArbolInit.classList.add('ultima-frase');
             } else if (nextBtn) {
                 nextBtn.style.visibility = "visible";
                 nextBtn.style.pointerEvents = "auto";
