@@ -160,12 +160,6 @@
 
     .plantaverde-index img {
         transform-origin: 0% 100%; 
-        animation: anim-plantaverde-index 2s cubic-bezier(.78,.43,.5,1.25) forwards;
-    }
-
-    @keyframes anim-plantaverde-index {
-        0% {scale:0;}
-        100% {scale:1;}
     }
 
 /*CONTENEDORES----------------------------------------------*/

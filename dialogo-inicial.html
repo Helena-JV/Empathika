@@ -21,8 +21,15 @@
 
             <!--BOCADILLO_____________________________________________________________-->
             <div class="bocadillo-dialog-init">
-                <img class="next-btn" src="./assets/img/dialogos/dialog-btn-next.svg" alt="Siguiente">
-                <div id="dialogoArbol">¡Qué bien que has llegado! Te estábamos esperando. Estás en Empathika, el lugar en el que viven criaturas mágicas.</div>
+                <div class="btn-dialog-init">
+                    <div class="prev-btn">
+                        <img src="./assets/img/dialogos/dialog-btn-next.svg" alt="Anterior">
+                    </div>
+                    <div class="next-btn">
+                        <img src="./assets/img/dialogos/dialog-btn-next.svg" alt="Siguiente">
+                    </div>
+                </div>
+                <div id="dialogoArbol" class="txt-bocadillo">¡Qué bien que has llegado! Te estábamos esperando. Estás en Empathika, el lugar en el que viven criaturas mágicas.</div>
                 <a href="./pantalla1.html"><button id="dialogoArbolbtnFinal" style="display: none;">Entrar al bosque</button></a>
                 <img class="pico-bocadillo" src="./assets/img/dialogos/dialog-pico-bocadillo.svg" alt="">
             </div>
@@ -30,6 +37,11 @@
             <img class="arbol-sabio" src="./assets/img/personajes/arbol-sabio.svg" alt="Árbol sabio">
         </div>
     </main>
+
+    <!--BARBA JS-->
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/css"></script>
+    <!--JS ESPECIFICO-->
     <script src="./js/script.js"></script>
 </body>
 </html>

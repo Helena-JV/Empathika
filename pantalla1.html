@@ -46,10 +46,18 @@
 
             <!--HUD SUPERIOR_____________________________________________________________-->
             <div id="hud-superior">
-                <img class="btn-help hud anim-btn-hud" src="./assets/img/hud/btn-help.svg" alt="Botón ayuda">
+                <img onclick="abrirModal('#modal-ayuda-pantalla1')" class="btn-help hud anim-btn-hud" src="./assets/img/hud/btn-help.svg" alt="Botón ayuda">
                 <div class="hud estrella-puntos">
                     <img src="./assets/img/hud/star.svg" alt="Estrellas">
                     <p>5</p>
+                </div>
+            </div>
+
+            <!--MODAL AYUDA_______________________________________________________________-->
+            <div onclick="cerrarModalFondo(event, this)" class="modal display-none" id="modal-ayuda-pantalla1">
+                <div class="modal-content">
+                  <p>Haz click en la pantalla para moverte, en los personajes para hablar y en los objetos para usarlos.</p>
+                  <p>Pulsa los botones de la parte inferior de la pantalla para ir a otras partes del bosque.</p>
                 </div>
             </div>
 

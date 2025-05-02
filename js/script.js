@@ -29,6 +29,8 @@ BARBA JS
             },{
                 namespace: 'pantalla-juego-1',
                 beforeEnter() {
+                    abrirModal();
+                    cerrarModalFondo();
                     movPersonaje();
                     abrirDialogo();
                     cerrarDialogo();
@@ -47,12 +49,14 @@ BARBA JS
         if (namespace === 'dialogo-inicial') {
           dialogoArbol();
         } else if (namespace === 'pantalla-juego-1') {
-          movPersonaje();
-          abrirDialogo();
-          cerrarDialogo();
-          cerrarSiFondo();
-          crearBoton();
-          gestionarRespuestaLumo();
+            abrirModal();
+            cerrarModalFondo();
+            movPersonaje();
+            abrirDialogo();
+            cerrarDialogo();
+            cerrarSiFondo();
+            crearBoton();
+            gestionarRespuestaLumo();
         }
       });
 
@@ -128,40 +132,95 @@ MOVIMIENTO PERSONAJE PRINCIPAL
     }
 
 
-
+/*=================================================================================================================
+MODAL
+=================================================================================================================*/ 
+function abrirModal(selector) {
+    const modal = document.querySelector(selector);
+    modal.classList.toggle('display-none');
+  }
+  
+  function cerrarModalFondo(event, modal) {
+    if (event.target === modal) {
+      modal.classList.add('display-none');
+    }
+  }
 /*=================================================================================================================
 DIALOGOS EXTERNOS
 =================================================================================================================*/ 
 
     // ARBOL ===============================================================
-        function dialogoArbol() {
-            const bocadilloDilalogInit = document.getElementById("bocadilloDilalog");
-            const dialogoArbolInit = document.getElementById("dialogoArbol");
-            const dialogoArbolbtnFinal = document.getElementById("dialogoArbolbtnFinal");
-            const nextBtn = document.querySelector('.next-btn');
-            //FRASES
-                const frasesArbolInit =[
-                    "¡Qué bien que has llegado! Te estábamos esperando. Estás en Empathika, el lugar en el que viven criaturas mágicas.",
-                    "Pero algo ha pasado últimamente y el bosque está en peligro...",
-                    "Sabemos que tienes un corazón bondadoso. Tu tarea será ayudar a los habitantes del bosque a sentirse mejor, y así, el bosque volverá a brillar.",
-                    "Cada uno tiene un problema diferente, pero todos necesitan comprensión y apoyo.",
-                    "¿Podrías ayudarnos a devolver el equilibrio al bosque?",
-                ];
-            let indice = 0;
+    function dialogoArbol() {
+        const dialogoArbolInit = document.getElementById("dialogoArbol");
+        const dialogoArbolbtnFinal = document.getElementById("dialogoArbolbtnFinal");
+        const nextBtn = document.querySelector('.btn-dialog-init .next-btn');
+        const prevBtn = document.querySelector('.btn-dialog-init .prev-btn');
+    
+        const frasesArbolInit = [
+            "¡Qué bien que has llegado! Te estábamos esperando. Estás en Empathika, el lugar en el que viven criaturas mágicas.",
+            "Pero algo ha pasado últimamente y el bosque está en peligro...",
+            "Sabemos que tienes un corazón bondadoso. Tu tarea será ayudar a los habitantes del bosque a sentirse mejor, y así, el bosque volverá a brillar.",
+            "Cada uno tiene un problema diferente, pero todos necesitan comprensión y apoyo.",
+            "¿Podrías ayudarnos a devolver el equilibrio al bosque?", 
+        ];
+        let indice = 0;
+        dialogoArbolInit.innerHTML = frasesArbolInit[indice];
+    
+        if (prevBtn) {
+            prevBtn.style.visibility = "hidden";
+            prevBtn.style.pointerEvents = "none";
+        }
+    
+        function actualizarDialogo() {
             dialogoArbolInit.innerHTML = frasesArbolInit[indice];
-            //NAVEGACIÓN ENTRE FRASES
-            nextBtn.addEventListener('click', () => {
-                indice++;
-                if (indice < frasesArbolInit.length) {
-                    dialogoArbolInit.innerHTML = frasesArbolInit[indice];
-                } else {
-                    //Ocultar botón de siguiente, mostrar botón final
-                    nextBtn.style.display = "none";
+            dialogoArbolInit.classList.remove('ultima-frase'); 
+    
+            if (indice === 0 && prevBtn) {
+                prevBtn.style.visibility = "hidden";
+                prevBtn.style.pointerEvents = "none";
+            } else if (prevBtn) {
+                prevBtn.style.visibility = "visible";
+                prevBtn.style.pointerEvents = "auto";
+            }
+    
+            if (indice === frasesArbolInit.length - 1) {
+                if (nextBtn) {
+                    nextBtn.style.visibility = "hidden";
+                    nextBtn.style.pointerEvents = "none";
+                }
+                if (dialogoArbolbtnFinal) {
                     dialogoArbolbtnFinal.style.display = "inline-block";
                 }
-        });
+                dialogoArbolInit.classList.add('ultima-frase'); 
+            } else if (nextBtn) {
+                nextBtn.style.visibility = "visible";
+                nextBtn.style.pointerEvents = "auto";
+                if (dialogoArbolbtnFinal) {
+                    dialogoArbolbtnFinal.style.display = "none";
+                }
+            }
         }
-
+    
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                indice--;
+                if (indice < 0) {
+                    indice = 0;
+                }
+                actualizarDialogo();
+            });
+        }
+    
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                indice++;
+                if (indice >= frasesArbolInit.length) {
+                    indice = frasesArbolInit.length - 1;
+                }
+                actualizarDialogo();
+            });
+        }
+    }
 
 
 /*=================================================================================================================

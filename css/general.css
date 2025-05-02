@@ -80,6 +80,9 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
 }
 
 /*GENERAL ASSETS =====================================================================*/
+.display-none {
+  display: none;
+}
 /*CIELO--------------------------------*/
 .sky {
   width: 100%;
@@ -151,6 +154,7 @@ button:active {
 /*MODAL ----------------------------------------------------*/ 
 
 .modal {
+  z-index: 900;
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.719);
@@ -180,10 +184,6 @@ button:active {
 
 .modal .modal-content > * {
   width: 100%;
-}
-
-.ocultar-modal {
-  display: none;
 }
 
 @keyframes anim-modal {
@@ -223,4 +223,9 @@ button:active {
   100% {
       transform: skew(-5deg) translateX(2%);
   }
+}
+
+/*DISPLAYS ESPECIFICOS =====================================================================*/
+.display-none {
+  display: none;
 }
