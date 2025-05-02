@@ -345,7 +345,7 @@ function gestionarRespuestaLumo(respuesta) {
 	//RESPUESTA: DECIRSELO ----------------------------------------------------------------
     } else if (respuesta === 'decir') {
 		//Parrafo
-        dialogoContenidoElement.innerHTML = '<p class="hud">Uf... ¿De verdad crees que no se enfadará?</p>';
+        dialogoContenidoElement.innerHTML = '<p class="hud">Uf...</p><p class="hud">¿De verdad crees que no se enfadará?</p>';
 
 		//Botones
 			//RESPUESTA 1 ____________________________________
@@ -383,7 +383,7 @@ function gestionarRespuestaLumo(respuesta) {
         dialogoContenidoElement.innerHTML = '<p class="hud">No sé… eso me hace sentir mal por dentro… ¿Qué otra cosa puedo hacer?</p>';
 
 		//RESPUESTA 1 ____________________________________
-			const btnDiselo = crearBoton("Díselo s Floris, seguro que lo entiende", function() {
+			const btnDiselo = crearBoton("Díselo a Floris, seguro que lo entiende", function() {
 				decirseloAFloris();
 			}); dialogoBotonesElement.appendChild(btnDiselo);
 
@@ -405,7 +405,7 @@ function gestionarRespuestaLumo(respuesta) {
 		const btnSeguir = crearBoton("A ver qué dice Floris.", function() {
 			// DIALOGO CON FLORIS ________________________
             hablaFloris();
-            dialogoContenidoElement.innerHTML = '<p class="hud">¡Hola, Lumo! ¿Has terminado de jugar con mi piedra?</p>';
+            dialogoContenidoElement.innerHTML = '<p class="hud">¡Hola, Lumo!</p><p class="hud">¿Has terminado de jugar con mi piedra?</p>';
 
             //SIGUIENTE 1
             dialogoBotonesElement.innerHTML = '';

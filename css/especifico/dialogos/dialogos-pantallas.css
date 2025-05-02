@@ -16,7 +16,7 @@
     .dialog .dialog-wrapper .dialog-container {
         width: 80%;
         height:fit-content;
-        min-height: 35%;
+        min-height: 50%;
         padding: 3% 5%;
         position: absolute;
         top: 45%;
@@ -62,7 +62,7 @@
         gap: 0.8em;
         width: 65%;
         font-size: 125%;
-        margin: 2% 0;
+        margin: 2% 0 5%;
     }
 
     /*AJUSTES SEGÚN PERSONAJE ----------------------------------------------*/ 
