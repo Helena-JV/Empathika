@@ -19,6 +19,7 @@ BARBA JS
         //}
     ],
 
+        // CARGAR JS EN LA TRANSICIÓN ---------------------------
         views: [
             {
                 namespace: 'dialogo-inicial',
@@ -29,73 +30,31 @@ BARBA JS
                 namespace: 'pantalla-juego-1',
                 beforeEnter() {
                     movPersonaje();
+                    abrirDialogo();
+                    cerrarDialogo();
+                    cerrarSiFondo();
+                    crearBoton();
+                    gestionarRespuestaLumo();
                 },
             },
         ],
     });
 
-
-
-/*=================================================================================================================
-DIALOGOS
-=================================================================================================================*/ 
-
-    // DIALOGO LUMO ===============================================================
-
-        //ABRIR
-        function abrirDialogo() {
-            const dialogo = document.getElementById("dialogoLumo");
-            dialogo.classList.toggle("dialog-close");
+    // CARGAR JS SI SE RECARGA LA PÁGINA ---------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+        const namespace = document.body.getAttribute('data-barba-namespace');
+      
+        if (namespace === 'dialogo-inicial') {
+          dialogoArbol();
+        } else if (namespace === 'pantalla-juego-1') {
+          movPersonaje();
+          abrirDialogo();
+          cerrarDialogo();
+          cerrarSiFondo();
+          crearBoton();
+          gestionarRespuestaLumo();
         }
-
-        //CERRAR
-        function dialogoLumo() {
-            document.addEventListener("DOMContentLoaded", () => {
-                const dialogo = document.getElementById("dialogoLumo");
-                const botones = dialogo.querySelectorAll("button");
-
-                botones.forEach(boton => {
-                    boton.onclick = () => {
-                        dialogo.close();
-                    };
-                });
-            });
-        }
-
-    // SIGUIENTE DIÁLOGO ===============================================================
-
-        //ÁRBOL ------------------------------------------------------------------------
-            function dialogoArbol() {
-                const bocadilloDilalogInit = document.getElementById("bocadilloDilalog");
-                const dialogoArbolInit = document.getElementById("dialogoArbol");
-                const dialogoArbolbtnFinal = document.getElementById("dialogoArbolbtnFinal");
-                const nextBtn = document.querySelector('.next-btn');
-
-                //FRASES
-                    const frasesArbolInit =[
-                        "¡Qué bien que has llegado! Te estábamos esperando. Estás en Empathika, el lugar en el que viven criaturas mágicas.",
-                        "Pero algo ha pasado últimamente y el bosque está en peligro...",
-                        "Sabemos que tienes un corazón bondadoso. Tu tarea será ayudar a los habitantes del bosque a sentirse mejor, y así, el bosque volverá a brillar.",
-                        "Cada uno tiene un problema diferente, pero todos necesitan comprensión y apoyo.",
-                        "¿Podrías ayudarnos a devolver el equilibrio al bosque?",
-                    ];
-
-
-                let indice = 0;
-                dialogoArbolInit.innerHTML = frasesArbolInit[indice];
-
-                //NAVEGACIÓN ENTRE FRASES
-                nextBtn.addEventListener('click', () => {
-                    indice++;
-                    if (indice < frasesArbolInit.length) {
-                        dialogoArbolInit.innerHTML = frasesArbolInit[indice];
-                    } else {
-                        //Ocultar botón de siguiente, mostrar botón final
-                        nextBtn.style.display = "none";
-                        dialogoArbolbtnFinal.style.display = "inline-block";
-                    }
-            });
-            }
+      });
 
 
 
@@ -169,24 +128,170 @@ MOVIMIENTO PERSONAJE PRINCIPAL
     }
 
 
+
 /*=================================================================================================================
-DIALOGOS JUEGO
+DIALOGOS EXTERNOS
 =================================================================================================================*/ 
-//ABRIR
-function abrirDialogo(selector) {
-    const dialogo = document.querySelector(selector);
-    if (dialogo) dialogo.classList.toggle("dialog-close");
-} 
 
-//CERRAR
-function cerrarDialogo(selector) {
-const dialogo = document.querySelector(selector);
-if (dialogo) dialogo.classList.add("dialog-close");
-}
+    // ARBOL ===============================================================
+        function dialogoArbol() {
+            const bocadilloDilalogInit = document.getElementById("bocadilloDilalog");
+            const dialogoArbolInit = document.getElementById("dialogoArbol");
+            const dialogoArbolbtnFinal = document.getElementById("dialogoArbolbtnFinal");
+            const nextBtn = document.querySelector('.next-btn');
+            //FRASES
+                const frasesArbolInit =[
+                    "¡Qué bien que has llegado! Te estábamos esperando. Estás en Empathika, el lugar en el que viven criaturas mágicas.",
+                    "Pero algo ha pasado últimamente y el bosque está en peligro...",
+                    "Sabemos que tienes un corazón bondadoso. Tu tarea será ayudar a los habitantes del bosque a sentirse mejor, y así, el bosque volverá a brillar.",
+                    "Cada uno tiene un problema diferente, pero todos necesitan comprensión y apoyo.",
+                    "¿Podrías ayudarnos a devolver el equilibrio al bosque?",
+                ];
+            let indice = 0;
+            dialogoArbolInit.innerHTML = frasesArbolInit[indice];
+            //NAVEGACIÓN ENTRE FRASES
+            nextBtn.addEventListener('click', () => {
+                indice++;
+                if (indice < frasesArbolInit.length) {
+                    dialogoArbolInit.innerHTML = frasesArbolInit[indice];
+                } else {
+                    //Ocultar botón de siguiente, mostrar botón final
+                    nextBtn.style.display = "none";
+                    dialogoArbolbtnFinal.style.display = "inline-block";
+                }
+        });
+        }
 
-//CERRAR SIN FONDO
-function cerrarSiFondo(event, contenedor) {
-if (event.target === contenedor) {
-  contenedor.classList.add("dialog-close");
-}
-}
+
+
+/*=================================================================================================================
+DIALOGOS JUEGO GENERAL
+=================================================================================================================*/ 
+
+    //ABRIR
+    function abrirDialogo(selector) {
+        const dialogo = document.querySelector(selector);
+        if (dialogo) dialogo.classList.toggle("dialog-close");
+    } 
+
+    //CERRAR
+    function cerrarDialogo(selector) {
+        const dialogo = document.querySelector(selector);
+        if (dialogo) dialogo.classList.add("dialog-close");
+    }
+
+    //CERRAR SIN FONDO
+    function cerrarSiFondo(event, contenedor) {
+        if (event.target === contenedor) {
+        contenedor.classList.add("dialog-close");
+        }
+    }
+
+    //CREAR BOTON EN DIÁLOGO
+	function crearBoton(texto, onClick) {
+		const boton = document.createElement('button');
+		boton.classList.add('hud');
+		boton.textContent = texto;
+		boton.onclick = onClick;
+		return boton;
+	}
+
+
+/*=================================================================================================================
+DIALOGOS LUMO
+=================================================================================================================*/ 
+function gestionarRespuestaLumo(respuesta) {
+    const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
+    const dialogoBotonesElement = document.getElementById('dialog-lumo-btns');
+
+    dialogoContenidoElement.innerHTML = '';
+    dialogoBotonesElement.innerHTML = '';
+
+    //RESPUESTA: BUSCAR JUNTOS ----------------------------------------------------------------
+    if (respuesta === 'buscar') {
+		buscarJuntos();
+
+
+	//RESPUESTA: DECIRSELO ----------------------------------------------------------------
+    } else if (respuesta === 'decir') {
+		//Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">Uf... ¿De verdad crees que no se enfadará?</p>';
+
+		//Botones
+			//RESPUESTA 1 ____________________________________
+			const btnDecirselo = crearBoton("Si le dices la verdad, seguro que lo valora.", function() {
+				decirseloAFloris();
+			});
+			dialogoBotonesElement.appendChild(btnDecirselo);
+
+			//RESPUESTA 2 ____________________________________
+			const btnPuedeEnfadarse = crearBoton("Puede enfadarse un poco, pero es lo correcto.", function() {
+				//Parrafo
+				dialogoContenidoElement.innerHTML = '<p class="hud">¡Ay no! Entonces mejor no le digo nada...</p>';
+				
+				//Botones
+				dialogoBotonesElement.innerHTML = ''; 
+					//RESPUESTA 2.1 ____________________________________
+					const btnDecirVerdad = crearBoton("Creo que deberías decirle la verdad.", function() {
+						decirseloAFloris();
+					});
+					dialogoBotonesElement.appendChild(btnDecirVerdad);
+
+					//RESPUESTA 2.2 ____________________________________
+					const btnNoDecir = crearBoton("No digas nada, igual no se da cuenta.", function() {
+						gestionarRespuestaLumo('noDecir');
+					});
+					dialogoBotonesElement.appendChild(btnNoDecir);
+			});
+			dialogoBotonesElement.appendChild(btnPuedeEnfadarse);
+
+
+	//RESPUESTA: NO DECIR NADA ----------------------------------------------------------------
+    } else if (respuesta === 'noDecir') {
+
+		//Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">No sé… eso me hace sentir mal por dentro… ¿Qué otra cosa puedo hacer?</p>';
+
+		//RESPUESTA 1 ____________________________________
+			const btnDiselo = crearBoton("Díselo s Floris, seguro que lo entiende", function() {
+				decirseloAFloris();
+			});
+			dialogoBotonesElement.appendChild(btnDiselo);
+
+		//RESPUESTA 2 ____________________________________
+			const btnBuscarJuntos = crearBoton("Vamos a buscarla juntos.", function() {
+				buscarJuntos();
+			});
+			dialogoBotonesElement.appendChild(btnBuscarJuntos);
+    };
+
+	//SEGUIR: DECIRSELO A FLORIS ----------------------------------------------------------------
+	function decirseloAFloris() {
+		//Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">Está bien. Se lo diré…</p><p class="hud">— ¡Floris!</p>';
+        //Botones
+		dialogoBotonesElement.innerHTML = '';
+		const btnSeguir = crearBoton("A ver qué dice Floris.", function() {
+			cerrarDialogo('#dialogoLumo'); 
+		});
+		dialogoBotonesElement.appendChild(btnSeguir);
+		
+				// TEXTO DE FLORIS
+				//
+				//
+    };
+
+	//SEGUIR: BUSCAR JUNTOS ----------------------------------------------------------------
+	function buscarJuntos() {
+		//Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias! Me siento mejor con ayuda. Podemos a buscar por aquí…</p>';
+
+		//Botones
+		dialogoBotonesElement.innerHTML = '';
+		const btnBuscar = crearBoton("¡Vale! Voy a ver si la encuentro", function() {
+			cerrarDialogo('#dialogoLumo'); 
+		});
+        dialogoBotonesElement.appendChild(btnBuscar);
+	};
+
+  };

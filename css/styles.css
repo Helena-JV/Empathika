@@ -3,15 +3,15 @@
 @import url("./general.css");
 
 /*ESTILOS ESPECÍFICOS --------------------------------*/
-@import url("./index.css");
+@import url("./especifico/index.css");
 
 /*DIALOGOS --------------------------------*/
-@import url("./dialogos/dialogo-inicial.css");
-@import url("./dialogos/dialogos-pantallas.css");
+@import url("./especifico/dialogos/dialogo-inicial.css");
+@import url("./especifico/dialogos/dialogos-pantallas.css");
 
 /*ESTILOS PANTALLAS --------------------------------*/
-@import url("./pantallas-de-juego/pantallas-general.css");
-@import url("./pantallas-de-juego/pantalla1.css");
+@import url("./especifico/pantallas-de-juego/pantallas-general.css");
+@import url("./especifico/pantallas-de-juego/pantalla1.css");
 
 /*ANIMACIONES ----------------------------*/
 @import url("./barba/clip.css");
