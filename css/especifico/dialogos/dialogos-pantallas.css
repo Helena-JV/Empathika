@@ -38,7 +38,7 @@
 
 
     /*NOMBRE DEL PERSONAJE*/
-    .dialog .dialog-wrapper .dialog-container::before {
+    .nombre-personaje {
         content: 'Lumo';
         position: absolute;
         top: -10%;
@@ -66,7 +66,7 @@
     }
 
     /*AJUSTES SEGÚN PERSONAJE ----------------------------------------------*/ 
-    .dialog .dialog-wrapper .dialog-container .dialog-lumo {
+    .img-personaje {
         bottom: 5%;
     }
 
