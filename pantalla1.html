@@ -68,19 +68,19 @@
                 <div class="dialog-wrapper">
                 
                 <!-- TEXTO DEL DIÁLOGO -->
-                <div class="dialog-container">
-                    <div class="dialogo-txt">
-                    <p>Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
-                    <p>— ¿Qué hago ahora?</p>
+                <div class="dialog-container hud">
+                    <div id="dialog-lumo-content" class="dialogo-txt hud">
+                        <p class="hud">Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
+                        <p class="hud">— ¿Qué hago ahora?</p>
                     </div>
-                    <img class="dialog-lumo" src="./assets/img/personajes/lumo.svg" alt="">
+                    <img class="dialog-lumo hud" src="./assets/img/personajes/lumo.svg" alt="">
                 </div>
                 
                 <!-- BOTONES CON onclick PARA CERRAR -->
-                <div class="dialog-btns-container">
-                    <button onclick="cerrarDialogo('#dialogoLumo')">Vamos a buscarla juntos.</button>
-                    <button onclick="cerrarDialogo('#dialogoLumo')">Díselo a Floris, seguro que lo entiende.</button>
-                    <button onclick="cerrarDialogo('#dialogoLumo')">No digas nada, igual no se da cuenta.</button>
+                <div id="dialog-lumo-btns" class="dialog-btns-container hud">
+                    <button onclick="gestionarRespuestaLumo('buscar')" class="hud">Vamos a buscarla juntos.</button>
+                    <button onclick="gestionarRespuestaLumo('decir')" class="hud">Díselo a Floris, seguro que lo entiende.</button>
+                    <button onclick="gestionarRespuestaLumo('noDecir')" class="hud">No digas nada, igual no se da cuenta.</button>
                 </div>
             </div>
 </div>

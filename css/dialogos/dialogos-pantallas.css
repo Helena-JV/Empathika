@@ -55,6 +55,7 @@
 
     /*TEXTO DEL DIÁLOGO */
     .dialog .dialog-wrapper .dialog-container .dialogo-txt {
+        pointer-events: none;
        padding-top: 4%;
         display: flex;
         flex-direction: column;
@@ -89,6 +90,7 @@
     .dialog .dialog-wrapper .dialog-btns-container button {
         flex: 1;
         height: 80%;
+        max-width: 50%;
     }
 
 
