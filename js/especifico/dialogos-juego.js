@@ -67,14 +67,14 @@ DIALOGOS LUMO
 					//RESPUESTA 2.1 ____________________________________
 					const btnDecirVerdad = crearBoton("Creo que deberías decirle la verdad.", function() {
 						decirseloAFloris();
+					});
+					dialogoBotonesElement.appendChild(btnDecirVerdad);
 
 					//RESPUESTA 2.2 ____________________________________
 					const btnNoDecir = crearBoton("No digas nada, igual no se da cuenta.", function() {
 						gestionarRespuestaLumo('noDecir');
 					});
 					dialogoBotonesElement.appendChild(btnNoDecir);
-				});
-				dialogoBotonesElement.appendChild(btnDecirVerdad);
 			});
 			dialogoBotonesElement.appendChild(btnPuedeEnfadarse);
 
@@ -104,13 +104,11 @@ DIALOGOS LUMO
         dialogoContenidoElement.innerHTML = '<p class="hud">Está bien. Se lo diré…</p><p class="hud">— ¡Floris!</p>';
         //Botones
 		dialogoBotonesElement.innerHTML = '';
-		const btnSeguir = document.createElement('button');
-				btnSeguir.classList.add('hud');
-				btnSeguir.textContent = "A ver qué dice Floris.";
-				btnSeguir.onclick = function() {
-					cerrarDialogo('#dialogoLumo'); 
-				};
-				dialogoBotonesElement.appendChild(btnSeguir);
+		const btnSeguir = crearBoton("A ver qué dice Floris.", function() {
+			cerrarDialogo('#dialogoLumo'); 
+		});
+		dialogoBotonesElement.appendChild(btnSeguir);
+		
 				// TEXTO DE FLORIS
 				//
 				//
@@ -119,16 +117,13 @@ DIALOGOS LUMO
 	//SEGUIR: BUSCAR JUNTOS ----------------------------------------------------------------
 	function buscarJuntos() {
 		//Parrafo
-        dialogoContenidoElement.innerHTML = '<p class="hud">"¡Gracias! Me siento mejor con ayuda. Podemos a buscar por aquí…</p>';
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias! Me siento mejor con ayuda. Podemos a buscar por aquí…</p>';
 
 		//Botones
 		dialogoBotonesElement.innerHTML = '';
-        const btnBuscar = document.createElement('button');
-        btnBuscar.classList.add('hud');
-        btnBuscar.textContent = "¡Vale! Voy a ver si la encuentro";
-		btnBuscar.onclick = function() {
+		const btnBuscar = crearBoton("¡Vale! Voy a ver si la encuentro", function() {
 			cerrarDialogo('#dialogoLumo'); 
-		};
+		});
         dialogoBotonesElement.appendChild(btnBuscar);
 	};
 
