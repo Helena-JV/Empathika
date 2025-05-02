@@ -245,26 +245,74 @@ DIALOGOS EXTERNOS
 DIALOGOS JUEGO GENERAL
 =================================================================================================================*/ 
 
-    //ABRIR
+    //ABRIR ----------------------------------------------------
     function abrirDialogo(selector) {
         const dialogo = document.querySelector(selector);
-        if (dialogo) dialogo.classList.toggle("dialog-close");
+        if (dialogo) {
+            dialogo.classList.toggle("dialog-close");
+
+            //VARIABLES CREADAS (nuevo código aquí)
+            
+        
+            // ANIMACIÓN TEXTO DIÁLOGO 
+            let contenidoDialogo;
+            const dialogoTxtElement = dialogo.querySelector('.dialogo-txt');
+            if (dialogoTxtElement && dialogoTxtElement.children && dialogoTxtElement.children.length > 0) {
+                contenidoDialogo = dialogoTxtElement.children;
+            } else {
+                const dialogContainerElement = dialogo.querySelector('.dialog-container');
+                if (dialogContainerElement && dialogContainerElement.children && dialogContainerElement.children.length > 0) {
+                    contenidoDialogo = dialogContainerElement.children;
+                } else {
+                    contenidoDialogo = dialogo.querySelectorAll('p');
+                }
+            }
+        
+            if (contenidoDialogo && contenidoDialogo.length > 0) {
+                gsap.fromTo(
+                    contenidoDialogo,
+                    { opacity: 0, y: 10 },
+                    { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
+                );
+            }
+        
+            // ANIMAR BOTONES DE RESPUESTA 
+            let botonesDialogo;
+            const dialogBtnsContainerElement = dialogo.querySelector('.dialog-btns-container');
+            if (dialogBtnsContainerElement && dialogBtnsContainerElement.children && dialogBtnsContainerElement.children.length > 0) {
+                botonesDialogo = dialogBtnsContainerElement.children;
+            } else {
+                botonesDialogo = dialogo.querySelectorAll('button');
+            }
+        
+            if (botonesDialogo && botonesDialogo.length > 0) {
+                for (let i = 0; i < botonesDialogo.length; i++) {
+                    botonesDialogo[i].style.opacity = 0;
+                }
+        
+                gsap.fromTo(
+                    botonesDialogo,
+                    { opacity: 0 },
+                    { opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.3, delay: 0.3 }
+                );
+            }
+        }
     } 
 
-    //CERRAR
+    //CERRAR ----------------------------------------------------
     function cerrarDialogo(selector) {
         const dialogo = document.querySelector(selector);
         if (dialogo) dialogo.classList.add("dialog-close");
     }
 
-    //CERRAR SIN FONDO
+    //CERRAR SIN FONDO ----------------------------------------------------
     function cerrarSiFondo(event, contenedor) {
         if (event.target === contenedor) {
         contenedor.classList.add("dialog-close");
         }
     }
 
-    //CREAR BOTON EN DIÁLOGO
+    //CREAR BOTON EN DIÁLOGO ----------------------------------------------------
 	function crearBoton(texto, onClick) {
 		const boton = document.createElement('button');
 		boton.classList.add('hud');
@@ -321,7 +369,11 @@ function gestionarRespuestaLumo(respuesta) {
 					const btnNoDecir = crearBoton("No digas nada, igual no se da cuenta.", function() {
 						gestionarRespuestaLumo('noDecir');
 					});dialogoBotonesElement.appendChild(btnNoDecir);
+                    animarBotones();
+                    animarNuevoContenido();
 			}); dialogoBotonesElement.appendChild(btnPuedeEnfadarse);
+        animarNuevoContenido();
+        animarBotones();
 
 
 	//RESPUESTA: NO DECIR NADA ----------------------------------------------------------------
@@ -339,6 +391,9 @@ function gestionarRespuestaLumo(respuesta) {
 			const btnBuscarJuntos = crearBoton("Vamos a buscarla juntos.", function() {
 				buscarJuntos();
 			}); dialogoBotonesElement.appendChild(btnBuscarJuntos);
+        
+        animarBotones();
+        animarNuevoContenido();
     };
 
 	//SEGUIR: DECIRSELO A FLORIS ----------------------------------------------------------------
@@ -375,10 +430,20 @@ function gestionarRespuestaLumo(respuesta) {
                         const btnSiguiente4 = crearBoton("Yo te ayudo a buscarla.", function() {
                             buscarJuntos();
                         }); dialogoBotonesElement.appendChild(btnSiguiente4); 
+                        animarBotones();
+                        animarNuevoContenido();
                     }); dialogoBotonesElement.appendChild(btnSiguiente3); 
-                }); dialogoBotonesElement.appendChild(btnSiguiente2); 
+                    animarBotones();
+                    animarNuevoContenido();
+                }); dialogoBotonesElement.appendChild(btnSiguiente2);
+                animarBotones();
+                animarNuevoContenido(); 
             }); dialogoBotonesElement.appendChild(btnSiguiente1); 
+            animarBotones();
+            animarNuevoContenido();
 		}); dialogoBotonesElement.appendChild(btnSeguir);
+        animarBotones();
+        animarNuevoContenido();
     };
 
 	//SEGUIR: BUSCAR JUNTOS ----------------------------------------------------------------
@@ -391,6 +456,8 @@ function gestionarRespuestaLumo(respuesta) {
 		const btnBuscar = crearBoton("¡Vale! Voy a ver si la encuentro", function() {
 			cerrarDialogo('#dialogoLumo'); 
 		}); dialogoBotonesElement.appendChild(btnBuscar);
+        animarBotones();
+        animarNuevoContenido();
 	};
 
     //CAMBIAR DE PERSONAJE ----------------------------------------------------------------
@@ -402,4 +469,23 @@ function gestionarRespuestaLumo(respuesta) {
         personajeQueHabla.src = './assets/img/personajes/lumo.svg';
         nombrePersonaje.textContent = 'Lumo';
     }
-  };
+
+    //ANIMACIONES ----------------------------------------------------------------
+    // ANIMACIÓN BOTONES
+    function animarBotones() {
+        gsap.fromTo(dialogoBotonesElement.children,
+            { opacity: 0 },
+            { opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.3, delay: 0.1 }
+        );
+    }
+    
+    // ANIMACIÓN CONTENIDO
+    function animarNuevoContenido() {
+        gsap.fromTo(dialogoContenidoElement.children, 
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
+        );
+    }
+};
+    
+    
