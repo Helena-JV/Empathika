@@ -16,9 +16,15 @@
 /*FLECHAS ----------------------------------------------*/ 
     .flecha {
         height: 60%;
-        display: inline;
+        display: flex;
         cursor: pointer;
     }
+
+    .ocultar-flecha {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
 
 /*OBJETOS USABLES ----------------------------------------------*/ 
     .usables-container {

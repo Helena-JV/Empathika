@@ -1,0 +1,25 @@
+/*ANIMACIÓN DE SALIDA--------------------------*/
+.empujar-leave {
+    transform: translateX(-100%);
+}
+
+.empujar-leave-active {
+    transition: transform 0.5s linear;
+}
+
+.empujar-leave-to {
+    transform: translateX(0%);
+}
+
+/*ANIMACIÓN DE ENTRADA--------------------------*/
+.empujar-enter {
+    transform: translateX(-100%);
+}
+
+.empujar-enter-active {
+    transition: transform 0.5s linear;
+}
+
+.empujar-enter-to {
+    transform: translateX(0%);
+}

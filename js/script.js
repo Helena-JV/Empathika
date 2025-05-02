@@ -9,7 +9,15 @@ BARBA JS
                 to: {namespace: ['dialogo-inicial', 'pantalla-juego-1']},
                 leave() {},
                 enter() {}
-        },
+        }, 
+        /*
+        {
+            name: 'empujar',
+            to: {namespace: ['dialogo-inicial', 'pantalla-juego-2']},
+            leave() {},
+            enter() {}
+
+        }
         //{
             // name: 'clip',
             //     //sync: true,
@@ -17,6 +25,7 @@ BARBA JS
             //     leave() {},
             //     enter() {}
         //}
+        */ 
     ],
 
         // CARGAR JS EN LA TRANSICIÓN ---------------------------
