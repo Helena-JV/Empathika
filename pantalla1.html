@@ -58,35 +58,36 @@
                 <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
             </div>
             <!--LUMO Y FLORA_______________________________________________________-->
-            <div id="lumo-flora-container" class="personaje-container personaje" onclick="abrirDialogo()">
+            <div onclick="abrirDialogo('#dialogoLumo')" id="lumo-flora-container" class="personaje-container personaje">
                 <img class="target" src="./assets/img/personajes/lumo-flora.svg" alt="Lumo y Flora. Dos seres mágicos. Flora está dormida sobre Lumo">
             </div>
 
             <!--DIALOGOS__________________________________________________________-->
-             <div id="dialogoLumo" class="dialog dialog-close">
+            <div onclick="cerrarSiFondo(event, this)" id="dialogoLumo" class="dialog dialog-close hud">
                 <img class="dialog-fondo-hierba" src="./assets/img/dialogos/dialog-hierba.svg" alt="Fondo de hierba">
-                <div class= "dialog-wrapper">
-
-                    <!--DIALOGO-->
-                    <div class="dialog-container">
-                        <div class="dialogo-txt">
-                            <p>Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
-                            <p>— ¿Qué hago ahora?</p>
-                        </div>
-                        <img class="dialog-lumo" src="./assets/img/personajes/lumo.svg" alt="">
+                <div class="dialog-wrapper">
+                
+                <!-- TEXTO DEL DIÁLOGO -->
+                <div class="dialog-container">
+                    <div class="dialogo-txt">
+                    <p>Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
+                    <p>— ¿Qué hago ahora?</p>
                     </div>
-                    
-                    <!--BOTONES-->
-                    <div class="dialog-btns-container">
-                        <button>Vamos a buscarla juntos.</button>
-                        <button>Díselo a Floris, seguro que lo entiende.</button>
-                        <button>No digas nada, igual no se da cuenta.</button>
-                    </div> 
-                  </form>
-                </div> 
+                    <img class="dialog-lumo" src="./assets/img/personajes/lumo.svg" alt="">
+                </div>
+                
+                <!-- BOTONES CON onclick PARA CERRAR -->
+                <div class="dialog-btns-container">
+                    <button onclick="cerrarDialogo('#dialogoLumo')">Vamos a buscarla juntos.</button>
+                    <button onclick="cerrarDialogo('#dialogoLumo')">Díselo a Floris, seguro que lo entiende.</button>
+                    <button onclick="cerrarDialogo('#dialogoLumo')">No digas nada, igual no se da cuenta.</button>
+                </div>
+            </div>
+</div>
+
         </div>
     </main>
     <script src="./js/especifico/movimientoPersonaje.js"></script>
-    <script src="./js/especifico/dialogos-lumo.js"></script>
+    <script src="./js/especifico/dialogos-juego.js"></script>
 </body>
 </html>

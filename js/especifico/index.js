@@ -1,16 +1,15 @@
 // BOTÓN Y MODAL INFO ===========================================================
-const btnInfo = document.getElementById("btn-info");
-const modalInfo = document.getElementById("modal-info");
+function abrirModal(selector) {
+  const modal = document.querySelector(selector);
+  modal.classList.toggle('ocultar-modal');
+}
 
-btnInfo.addEventListener("click", function() {
-  modalInfo.classList.toggle("ocultar-modal");
-});
-
-modalInfo.addEventListener("click", function(event) {
-  if (event.target === modalInfo) {
-    modalInfo.classList.add("ocultar-modal");
+function cerrarModalFondo(event, modal) {
+  if (event.target === modal) {
+    modal.classList.add('ocultar-modal');
   }
-});
+}
+
 
 
 // ANIMACIÓN CRECIMIENTO PLANTAS ===========================================================

@@ -15,7 +15,7 @@
     /*DISTANCIAS Y TAMAÑOS---------------------------*/
     --distancia-suelo: 26%;
     --distancia-personaje-izda: 5%;
-    --tamaño-bordes: 0.3em;
+    --tamaño-bordes: 0.2em;
 }
 
 /* FONDO ======================================================================== */
@@ -102,7 +102,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
 button {
   text-align: center;
   background-color: var(--rojo);
-  border: var(--tamaño-bordes) solid var(--rojo-oscuro);
+  border: calc(var(--tamaño-bordes)*1.2) solid var(--rojo-oscuro);
   border-radius: 100em;
   color: white;
   cursor: pointer;
