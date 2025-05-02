@@ -51,30 +51,6 @@
     width: 8%;
 }
 
-/*MODAL ----------------------------------------------------*/ 
-#modal-info .modal-content{
-    gap: 2ch;
-    transform-origin: center center;
-    text-align: center;
-    animation: anim-modal 0.7s ease-in-out forwards;
-}
-
-@keyframes anim-modal {
-    0% { scale: 0; opacity: 0; } 
-    50% { scale: 1.1; opacity: 1; } /* Escala un poco más para notar el efecto */
-    80% { scale: 0.98; opacity: 1; }
-    100% { scale: 1; opacity: 1; }
-}
-
-#modal-info .modal-content p:last-child{
-    font-size: 80%;
-}
-
-.ocultar-modal {
-    display: none;
-}
-
-
 /*BOTÓN JUGAR ----------------------------------------------*/ 
 #btn-jugar {
     position: absolute;

@@ -4,7 +4,10 @@
 
 /*ESTILOS ESPECÍFICOS --------------------------------*/
 @import url("./index.css");
+
+/*DIALOGOS --------------------------------*/
 @import url("./dialogos/dialogo-inicial.css");
+@import url("./dialogos/dialogos-pantallas.css");
 
 /*ESTILOS PANTALLAS --------------------------------*/
 @import url("./pantallas-de-juego/pantallas-general.css");
