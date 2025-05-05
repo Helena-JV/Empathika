@@ -90,6 +90,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
   top: 0;
   right:0;
   position: absolute;
+  overflow: hidden;
 }
 .sky-index {
   background: linear-gradient(#9bcbcf, #D6EBEC);

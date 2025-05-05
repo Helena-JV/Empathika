@@ -55,24 +55,27 @@
     gap: 10%;
 }
 
-.btn-help {
-    cursor: pointer;
-}
+    /*BOTÓN AYUDA ----------------------------------------------*/ 
+    .btn-help {
+        cursor: pointer;
+    }
 
-.estrella-puntos {
-    position: relative;
-}
+    /*OESTRELLA PUNTOS ------------------------------------------*/ 
+    .estrella-puntos {
+        position: relative;
+    }
 
-.estrella-puntos p {
-    position: absolute;
-    top: 58%;
-    left: 50%; /* Añade esta línea para el centrado horizontal */
-    transform: translate(-50%, -50%);
-    font-family: 'Grandstander', Arial, Helvetica, sans-serif;
-    font-size: 250%;
-    font-weight: 700;
-    color: var(--dark-clr);
-}
+    .estrella-puntos p {
+        pointer-events: none;
+        position: absolute;
+        top: 58%;
+        left: 50%; /* Añade esta línea para el centrado horizontal */
+        transform: translate(-50%, -50%);
+        font-family: 'Grandstander', Arial, Helvetica, sans-serif;
+        font-size: 250%;
+        font-weight: 700;
+        color: var(--dark-clr);
+    }
 
 /*PERSONAJES ========================================================================*/
 .personaje-container {

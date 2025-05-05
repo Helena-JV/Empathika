@@ -6,7 +6,7 @@ BARBA JS
     barba.init({
         transitions: [{
             name: 'fade',
-                to: {namespace: ['dialogo-inicial', 'pantalla-juego-1']},
+                to: {namespace: ['dialogo-inicial', 'pantalla-juego-1', 'pantalla-juego-2']},
                 leave() {},
                 enter() {}
         }, 
@@ -37,6 +37,11 @@ BARBA JS
                 },
             },{
                 namespace: 'pantalla-juego-1',
+                beforeEnter() {
+                    movPersonaje();
+                }
+            },{
+                namespace: 'pantalla-juego-2',
                 beforeEnter() {
                     movPersonaje();
                 }
