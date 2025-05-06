@@ -12,20 +12,29 @@ BARBA JS
         }, 
         {
             name: 'empujar',
-            to: {namespace: ['pantalla-juego-1', 'pantalla-juego-2']},
+            to: {namespace: ['pantalla-juego-1', 'pantalla-juego-2', 'pantalla-juego-3']},
             leave() {},
             enter() {},
             sync: true,
+            
             beforeLeave(data) {
                 // Determinar la dirección de la transición
                 const currentNamespace = data.current.namespace;
                 const nextNamespace = data.next.namespace;
+
+                // Extraer los números de pantalla
+                const numActual = parseInt(currentNamespace.match(/\d+/)?.[0]);
+                const numSiguiente = parseInt(nextNamespace.match(/\d+/)?.[0]);
                 
                 // Si vamos de pantalla2 a pantalla1, invertir la animación
-                if (currentNamespace === 'pantalla-juego-2' && nextNamespace === 'pantalla-juego-1') {
-                    document.body.classList.add('reverse-transition');
-                } else {
-                    document.body.classList.remove('reverse-transition');
+                if (!isNaN(numActual) && !isNaN(numSiguiente)) {
+                    if (numSiguiente < numActual) {
+                        // Navegación hacia atrás
+                        document.body.classList.add('reverse-transition');
+                    } else {
+                        // Navegación hacia adelante
+                        document.body.classList.remove('reverse-transition');
+                    }
                 }
             }
         }
@@ -51,11 +60,6 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
-                    // Ocultar flecha izquierda en pantalla1
-                    const flechaIzda = document.querySelector('.flecha-izda');
-                    if (flechaIzda) {
-                        flechaIzda.style.visibility = 'hidden';
-                    }
                 }
             },{
                 namespace: 'pantalla-juego-2',
@@ -63,11 +67,6 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
-                    // Mostrar ambas flechas en pantalla2
-                    const flechaIzda = document.querySelector('.flecha-izda');
-                    if (flechaIzda) {
-                        flechaIzda.style.visibility = 'visible';
-                    }
                 }
             },
             {
@@ -76,11 +75,6 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
-                    // Mostrar ambas flechas en pantalla2
-                    const flechaIzda = document.querySelector('.flecha-izda');
-                    if (flechaIzda) {
-                        flechaIzda.style.visibility = 'visible';
-                    }
                 }
             }
         ],
@@ -92,13 +86,32 @@ BARBA JS
       
         if (namespace === 'dialogo-inicial') {
           dialogoArbol();
-        } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2') {
+        } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2'||namespace === 'pantalla-juego-3') {
             movPersonaje();
             mostrarHud();
+            resetearFlechas();
         }
       });
 
-      
+
+
+/*=================================================================================================================
+OBTENER NÚMERO DE LA PANTALLA
+=================================================================================================================*/ 
+function obtenerNumeroPantalla() {
+    const ruta = window.location.pathname;
+    const partesRuta = ruta.split("/");
+    const nombreArchivo = partesRuta.pop();
+    const coincidencias = nombreArchivo.match(/\d+/);
+    
+    let numeroActual = 0;
+    if (coincidencias) {
+        numeroActual = parseInt(coincidencias[0]);
+    }
+    
+    return numeroActual;
+}
+
 
 /*=================================================================================================================
 HUD
@@ -129,27 +142,25 @@ function mostrarHud() {
         const flechaIzda = document.querySelector(".flecha-izda");
         const flechaDcha = document.querySelector(".flecha-dcha");
         
-        // HAYAR LA RUTA ______________________________________
-        const ruta = window.location.pathname;// "/juego/pantalla2.html"
-        const partesRuta = ruta.split("/"); //["", "juego", "pantalla2.html"]
-        const nombreArchivo = partesRuta.pop();//"pantalla2.html"
-        const coincidencias = nombreArchivo.match(/\d+/); //["2"]
-
-        let numeroActual = 0;
-        if (coincidencias) {
-            numeroActual = parseInt(coincidencias[0]); //2
-        }
-        //_______________________________________________________
+        const numeroActual = obtenerNumeroPantalla();
         
-        //Si el num se ha encontrado correctamente
+        // Si el número se ha encontrado correctamente
         if (!isNaN(numeroActual)) {
-          const anterior = numeroActual - 1;
-          const siguiente = numeroActual + 1;
+            const anterior = numeroActual - 1;
+            const siguiente = numeroActual + 1;
+            
+            // Asignar nuevos hrefs
+            if (flechaIzda) flechaIzda.href = `./pantalla${anterior}.html`;
+            if (flechaDcha) flechaDcha.href = `./pantalla${siguiente}.html`;
+        }
         
-          // signar nuevos hrefs
-          if (flechaIzda) flechaIzda.href = `./pantalla${anterior}.html`;
-          if (flechaDcha) flechaDcha.href = `./pantalla${siguiente}.html`;
-        }   
+        // VISIBILIDAD FLECHAS ____________________________
+        if (flechaIzda) {
+            flechaIzda.style.visibility = numeroActual === 1 ? 'hidden' : 'visible';
+        }
+        if (flechaDcha) {
+            flechaDcha.style.visibility = numeroActual === 3 ? 'hidden' : 'visible';
+        }
     }
     
 
