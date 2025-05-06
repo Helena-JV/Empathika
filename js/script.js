@@ -60,6 +60,7 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
+                    setearPuntos();
                 }
             },{
                 namespace: 'pantalla-juego-2',
@@ -67,6 +68,7 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
+                    setearPuntos();
                 }
             },
             {
@@ -75,6 +77,7 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
+                    setearPuntos();
                 }
             }
         ],
@@ -90,6 +93,7 @@ BARBA JS
             movPersonaje();
             mostrarHud();
             resetearFlechas();
+            setearPuntos();
         }
       });
 
@@ -112,6 +116,14 @@ function obtenerNumeroPantalla() {
     return numeroActual;
 }
 
+/*=================================================================================================================
+SETEAR PUNTOS
+=================================================================================================================*/ 
+let puntos = 0;
+function setearPuntos() {
+    puntosActuales = document.querySelector('.puntos');
+    puntosActuales.textContent = puntos;
+}
 
 /*=================================================================================================================
 HUD
@@ -562,6 +574,13 @@ function gestionarRespuestaLumo(respuesta) {
 
 	//SEGUIR: BUSCAR JUNTOS ----------------------------------------------------------------
 	function buscarJuntos() {
+        //SETEAR PUNTOS _____________________________
+        buscarPiedra = true;
+        if(buscarPiedra===true) {
+            puntos = puntos+1;
+            setearPuntos();   
+        };
+        
 		//Parrafo
         dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias! Me siento mejor con ayuda.</p><p class="hud">Podemos buscarla entre las plantas del bosque.</p>';
 

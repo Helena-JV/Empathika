@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    z-index: 2000;
+    z-index: 600;
 }
 
 /*FLECHAS ----------------------------------------------*/ 
@@ -54,7 +54,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 10%;
-    z-index: 2000;
+    z-index: 600;
 }
 
     /*BOTÓN AYUDA ----------------------------------------------*/ 
