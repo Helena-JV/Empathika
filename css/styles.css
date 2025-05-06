@@ -1,6 +1,7 @@
 /*ESTILOS GENERALES --------------------------------*/
 @import url("./reset.css");
 @import url("./general.css");
+@import url("./especifico/hud.css");
 
 /*ESTILOS ESPECÍFICOS --------------------------------*/
 @import url("./especifico/index.css");

@@ -18,6 +18,11 @@
     --tamaño-bordes: 0.2em;
 }
 
+.DIVMUESTRA {
+  z-index: 10000;
+  position: absolute;
+  background-color: red;
+}
 /* FONDO ======================================================================== */
 html, body {
   margin: 0;

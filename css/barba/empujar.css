@@ -1,25 +1,38 @@
 /*ANIMACIÓN DE SALIDA--------------------------*/
 .empujar-leave {
-    transform: translateX(-100%);
+    transform: translateX(0);
+    position: absolute;
+    width: 100%;
 }
 
 .empujar-leave-active {
-    transition: transform 0.5s linear;
+    transition: transform 0.5s ease-in-out;
 }
 
 .empujar-leave-to {
-    transform: translateX(0%);
+    transform: translateX(-100%);
 }
 
 /*ANIMACIÓN DE ENTRADA--------------------------*/
 .empujar-enter {
-    transform: translateX(-100%);
+    transform: translateX(100%);
+    position: absolute;
+    width: 100%;
 }
 
 .empujar-enter-active {
-    transition: transform 0.5s linear;
+    transition: transform 0.5s ease-in-out;
 }
 
 .empujar-enter-to {
-    transform: translateX(0%);
+    transform: translateX(0);
+}
+
+/*ANIMACIÓN INVERSA (pantalla2 a pantalla1)--------------------------*/
+.reverse-transition .empujar-leave-to {
+    transform: translateX(100%);
+}
+
+.reverse-transition .empujar-enter {
+    transform: translateX(-100%);
 }

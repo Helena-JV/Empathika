@@ -6,44 +6,81 @@ BARBA JS
     barba.init({
         transitions: [{
             name: 'fade',
-                to: {namespace: ['dialogo-inicial', 'pantalla-juego-1', 'pantalla-juego-2']},
-                leave() {},
-                enter() {}
-        }, 
-        /*
-        {
-            name: 'empujar',
-            to: {namespace: ['dialogo-inicial', 'pantalla-juego-2']},
+            to: {namespace: ['dialogo-inicial']},
             leave() {},
             enter() {}
-
+        }, 
+        {
+            name: 'empujar',
+            to: {namespace: ['pantalla-juego-1', 'pantalla-juego-2']},
+            leave() {},
+            enter() {},
+            sync: true,
+            beforeLeave(data) {
+                // Determinar la dirección de la transición
+                const currentNamespace = data.current.namespace;
+                const nextNamespace = data.next.namespace;
+                
+                // Si vamos de pantalla2 a pantalla1, invertir la animación
+                if (currentNamespace === 'pantalla-juego-2' && nextNamespace === 'pantalla-juego-1') {
+                    document.body.classList.add('reverse-transition');
+                } else {
+                    document.body.classList.remove('reverse-transition');
+                }
+            }
         }
-        //{
-            // name: 'clip',
-            //     //sync: true,
-            //     to: {namespace: ['pantalla-juego-1']},
-            //     leave() {},
-            //     enter() {}
-        //}
-        */ 
     ],
 
         // CARGAR JS EN LA TRANSICIÓN ---------------------------
         views: [
             {
+                namespace: 'index',
+                beforeEnter() {
+                    ocultarHud();
+                },
+            },
+            {
                 namespace: 'dialogo-inicial',
                 beforeEnter() {
                     dialogoArbol();
+                    ocultarHud();
                 },
             },{
                 namespace: 'pantalla-juego-1',
                 beforeEnter() {
                     movPersonaje();
+                    mostrarHud();
+                    resetearFlechas();
+                    // Ocultar flecha izquierda en pantalla1
+                    const flechaIzda = document.querySelector('.flecha-izda');
+                    if (flechaIzda) {
+                        flechaIzda.style.visibility = 'hidden';
+                    }
                 }
             },{
                 namespace: 'pantalla-juego-2',
                 beforeEnter() {
                     movPersonaje();
+                    mostrarHud();
+                    resetearFlechas();
+                    // Mostrar ambas flechas en pantalla2
+                    const flechaIzda = document.querySelector('.flecha-izda');
+                    if (flechaIzda) {
+                        flechaIzda.style.visibility = 'visible';
+                    }
+                }
+            },
+            {
+                namespace: 'pantalla-juego-3',
+                beforeEnter() {
+                    movPersonaje();
+                    mostrarHud();
+                    resetearFlechas();
+                    // Mostrar ambas flechas en pantalla2
+                    const flechaIzda = document.querySelector('.flecha-izda');
+                    if (flechaIzda) {
+                        flechaIzda.style.visibility = 'visible';
+                    }
                 }
             }
         ],
@@ -55,14 +92,66 @@ BARBA JS
       
         if (namespace === 'dialogo-inicial') {
           dialogoArbol();
-        } else if (namespace === 'pantalla-juego-1') {
+        } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2') {
             movPersonaje();
+            mostrarHud();
         }
       });
 
       
 
+/*=================================================================================================================
+HUD
+=================================================================================================================*/ 
+function ocultarHud() {
+    const hudSuperior = document.querySelector('.hud-superior');
+    const hudInferior = document.querySelector('.hud-inferior');
 
+    if (!hudSuperior.classList.contains('oculto')){
+        hudSuperior.classList.add('oculto');
+        hudInferior.classList.add('oculto');
+    }
+}
+
+function mostrarHud() {
+    //Aquí se añadirá una constante y el inner text de los puntos que tiene la estrella
+    const hudSuperior = document.querySelector('.hud-superior');
+    const hudInferior = document.querySelector('.hud-inferior');
+
+    if (hudSuperior.classList.contains('oculto')){
+        hudSuperior.classList.remove('oculto');
+        hudInferior.classList.remove('oculto');
+    }
+}
+
+//MOVERSE FLECHAS -----------------------------------------------------------------------
+    function resetearFlechas() {
+        const flechaIzda = document.querySelector(".flecha-izda");
+        const flechaDcha = document.querySelector(".flecha-dcha");
+        
+        // HAYAR LA RUTA ______________________________________
+        const ruta = window.location.pathname;// "/juego/pantalla2.html"
+        const partesRuta = ruta.split("/"); //["", "juego", "pantalla2.html"]
+        const nombreArchivo = partesRuta.pop();//"pantalla2.html"
+        const coincidencias = nombreArchivo.match(/\d+/); //["2"]
+
+        let numeroActual = 0;
+        if (coincidencias) {
+            numeroActual = parseInt(coincidencias[0]); //2
+        }
+        //_______________________________________________________
+        
+        //Si el num se ha encontrado correctamente
+        if (!isNaN(numeroActual)) {
+          const anterior = numeroActual - 1;
+          const siguiente = numeroActual + 1;
+        
+          // signar nuevos hrefs
+          if (flechaIzda) flechaIzda.href = `./pantalla${anterior}.html`;
+          if (flechaDcha) flechaDcha.href = `./pantalla${siguiente}.html`;
+        }   
+    }
+    
 
 /*=================================================================================================================
 MOVIMIENTO PERSONAJE PRINCIPAL

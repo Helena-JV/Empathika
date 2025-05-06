@@ -14,8 +14,30 @@
 <!--BODY===========================================================================================-->
 <body>
     <main class="general-wrapper" data-barba="wrapper">
+        <!--HUD INFERIOR_____________________________________________________________-->
+        <div class="hud-inferior">
+            <a class="flecha flecha-izda hud anim-btn-hud" style="visibility: hidden;" href="./dialogo-inicial.html"><img src="./assets/img/hud/flecha-izda.svg" alt="Ir a la izquierda"></a>
+            <div class="usables-container">
+                <div class="usable"></div>
+                <div class="usable"></div>
+                <div class="usable"></div>
+            </div>
+            <a class="flecha flecha-dcha hud anim-btn-hud" href="./pantalla2.html"><img src="./assets/img/hud/flecha-dcha.svg" alt="Ir a la derecha"></a>
+        </div>
+
+        <!--HUD SUPERIOR_____________________________________________________________-->
+        <div class="hud-superior">
+            <img onclick="abrirModal('#modal-ayuda-pantalla1')" class="btn-help hud anim-btn-hud" src="./assets/img/hud/btn-help.svg" alt="Botón ayuda">
+            <div class="hud estrella-puntos">
+                <img class="hud" src="./assets/img/hud/star.svg" alt="Estrellas">
+                <p class="hud">5</p>
+            </div>
+        </div>
+
+        <!--CONTENEDOR===========================================================================================-->
         <div class="sky sky-juego" data-barba="container" data-barba-namespace="pantalla-juego-1">
 
+            <div class="DIVMUESTRA">PANTALLA 1</div>
             <!--BG_____________________________________________________________-->
             <div class="bg-container">
                 <img id="bg-nubes" src="./assets/img/bg/bg-nubes.svg" alt="Fondo con montículos y árboles">
@@ -33,25 +55,7 @@
 
 
             </div>
-            <!--HUD INFERIOR_____________________________________________________________-->
-            <div id="hud-inferior">
-                    <a class="ocultar-flecha flecha flecha-izda hud anim-btn-hud" href=""><img src="./assets/img/hud/flecha-izda.svg" alt="Ir a la izquierda"></a>
-                    <div class="usables-container">
-                        <div class="usable"></div>
-                        <div class="usable"></div>
-                        <div class="usable"></div>
-                    </div>
-                    <a class="flecha flecha-dcha hud anim-btn-hud" href="./pantalla2.html"><img src="./assets/img/hud/flecha-dcha.svg" alt="Ir a la derecha"></a>
-            </div>
-
-            <!--HUD SUPERIOR_____________________________________________________________-->
-            <div id="hud-superior">
-                <img onclick="abrirModal('#modal-ayuda-pantalla1')" class="btn-help hud anim-btn-hud" src="./assets/img/hud/btn-help.svg" alt="Botón ayuda">
-                <div class="hud estrella-puntos">
-                    <img class="hud" src="./assets/img/hud/star.svg" alt="Estrellas">
-                    <p class="hud">5</p>
-                </div>
-            </div>
+        
 
             <!--MODAL AYUDA_______________________________________________________________-->
             <div onclick="cerrarModalFondo(event, this)" class="modal display-none hud" id="modal-ayuda-pantalla1">
