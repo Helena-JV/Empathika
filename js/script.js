@@ -58,16 +58,25 @@ BARBA JS
                 namespace: 'pantalla-juego-1',
                 beforeEnter() {
                     setearPantallaJuego();
+                },
+                afterEnter() {
+                    setearPantallaJuego();
                 }
             },{
                 namespace: 'pantalla-juego-2',
                 beforeEnter() {
+                    setearPantallaJuego();
+                },
+                afterEnter() {
                     setearPantallaJuego();
                 }
             },
             {
                 namespace: 'pantalla-juego-3',
                 beforeEnter() {
+                    setearPantallaJuego();
+                },
+                afterEnter() {
                     setearPantallaJuego();
                 }
             }
@@ -221,7 +230,6 @@ MOVIMIENTO PERSONAJE PRINCIPAL
 =================================================================================================================*/ 
 
     function movPersonaje(){
-        
         //VARIABLES -----------------------------------------------------------------------
         const personaje_principal = document.querySelector("#protagonista-container");
         const personaje_principal_img = document.querySelector("#protagonista-container img");
