@@ -60,7 +60,9 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
-                    setearPuntos();
+                    EstadoJuego.setearPuntos();
+                    EstadoJuego.cargarPuntos();
+                    EstadoJuego.cargarEstadoPiedra();
                 }
             },{
                 namespace: 'pantalla-juego-2',
@@ -68,7 +70,9 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
-                    setearPuntos();
+                    EstadoJuego.setearPuntos();
+                    EstadoJuego.cargarPuntos();
+                    EstadoJuego.cargarEstadoPiedra();
                 }
             },
             {
@@ -77,7 +81,9 @@ BARBA JS
                     movPersonaje();
                     mostrarHud();
                     resetearFlechas();
-                    setearPuntos();
+                    EstadoJuego.setearPuntos();
+                    EstadoJuego.cargarPuntos();
+                    EstadoJuego.cargarEstadoPiedra();
                 }
             }
         ],
@@ -93,7 +99,9 @@ BARBA JS
             movPersonaje();
             mostrarHud();
             resetearFlechas();
-            setearPuntos();
+            EstadoJuego.setearPuntos();
+            EstadoJuego.cargarPuntos();
+            EstadoJuego.cargarEstadoPiedra();
         }
       });
 
@@ -117,13 +125,46 @@ function obtenerNumeroPantalla() {
 }
 
 /*=================================================================================================================
-SETEAR PUNTOS
+ESTADO DEL JUEGO
 =================================================================================================================*/ 
-let puntos = 0;
-function setearPuntos() {
-    puntosActuales = document.querySelector('.puntos');
-    puntosActuales.textContent = puntos;
-}
+const EstadoJuego = {
+    // ESTADO INICIAL ------------------------------------------------
+    puntos: EstadoDesdeStorage('puntos', 0, parseInt),
+    estadoPiedra: EstadoDesdeStorage('estadoPiedra', 'nada', (v) => v),
+
+    // PUNTOS ------------------------------------------------
+    setearPuntos() {
+        sessionStorage.setItem('puntos', this.puntos.toString());
+        const puntosActuales = document.querySelector('.puntos');
+        if (puntosActuales) puntosActuales.textContent = this.puntos;
+    },
+
+    cargarPuntos() {
+        this.puntos = EstadoDesdeStorage('puntos', 0, parseInt);
+        this.setearPuntos();
+    },
+
+    // ESTADOS DE PIEDRA ----------------------------------------------
+    setearEstadoPiedra() {
+        sessionStorage.setItem('estadoPiedra', this.estadoPiedra);
+    },
+
+    cargarEstadoPiedra() {
+        this.estadoPiedra = EstadoDesdeStorage('estadoPiedra', 'nada', (v) => v);
+    },
+};
+
+// FUNCIONES AUXILIARES -----------------------------------------
+    function EstadoDesdeStorage(clave, valorPorDefecto, parser) {
+        const guardado = sessionStorage.getItem(clave);
+        return guardado !== null ? parser(guardado) : valorPorDefecto;
+    }
+
+    //Convertir string en booleano
+    function parseBool(valor) {
+        return valor === 'true';
+    }
+
 
 /*=================================================================================================================
 HUD
@@ -262,33 +303,6 @@ function abrirModal(selector) {
   }
 
 
-
-
-
-
-//   function abrirModal(selector) {
-//     if (!selector) {return;} //Salir si al llamar desde
-    
-//     const modal = document.querySelector(selector);
-//     if (modal) {
-//         modal.classList.remove('display-none');
-//     }
-// }
-
-
-  
-// function cerrarModalFondo(event, modal) {
-//     // Cuando se llama desde barba.js sin parámetros
-//     if (!event || !modal) {
-//         console.log("cerrarModalFondo: Inicializando eventos para cerrar modales");
-//         return; // No hacemos nada en esta fase
-//     }
-    
-//     // Cuando se llama desde el HTML onclick
-//     if (event.target === modal) {
-//         modal.classList.add('display-none');
-//     }
-// }
 /*=================================================================================================================
 DIALOGOS EXTERNOS
 =================================================================================================================*/ 
@@ -373,6 +387,14 @@ DIALOGOS JUEGO GENERAL
 
     //ABRIR ----------------------------------------------------
     function abrirDialogo(selector) {
+
+        //SITUACIONES AVANCE -----------------------------
+        dialogoLumoExito();
+        dialogoLumoTenerPiedra();
+        dialogoLumoBuscando();
+
+        //-------------------------------------------------
+        
         const dialogo = document.querySelector(selector);
         if (dialogo) {
             dialogo.classList.toggle("dialog-close");
@@ -451,174 +473,240 @@ DIALOGOS JUEGO GENERAL
 /*=================================================================================================================
 DIALOGOS LUMO
 =================================================================================================================*/ 
+//BUSCAR PIEDRAS TRUE ------------------------------------------------------------
+function dialogoLumoExito() {
+    if (EstadoJuego.estadoPiedra === 'entregada') {
+        const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
+        const dialogoBotonesElement = document.getElementById('dialog-lumo-btns');
+    
+        dialogoContenidoElement.innerHTML = '';
+        dialogoBotonesElement.innerHTML = '';
+    
+        //Respuesta
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias por ayudarnos!</p><p class="hud">Ahora Floris tiene su piedra.</p>';
+    
+        //Botón
+        const btnSeguir = crearBoton("Voy a ver si puedo ayudar a laguien más", function() {
+            cerrarDialogo('#dialogoLumo'); 
+        }); dialogoBotonesElement.appendChild(btnSeguir);
+    }
+}
+
+function dialogoLumoTenerPiedra() {
+    if (EstadoJuego.estadoPiedra === 'encontrada') {
+        const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
+        const dialogoBotonesElement = document.getElementById('dialog-lumo-btns');
+    
+        dialogoContenidoElement.innerHTML = '';
+        dialogoBotonesElement.innerHTML = '';
+    
+        //Respuesta
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Oh! Has encontrado la piedra.</p><p class="hud">¡Mucísimas gracias!</p>';
+    
+        //Botón
+        const btnSeguir = crearBoton("¡De nada!", function() {
+            cerrarDialogo('#dialogoLumo'); 
+        }); dialogoBotonesElement.appendChild(btnSeguir);
+
+        //Nuevo estado
+        EstadoJuego.estadoPiedra = 'entregada';
+        EstadoJuego.setearEstadoPiedra();
+    }
+}
+
+function dialogoLumoBuscando() {
+    if (EstadoJuego.estadoPiedra === 'buscando') {
+        const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
+        const dialogoBotonesElement = document.getElementById('dialog-lumo-btns');
+    
+        dialogoContenidoElement.innerHTML = '';
+        dialogoBotonesElement.innerHTML = '';
+    
+        //Respuesta
+        dialogoContenidoElement.innerHTML = '<p class="hud">¿Has evisto la piedra brillante de Floris?</p><p class="hud">Debe estar entre las plantas.</p>';
+    
+        //Botón
+        const btnSeguir = crearBoton("¡Sigo buscando!", function() {
+            cerrarDialogo('#dialogoLumo'); 
+        }); dialogoBotonesElement.appendChild(btnSeguir);
+
+        //Nuevo estado
+        EstadoJuego.estadoPiedra = 'encontrada';
+        EstadoJuego.setearEstadoPiedra();
+    }
+}
+
+//DIÁLOGO INICIAL LUMO ------------------------------------------------------------
 function gestionarRespuestaLumo(respuesta) {
     const personajeQueHabla = document.querySelector(".img-personaje");
     const nombrePersonaje = document.querySelector(".nombre-personaje");
 
     const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
     const dialogoBotonesElement = document.getElementById('dialog-lumo-btns');
-    
-    let buscarPiedra = false; //Pasará a true si se elige el camino de buscar la piedra
 
     dialogoContenidoElement.innerHTML = '';
     dialogoBotonesElement.innerHTML = '';
 
-    //RESPUESTA: BUSCAR JUNTOS ----------------------------------------------------------------
-    if (respuesta === 'buscar') {
-		buscarJuntos();
+        //RESPUESTA: BUSCAR JUNTOS ----------------------------------------------------------------
+        if (respuesta === 'buscar') {
+            buscarJuntos();
 
 
-	//RESPUESTA: DECIRSELO ----------------------------------------------------------------
-    } else if (respuesta === 'decir') {
-		//Parrafo
-        dialogoContenidoElement.innerHTML = '<p class="hud">Uf...</p><p class="hud">¿De verdad crees que no se enfadará?</p>';
+        //RESPUESTA: DECIRSELO ----------------------------------------------------------------
+        } else if (respuesta === 'decir') {
+            //Parrafo
+            dialogoContenidoElement.innerHTML = '<p class="hud">Uf...</p><p class="hud">¿De verdad crees que no se enfadará?</p>';
 
-		//Botones
-			//RESPUESTA 1 ____________________________________
-			const btnDecirselo = crearBoton("Si le dices la verdad, seguro que lo valora.", function() {
-				decirseloAFloris();
-			}); dialogoBotonesElement.appendChild(btnDecirselo);
+            //Botones
+                //RESPUESTA 1 ____________________________________
+                const btnDecirselo = crearBoton("Si le dices la verdad, seguro que lo valora.", function() {
+                    decirseloAFloris();
+                }); dialogoBotonesElement.appendChild(btnDecirselo);
 
-			//RESPUESTA 2 ____________________________________
-			const btnPuedeEnfadarse = crearBoton("Puede enfadarse un poco, pero es lo correcto.", function() {
-				//Parrafo
-				dialogoContenidoElement.innerHTML = '<p class="hud">¡Ay no! Entonces mejor no le digo nada...</p>';
-				
-				//Botones
-				dialogoBotonesElement.innerHTML = ''; 
-					//RESPUESTA 2.1 ____________________________________
-					const btnDecirVerdad = crearBoton("Creo que deberías decirle la verdad.", function() {
-						decirseloAFloris();
-					});dialogoBotonesElement.appendChild(btnDecirVerdad);
-
-					//RESPUESTA 2.2 ____________________________________
-					const btnNoDecir = crearBoton("No digas nada, igual no se da cuenta.", function() {
-						gestionarRespuestaLumo('noDecir');
-					});dialogoBotonesElement.appendChild(btnNoDecir);
-                    animarBotones();
-                    animarNuevoContenido();
-			}); dialogoBotonesElement.appendChild(btnPuedeEnfadarse);
-        animarNuevoContenido();
-        animarBotones();
-
-
-	//RESPUESTA: NO DECIR NADA ----------------------------------------------------------------
-    } else if (respuesta === 'noDecir') {
-
-		//Parrafo
-        dialogoContenidoElement.innerHTML = '<p class="hud">No sé… eso me hace sentir mal por dentro… ¿Qué otra cosa puedo hacer?</p>';
-
-		//RESPUESTA 1 ____________________________________
-			const btnDiselo = crearBoton("Díselo a Floris, seguro que lo entiende", function() {
-				decirseloAFloris();
-			}); dialogoBotonesElement.appendChild(btnDiselo);
-
-		//RESPUESTA 2 ____________________________________
-			const btnBuscarJuntos = crearBoton("Vamos a buscarla juntos.", function() {
-				buscarJuntos();
-			}); dialogoBotonesElement.appendChild(btnBuscarJuntos);
-        
-        animarBotones();
-        animarNuevoContenido();
-    };
-
-	//SEGUIR: DECIRSELO A FLORIS ----------------------------------------------------------------
-	function decirseloAFloris() {
-		//Parrafo
-        dialogoContenidoElement.innerHTML = '<p class="hud">Está bien. Se lo diré…</p><p class="hud">— ¡Floris!</p>';
-        //Botones
-		dialogoBotonesElement.innerHTML = '';
-		const btnSeguir = crearBoton("A ver qué dice Floris.", function() {
-			// DIALOGO CON FLORIS ________________________
-            hablaFloris();
-            dialogoContenidoElement.innerHTML = '<p class="hud">¡Hola, Lumo!</p><p class="hud">¿Has terminado de jugar con mi piedra?</p>';
-
-            //SIGUIENTE 1
-            dialogoBotonesElement.innerHTML = '';
-            const btnSiguiente1 = crearBoton("Floris, Lumo tiene algo que contarte.", function() {
-                hablaLumo();
-                dialogoContenidoElement.innerHTML = '<p class="hud">Verás... lo siento mucho, pero estaba jugando con tu piedra y ahora no la encuentro.</p>';  
-                
-                //SIGUIENTE 2 
-                dialogoBotonesElement.innerHTML = '';
-                const btnSiguiente2 = crearBoton("Floris, ¿qué piensas?", function() {
-                    hablaFloris();
-                    dialogoContenidoElement.innerHTML = '<p class="hud">Oh, era mi piedra favorita.</p><p class="hud">Estoy un poco triste, pero gracias por decirme la verdad y disculparte.</p>';
+                //RESPUESTA 2 ____________________________________
+                const btnPuedeEnfadarse = crearBoton("Puede enfadarse un poco, pero es lo correcto.", function() {
+                    //Parrafo
+                    dialogoContenidoElement.innerHTML = '<p class="hud">¡Ay no! Entonces mejor no le digo nada...</p>';
                     
-                    //SIGUIENTE 3
-                    dialogoBotonesElement.innerHTML = '';
-                    const btnSiguiente3 = crearBoton("¿Oye, y si buscamos la piedra?", function() {
-                        hablaLumo();
-                        dialogoContenidoElement.innerHTML = '<p class="hud">¡Qué gran idea!</p><p class="hud">No te preocupes, Floris, encontraremos tu piedra.</p>';  
+                    //Botones
+                    dialogoBotonesElement.innerHTML = ''; 
+                        //RESPUESTA 2.1 ____________________________________
+                        const btnDecirVerdad = crearBoton("Creo que deberías decirle la verdad.", function() {
+                            decirseloAFloris();
+                        });dialogoBotonesElement.appendChild(btnDecirVerdad);
 
-                        //SIGUIENTE 4
-                        dialogoBotonesElement.innerHTML = '';
-                        const btnSiguiente4 = crearBoton("Yo te ayudo a buscarla.", function() {
-                            buscarJuntos();
-                        }); dialogoBotonesElement.appendChild(btnSiguiente4); 
+                        //RESPUESTA 2.2 ____________________________________
+                        const btnNoDecir = crearBoton("No digas nada, igual no se da cuenta.", function() {
+                            gestionarRespuestaLumo('noDecir');
+                        });dialogoBotonesElement.appendChild(btnNoDecir);
                         animarBotones();
                         animarNuevoContenido();
-                    }); dialogoBotonesElement.appendChild(btnSiguiente3); 
-                    animarBotones();
-                    animarNuevoContenido();
-                }); dialogoBotonesElement.appendChild(btnSiguiente2);
-                animarBotones();
-                animarNuevoContenido(); 
-            }); dialogoBotonesElement.appendChild(btnSiguiente1); 
+                }); dialogoBotonesElement.appendChild(btnPuedeEnfadarse);
+            animarNuevoContenido();
+            animarBotones();
+
+
+        //RESPUESTA: NO DECIR NADA ----------------------------------------------------------------
+        } else if (respuesta === 'noDecir') {
+
+            //Parrafo
+            dialogoContenidoElement.innerHTML = '<p class="hud">No sé… eso me hace sentir mal por dentro… ¿Qué otra cosa puedo hacer?</p>';
+
+            //RESPUESTA 1 ____________________________________
+                const btnDiselo = crearBoton("Díselo a Floris, seguro que lo entiende", function() {
+                    decirseloAFloris();
+                }); dialogoBotonesElement.appendChild(btnDiselo);
+
+            //RESPUESTA 2 ____________________________________
+                const btnBuscarJuntos = crearBoton("Vamos a buscarla juntos.", function() {
+                    buscarJuntos();
+                }); dialogoBotonesElement.appendChild(btnBuscarJuntos);
+            
             animarBotones();
             animarNuevoContenido();
-		}); dialogoBotonesElement.appendChild(btnSeguir);
-        animarBotones();
-        animarNuevoContenido();
-    };
-
-	//SEGUIR: BUSCAR JUNTOS ----------------------------------------------------------------
-	function buscarJuntos() {
-        //SETEAR PUNTOS _____________________________
-        buscarPiedra = true;
-        if(buscarPiedra===true) {
-            puntos = puntos+1;
-            setearPuntos();   
         };
+
+        //SEGUIR: DECIRSELO A FLORIS ----------------------------------------------------------------
+        function decirseloAFloris() {
+            //Parrafo
+            dialogoContenidoElement.innerHTML = '<p class="hud">Está bien. Se lo diré…</p><p class="hud">— ¡Floris!</p>';
+            //Botones
+            dialogoBotonesElement.innerHTML = '';
+            const btnSeguir = crearBoton("A ver qué dice Floris.", function() {
+                // DIALOGO CON FLORIS ________________________
+                hablaFloris();
+                dialogoContenidoElement.innerHTML = '<p class="hud">¡Hola, Lumo!</p><p class="hud">¿Has terminado de jugar con mi piedra?</p>';
+
+                //SIGUIENTE 1
+                dialogoBotonesElement.innerHTML = '';
+                const btnSiguiente1 = crearBoton("Floris, Lumo tiene algo que contarte.", function() {
+                    hablaLumo();
+                    dialogoContenidoElement.innerHTML = '<p class="hud">Verás... lo siento mucho, pero estaba jugando con tu piedra y ahora no la encuentro.</p>';  
+                    
+                    //SIGUIENTE 2 
+                    dialogoBotonesElement.innerHTML = '';
+                    const btnSiguiente2 = crearBoton("Floris, ¿qué piensas?", function() {
+                        hablaFloris();
+                        dialogoContenidoElement.innerHTML = '<p class="hud">Oh, era mi piedra favorita.</p><p class="hud">Estoy un poco triste, pero gracias por decirme la verdad y disculparte.</p>';
+                        
+                        //SIGUIENTE 3
+                        dialogoBotonesElement.innerHTML = '';
+                        const btnSiguiente3 = crearBoton("¿Oye, y si buscamos la piedra?", function() {
+                            hablaLumo();
+                            dialogoContenidoElement.innerHTML = '<p class="hud">¡Qué gran idea!</p><p class="hud">No te preocupes, Floris, encontraremos tu piedra.</p>';  
+
+                            //SIGUIENTE 4
+                            dialogoBotonesElement.innerHTML = '';
+                            const btnSiguiente4 = crearBoton("Yo te ayudo a buscarla.", function() {
+                                buscarJuntos();
+                            }); dialogoBotonesElement.appendChild(btnSiguiente4); 
+                            animarBotones();
+                            animarNuevoContenido();
+                        }); dialogoBotonesElement.appendChild(btnSiguiente3); 
+                        animarBotones();
+                        animarNuevoContenido();
+                    }); dialogoBotonesElement.appendChild(btnSiguiente2);
+                    animarBotones();
+                    animarNuevoContenido(); 
+                }); dialogoBotonesElement.appendChild(btnSiguiente1); 
+                animarBotones();
+                animarNuevoContenido();
+            }); dialogoBotonesElement.appendChild(btnSeguir);
+            animarBotones();
+            animarNuevoContenido();
+        };
+
+        //SEGUIR: BUSCAR JUNTOS ----------------------------------------------------------------
+        function buscarJuntos() {
+            //SETEAR BUSCAR PIEDRA _____________________________
+            EstadoJuego.estadoPiedra = 'buscando';
+            EstadoJuego.setearEstadoPiedra();
+
+            //SETEAR PUNTOS _____________________________
+            if(EstadoJuego.estadoPiedra === 'buscando') {
+                EstadoJuego.puntos = EstadoJuego.puntos + 1;
+                EstadoJuego.setearPuntos();   
+            };
+
+            //Parrafo
+            dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias! Me siento mejor con ayuda.</p><p class="hud">Podemos buscarla entre las plantas del bosque.</p>';
+
+            //Botones
+            dialogoBotonesElement.innerHTML = '';
+            const btnBuscar = crearBoton("¡Vale! Voy a ver si la encuentro", function() {
+                cerrarDialogo('#dialogoLumo'); 
+            }); dialogoBotonesElement.appendChild(btnBuscar);
+            animarBotones();
+            animarNuevoContenido();
+        };
+
+        //CAMBIAR DE PERSONAJE ----------------------------------------------------------------
+        function hablaFloris() {
+            personajeQueHabla.src = './assets/img/personajes/floris.svg';
+            nombrePersonaje.textContent = 'Floris';
+        }
+        function hablaLumo() {
+            personajeQueHabla.src = './assets/img/personajes/lumo.svg';
+            nombrePersonaje.textContent = 'Lumo';
+        }
+
+        //ANIMACIONES ----------------------------------------------------------------
+        // ANIMACIÓN BOTONES
+        function animarBotones() {
+            gsap.fromTo(dialogoBotonesElement.children,
+                { opacity: 0 },
+                { opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.3, delay: 0.1 }
+            );
+        }
         
-		//Parrafo
-        dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias! Me siento mejor con ayuda.</p><p class="hud">Podemos buscarla entre las plantas del bosque.</p>';
-
-		//Botones
-		dialogoBotonesElement.innerHTML = '';
-		const btnBuscar = crearBoton("¡Vale! Voy a ver si la encuentro", function() {
-			cerrarDialogo('#dialogoLumo'); 
-		}); dialogoBotonesElement.appendChild(btnBuscar);
-        animarBotones();
-        animarNuevoContenido();
-	};
-
-    //CAMBIAR DE PERSONAJE ----------------------------------------------------------------
-    function hablaFloris() {
-        personajeQueHabla.src = './assets/img/personajes/floris.svg';
-        nombrePersonaje.textContent = 'Floris';
-    }
-    function hablaLumo() {
-        personajeQueHabla.src = './assets/img/personajes/lumo.svg';
-        nombrePersonaje.textContent = 'Lumo';
-    }
-
-    //ANIMACIONES ----------------------------------------------------------------
-    // ANIMACIÓN BOTONES
-    function animarBotones() {
-        gsap.fromTo(dialogoBotonesElement.children,
-            { opacity: 0 },
-            { opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.3, delay: 0.1 }
-        );
-    }
+        // ANIMACIÓN CONTENIDO
+        function animarNuevoContenido() {
+            gsap.fromTo(dialogoContenidoElement.children, 
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
+            );
+        };
     
-    // ANIMACIÓN CONTENIDO
-    function animarNuevoContenido() {
-        gsap.fromTo(dialogoContenidoElement.children, 
-            { opacity: 0, y: 10 },
-            { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
-        );
-    }
 };
-    
-    
+
+//ANIMACIONES -------------------------------------------------------------------
