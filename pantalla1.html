@@ -18,7 +18,9 @@
         <div class="hud-inferior">
             <a class="flecha flecha-izda hud anim-btn-hud" style="visibility: hidden;" href="./dialogo-inicial.html"><img src="./assets/img/hud/flecha-izda.svg" alt="Ir a la izquierda"></a>
             <div class="usables-container">
-                <div class="usable"></div>
+                <div class="usable">
+                    <img class="objPiedraBrillante" src="./assets/img/objetos/piedra-brillante.svg" alt="Piedra brillante">
+                </div>
                 <div class="usable"></div>
                 <div class="usable"></div>
             </div>
@@ -50,10 +52,10 @@
                     </g>
                 </svg>
                 <img id="bg-front" src="./assets/img/bg/bg-front.svg" alt="Fondo y suelo del bosque">
-                <img id="arbusto1" class="anim-skew" src="./assets/img/bg/arbusto1.svg" alt="Arbusto que se mueve al viento">
-                  
 
-
+                <!--ARBUSTO CON PIEDRA BRILLANTE-->
+                <img onclick="sacarPiedra()" id="arbusto1" class="anim-skew target" src="./assets/img/bg/arbusto1.svg" alt="Arbusto que se mueve al viento">
+                <img onclick="cogerPiedra(this)" id="piedraBrillanteArbusto"  class="popObjetoOculto target" src="./assets/img/objetos/piedra-brillante.svg" alt="Piedra brillante">
             </div>
         
 

@@ -50,13 +50,6 @@
     height: 100%;
 }  
 
-#arbusto1 {
-    position: absolute;
-    bottom: 29%;
-    left: 26%;
-    width: 22%;
-}
-
 /*LUMO Y FLORA ========================================================================*/
 #lumo-flora-container {
     right: 10%;
@@ -67,4 +60,31 @@
     cursor: pointer;
 }
 
+/*ARBUSTO Y PRIEDRA BRILLANTE ========================================================================*/
+#arbusto1 {
+    position: absolute;
+    bottom: 29%;
+    left: 26%;
+    width: 22%;
+}
 
+#piedraBrillanteArbusto {
+    position: absolute;
+    transform-origin: center center;
+    top: 50%;
+    left: 32%;
+    width: 11%;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.popObjetoOculto {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0);
+}
+
+.popObjetoMostrar {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+}

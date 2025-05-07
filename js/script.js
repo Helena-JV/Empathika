@@ -473,7 +473,7 @@ DIALOGOS JUEGO GENERAL
 /*=================================================================================================================
 DIALOGOS LUMO
 =================================================================================================================*/ 
-//BUSCAR PIEDRAS TRUE ------------------------------------------------------------
+//DIÁLOGO LUMO FINAL ------------------------------------------------------------
 function dialogoLumoExito() {
     if (EstadoJuego.estadoPiedra === 'entregada') {
         const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
@@ -492,6 +492,7 @@ function dialogoLumoExito() {
     }
 }
 
+//DIÁLOGO LUMO PIEDRA ENCONTRADA ------------------------------------------------------------
 function dialogoLumoTenerPiedra() {
     if (EstadoJuego.estadoPiedra === 'encontrada') {
         const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
@@ -501,7 +502,7 @@ function dialogoLumoTenerPiedra() {
         dialogoBotonesElement.innerHTML = '';
     
         //Respuesta
-        dialogoContenidoElement.innerHTML = '<p class="hud">¡Oh! Has encontrado la piedra.</p><p class="hud">¡Mucísimas gracias!</p>';
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Oh! Has encontrado la piedra.</p><p class="hud">¡Muchísimas gracias!</p>';
     
         //Botón
         const btnSeguir = crearBoton("¡De nada!", function() {
@@ -514,6 +515,21 @@ function dialogoLumoTenerPiedra() {
     }
 }
 
+// CLICK EN ARBUSTO ---------------------------------------------------------------------
+function sacarPiedra(e) {
+    if(EstadoJuego.estadoPiedra === 'buscando') {
+        const piedraBrillante = document.getElementById('piedraBrillanteArbusto');
+        piedraBrillante.classList.add('popObjetoMostrar');
+        piedraBrillante.classList.remove('popObjetoOcultar');
+    }
+}
+
+function cogerPiedra(Piedra) {
+    Piedra.classList.add('popObjetoOcultar');
+    Piedra.classList.remove('popObjetoMostrar');
+}
+
+//DIÁLOGO LUMO BUSCAR PIEDRA ------------------------------------------------------------
 function dialogoLumoBuscando() {
     if (EstadoJuego.estadoPiedra === 'buscando') {
         const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
@@ -523,7 +539,7 @@ function dialogoLumoBuscando() {
         dialogoBotonesElement.innerHTML = '';
     
         //Respuesta
-        dialogoContenidoElement.innerHTML = '<p class="hud">¿Has evisto la piedra brillante de Floris?</p><p class="hud">Debe estar entre las plantas.</p>';
+        dialogoContenidoElement.innerHTML = '<p class="hud">¿Has visto la piedra brillante de Floris?</p><p class="hud">Debe estar entre las plantas.</p>';
     
         //Botón
         const btnSeguir = crearBoton("¡Sigo buscando!", function() {
