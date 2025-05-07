@@ -73,14 +73,15 @@
 
     /*ESTRELLA DIÁLOGOS -------------------------------------------------*/
     .estrellatxt {
-        height: 1.2em;
-        width: 1.2em;
+        height: 2em;
         vertical-align: middle;
         display: inline-block;
-        margin-left: 0.2em;
-        background-color: red;
-        object-fit: contain; 
+        margin-left: -4%;
+        margin-bottom: 2%;
+        position: relative !important;
+        width: auto !important;
     }
+
     /*BOTONES -------------------------------------------------------------*/ 
 
     .dialog .dialog-wrapper .dialog-btns-container {

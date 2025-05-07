@@ -57,33 +57,18 @@ BARBA JS
             },{
                 namespace: 'pantalla-juego-1',
                 beforeEnter() {
-                    movPersonaje();
-                    mostrarHud();
-                    resetearFlechas();
-                    EstadoJuego.setearPuntos();
-                    EstadoJuego.cargarPuntos();
-                    EstadoJuego.cargarEstadoPiedra();
+                    setearPantallaJuego();
                 }
             },{
                 namespace: 'pantalla-juego-2',
                 beforeEnter() {
-                    movPersonaje();
-                    mostrarHud();
-                    resetearFlechas();
-                    EstadoJuego.setearPuntos();
-                    EstadoJuego.cargarPuntos();
-                    EstadoJuego.cargarEstadoPiedra();
+                    setearPantallaJuego();
                 }
             },
             {
                 namespace: 'pantalla-juego-3',
                 beforeEnter() {
-                    movPersonaje();
-                    mostrarHud();
-                    resetearFlechas();
-                    EstadoJuego.setearPuntos();
-                    EstadoJuego.cargarPuntos();
-                    EstadoJuego.cargarEstadoPiedra();
+                    setearPantallaJuego();
                 }
             }
         ],
@@ -96,12 +81,7 @@ BARBA JS
         if (namespace === 'dialogo-inicial') {
           dialogoArbol();
         } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2'||namespace === 'pantalla-juego-3') {
-            movPersonaje();
-            mostrarHud();
-            resetearFlechas();
-            EstadoJuego.setearPuntos();
-            EstadoJuego.cargarPuntos();
-            EstadoJuego.cargarEstadoPiedra();
+            setearPantallaJuego();
         }
       });
 
@@ -122,6 +102,20 @@ function obtenerNumeroPantalla() {
     }
     
     return numeroActual;
+}
+
+
+
+/*=================================================================================================================
+SETEAR JUEGO
+=================================================================================================================*/ 
+function setearPantallaJuego(){
+    movPersonaje();
+    mostrarHud();
+    resetearFlechas();
+    EstadoJuego.setearPuntos();
+    EstadoJuego.cargarPuntos();
+    EstadoJuego.cargarEstadoPiedra();
 }
 
 /*=================================================================================================================
@@ -151,6 +145,7 @@ const EstadoJuego = {
 
     cargarEstadoPiedra() {
         this.estadoPiedra = EstadoDesdeStorage('estadoPiedra', 'nada', (v) => v);
+        
         if (this.estadoPiedra === 'encontrada') {
             const objPiedra = document.querySelector('.objPiedraBrillante');
             objPiedra.classList.remove('oculto');
@@ -511,7 +506,7 @@ function dialogoLumoTenerPiedra() {
         dialogoContenidoElement.innerHTML = '<p class="hud">¡Oh! Has encontrado la piedra. ¡Muchísimas gracias!</p><div><p class="hud">Has conseguido una <img class="estrellatxt" src="./assets/img/hud/star.svg" alt="Estrella"></p></div>';
     
         //Botón
-        const btnSeguir = crearBoton("¡De nada!", function() {
+        const btnSeguir = crearBoton("¡Genial!", function() {
             cerrarDialogo('#dialogoLumo'); 
         }); dialogoBotonesElement.appendChild(btnSeguir);
 
@@ -738,5 +733,3 @@ function gestionarRespuestaLumo(respuesta) {
         };
     
 };
-
-//ANIMACIONES -------------------------------------------------------------------
