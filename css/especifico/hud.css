@@ -1,8 +1,3 @@
-.oculto {
-    opacity: 0;
-    pointer-events: none;
-}
-
 /* HUD INFERIOR ======================================================================== */
 
 .hud-inferior {
@@ -34,7 +29,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        gap: 1.5em;
     }
     .usable {
         height: 60%;

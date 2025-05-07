@@ -66,11 +66,21 @@
         margin: 2% 0 5%;
     }
 
-    /*AJUSTES SEGÚN PERSONAJE ----------------------------------------------*/ 
+    /*POSICIÓN PERSONAJE ----------------------------------------------*/ 
     .img-personaje {
         bottom: 5%;
     }
 
+    /*ESTRELLA DIÁLOGOS -------------------------------------------------*/
+    .estrellatxt {
+        height: 1.2em;
+        width: 1.2em;
+        vertical-align: middle;
+        display: inline-block;
+        margin-left: 0.2em;
+        background-color: red;
+        object-fit: contain; 
+    }
     /*BOTONES -------------------------------------------------------------*/ 
 
     .dialog .dialog-wrapper .dialog-btns-container {

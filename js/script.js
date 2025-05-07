@@ -151,6 +151,10 @@ const EstadoJuego = {
 
     cargarEstadoPiedra() {
         this.estadoPiedra = EstadoDesdeStorage('estadoPiedra', 'nada', (v) => v);
+        if (this.estadoPiedra === 'encontrada') {
+            const objPiedra = document.querySelector('.objPiedraBrillante');
+            objPiedra.classList.remove('oculto');
+        }
     },
 };
 
@@ -476,6 +480,7 @@ DIALOGOS LUMO
 //DIÁLOGO LUMO FINAL ------------------------------------------------------------
 function dialogoLumoExito() {
     if (EstadoJuego.estadoPiedra === 'entregada') {
+
         const dialogoContenidoElement = document.getElementById('dialog-lumo-content');
         const dialogoBotonesElement = document.getElementById('dialog-lumo-btns');
     
@@ -486,9 +491,10 @@ function dialogoLumoExito() {
         dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias por ayudarnos!</p><p class="hud">Ahora Floris tiene su piedra.</p>';
     
         //Botón
-        const btnSeguir = crearBoton("Voy a ver si puedo ayudar a laguien más", function() {
+        const btnSeguir = crearBoton("Veré si puedo ayudar a alguien más", function() {
             cerrarDialogo('#dialogoLumo'); 
         }); dialogoBotonesElement.appendChild(btnSeguir);
+        
     }
 }
 
@@ -502,7 +508,7 @@ function dialogoLumoTenerPiedra() {
         dialogoBotonesElement.innerHTML = '';
     
         //Respuesta
-        dialogoContenidoElement.innerHTML = '<p class="hud">¡Oh! Has encontrado la piedra.</p><p class="hud">¡Muchísimas gracias!</p>';
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Oh! Has encontrado la piedra. ¡Muchísimas gracias!</p><div><p class="hud">Has conseguido una <img class="estrellatxt" src="./assets/img/hud/star.svg" alt="Estrella"></p></div>';
     
         //Botón
         const btnSeguir = crearBoton("¡De nada!", function() {
@@ -512,11 +518,19 @@ function dialogoLumoTenerPiedra() {
         //Nuevo estado
         EstadoJuego.estadoPiedra = 'entregada';
         EstadoJuego.setearEstadoPiedra();
+
+        //SETEAR PUNTOS _____________________________
+        EstadoJuego.puntos = EstadoJuego.puntos + 1;
+        EstadoJuego.setearPuntos();   
+
+        //QUITAR OBJ USABLE PIEDRA_______________________
+        const objPiedra = document.querySelector('.objPiedraBrillante');
+        objPiedra.classList.add('oculto');
     }
 }
 
 // CLICK EN ARBUSTO ---------------------------------------------------------------------
-function sacarPiedra(e) {
+function sacarPiedra() {
     if(EstadoJuego.estadoPiedra === 'buscando') {
         const piedraBrillante = document.getElementById('piedraBrillanteArbusto');
         piedraBrillante.classList.add('popObjetoMostrar');
@@ -527,6 +541,16 @@ function sacarPiedra(e) {
 function cogerPiedra(Piedra) {
     Piedra.classList.add('popObjetoOcultar');
     Piedra.classList.remove('popObjetoMostrar');
+
+    //USABLE PIEDRA BRILLANTE
+    const objPiedra = document.querySelector('.objPiedraBrillante');
+    objPiedra.classList.remove('oculto');
+    void objPiedra.offsetWidth;
+    objPiedra.classList.add('anim-aparecer');
+
+    //NUEVO ESTADO
+    EstadoJuego.estadoPiedra = 'encontrada';
+    EstadoJuego.setearEstadoPiedra();
 }
 
 //DIÁLOGO LUMO BUSCAR PIEDRA ------------------------------------------------------------
@@ -545,10 +569,6 @@ function dialogoLumoBuscando() {
         const btnSeguir = crearBoton("¡Sigo buscando!", function() {
             cerrarDialogo('#dialogoLumo'); 
         }); dialogoBotonesElement.appendChild(btnSeguir);
-
-        //Nuevo estado
-        EstadoJuego.estadoPiedra = 'encontrada';
-        EstadoJuego.setearEstadoPiedra();
     }
 }
 
@@ -677,12 +697,6 @@ function gestionarRespuestaLumo(respuesta) {
             //SETEAR BUSCAR PIEDRA _____________________________
             EstadoJuego.estadoPiedra = 'buscando';
             EstadoJuego.setearEstadoPiedra();
-
-            //SETEAR PUNTOS _____________________________
-            if(EstadoJuego.estadoPiedra === 'buscando') {
-                EstadoJuego.puntos = EstadoJuego.puntos + 1;
-                EstadoJuego.setearPuntos();   
-            };
 
             //Parrafo
             dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias! Me siento mejor con ayuda.</p><p class="hud">Podemos buscarla entre las plantas del bosque.</p>';
