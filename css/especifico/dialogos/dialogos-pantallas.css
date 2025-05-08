@@ -108,7 +108,7 @@
     .btn-hablar {
         transform-origin: center bottom;
         position: absolute;
-        width: 40%;
+        width: 3em;
         opacity: 0;
         transform: scale(0);
         pointer-events: none;

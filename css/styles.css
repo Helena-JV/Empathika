@@ -13,6 +13,7 @@
 /*ESTILOS PANTALLAS --------------------------------*/
 @import url("./especifico/pantallas-de-juego/pantallas-general.css");
 @import url("./especifico/pantallas-de-juego/pantalla1.css");
+@import url("./especifico/pantallas-de-juego/pantalla2.css");
 
 /*ANIMACIONES ----------------------------*/
 @import url("./barba/clip.css");

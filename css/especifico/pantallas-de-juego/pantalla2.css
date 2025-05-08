@@ -1,0 +1,99 @@
+/*FONDO ========================================================================*/
+/*NUBES ----------------------------------------------*/ 
+#bg-nubes {
+    position: absolute;
+    top: 4%;
+    width: 68%;
+    right: -4%;
+    animation: nubes 5s ease-in-out infinite alternate;
+}
+
+@keyframes nubes {
+    0% {
+        transform: translateY(-8%);
+    }
+    100% {
+        transform: translateY(8%);
+    }
+}
+
+/*MONTAÑAS ----------------------------------------------*/ 
+#bg-back {
+    position: absolute;
+    top: 8%;
+    right: 3%;
+    width: 100%;
+    transform: scale(1.2);
+}
+
+/*ÁRBOLES Y RAYOS ----------------------------------------------*/ 
+#bg-mid {
+    position: absolute;
+    top: 4%;
+    left: -15%;
+    width: 80%;
+}
+
+#bg-rayos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    mix-blend-mode: color-dodge;
+    opacity: 0.3;
+    fill: rgb(216, 203, 57);
+}
+
+/*SUELO BOSQUE ----------------------------------------------*/ 
+#bg-front {
+    position: absolute;
+    height: 100%;
+}  
+
+/*LUMO Y FLORA ========================================================================*/
+#pumpum-aqua-container {
+    right: 10%;
+    bottom: 22%;
+    width: 42%;
+    height: auto;
+    display: block;
+    user-select: none;
+    cursor: pointer;
+}
+
+/*ARBUSTO Y PRIEDRA BRILLANTE ========================================================================*/
+#arbusto1 {
+    position: absolute;
+    bottom: 29%;
+    left: 26%;
+    width: 22%;
+}
+
+#piedraBrillanteArbusto {
+    position: absolute;
+    transform-origin: center center;
+    top: 50%;
+    left: 32%;
+    width: 11%;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.popObjetoOculto {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0);
+}
+
+.popObjetoMostrar {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+}
+
+/*BOTÓN BOCADILLO DIÁLOGO ========================================================================*/
+
+#btnHablarConPumpum {
+    left: 2%;
+    top: 2%;
+}
+
