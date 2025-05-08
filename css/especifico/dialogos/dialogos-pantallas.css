@@ -104,5 +104,26 @@
         max-width: 50%;
     }
 
+    /*BOTÓN BOCADILLO DIÁLOGO ----------------------------------------------------*/ 
+    .btn-hablar {
+        transform-origin: center bottom;
+        position: absolute;
+        width: 40%;
+        opacity: 0;
+        transform: scale(0);
+        pointer-events: none;
+        transition: none;
+        /*scale: 1 0.5;*/
+    }
 
+    .btn-hablar:hover {
+        transform: scale(1.2) !important;
+        transition: transform 0.2s ease;
+}
+
+    
+
+
+
+ 
 

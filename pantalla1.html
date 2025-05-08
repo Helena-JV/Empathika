@@ -72,8 +72,9 @@
                 <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
             </div>
             <!--LUMO Y FLORA_______________________________________________________-->
-            <div onclick="abrirDialogo('#dialogoLumo')" id="lumo-flora-container" class="personaje-container personaje">
-                <img class="target" src="./assets/img/personajes/lumo-flora.svg" alt="Lumo y Flora. Dos seres mágicos. Flora está dormida sobre Lumo">
+            <div id="lumo-flora-container" class="personaje-container personaje">
+                <img onclick="abrirDialogo('#dialogoLumo')" class="btn-hablar hud" id="btnHablarConLumo" src="./assets/img/hud/bocadillo.svg" alt="Botón hablar">
+                <img onclick="mostrarBocadillo('#btnHablarConLumo')" class="target" src="./assets/img/personajes/lumo-flora.svg" alt="Lumo y Flora. Dos seres mágicos. Flora está dormida sobre Lumo">
             </div>
 
             <!--DIALOGOS__________________________________________________________-->

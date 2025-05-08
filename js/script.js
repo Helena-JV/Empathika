@@ -224,7 +224,57 @@ function mostrarHud() {
         }
     }
     
+/*=================================================================================================================
+BOCADILLO DE DIÁLOGO
+================================================================================================================*/
 
+function mostrarBocadillo(selector) {
+    const elemento = document.querySelector(selector);
+    if (!elemento) return;
+  
+    // Mostrar el bocadillo con animación
+    elemento.style.pointerEvents = "auto";
+  
+    gsap.fromTo(
+      elemento,
+      { opacity: 0, scale: 0 },
+      { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" }
+    );
+  
+    // Añadir manejador de clic global una vez
+    document.addEventListener("click", cerrarSiClickFuera);
+  
+    // Evitar propagación del clic original
+    const personaje = document.querySelector('.target');
+    personaje.addEventListener('click', function(event) {
+      event.stopPropagation(); // Evita que el clic en el personaje dispare el cierre
+    });
+  
+    elemento.addEventListener('click', function(event) {
+      event.stopPropagation(); // Evita que el clic en el bocadillo dispare el cierre
+    });
+  }
+  
+  function cerrarSiClickFuera(event) {
+    const bocadillo = document.querySelector('.btn-hablar');
+    if (!bocadillo) return;
+  
+    // Ocultar el bocadillo solo si el clic no fue sobre él ni sobre el personaje
+    if (!event.target.closest('.btn-hablar') && !event.target.closest('.target')) {
+      gsap.to(bocadillo, {
+        opacity: 0,
+        scale: 0,
+        duration: 0.4,
+        ease: "back.in(1.7)",
+        onComplete: () => {
+          bocadillo.style.pointerEvents = "none";
+        }
+      });
+  
+      // Eliminar el listener para evitar múltiples añadidos
+      document.removeEventListener("click", cerrarSiClickFuera);
+    }
+  }
 /*=================================================================================================================
 MOVIMIENTO PERSONAJE PRINCIPAL
 =================================================================================================================*/ 
