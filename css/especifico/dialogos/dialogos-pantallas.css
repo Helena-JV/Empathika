@@ -20,7 +20,7 @@
         min-height: 50%;
         padding: 3% 5%;
         position: absolute;
-        top: 45%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -65%);
         background-color: white;
@@ -30,7 +30,7 @@
     }
 
     /*IMAGEN DEL PERSONAJE */
-    .dialog .dialog-wrapper .dialog-container img {
+    .dialog .dialog-wrapper .dialog-container .img-personaje {
         pointer-events: none;
         position: absolute;
         width: 40%;
@@ -76,17 +76,16 @@
         height: 2em;
         vertical-align: middle;
         display: inline-block;
-        margin-left: -4%;
-        margin-bottom: 2%;
-        position: relative !important;
-        width: auto !important;
+        margin-bottom: 3%;
+        position: relative;
+        width: auto;
     }
 
     /*BOTONES -------------------------------------------------------------*/ 
 
     .dialog .dialog-wrapper .dialog-btns-container {
         position: absolute;
-        bottom: 10%;
+        bottom: 7%;
         width: 94%;
         height: 20%;
 

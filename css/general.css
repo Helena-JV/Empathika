@@ -69,7 +69,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
 @media (min-aspect-ratio: 16/9) {
   /* Pantallas más anchas que 16:9 */
   .general-wrapper {
-      font-size: 3.5dvh;
+      font-size: 4.2dvh;
       width: 177.78dvh; /* 16/9 * 100vh para mantener la proporción 16:9 */
       height: 100dvh;
       margin: 0 auto;
@@ -79,7 +79,7 @@ button, input, textarea, a, [role="button"], [tabindex="0"], p {
 @media (max-aspect-ratio: 16/9) {
   /* Pantallas más estrechas que 16:9 */
   .general-wrapper {
-      font-size: 2vw;
+      font-size: 2.36vw;
       width: 100vw;
       height: 56.25vw; /* 9/16 * 100vw para mantener la proporción 16:9 */
   }
@@ -187,6 +187,10 @@ button:active {
   transform-origin: center center;
   text-align: center;
   animation: anim-modal 0.7s ease-in-out forwards;
+}
+
+.modal .modal-content p {
+  text-wrap: balance;
 }
 
 .modal .modal-content > * {

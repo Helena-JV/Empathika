@@ -27,6 +27,8 @@
 
 .bocadillo-dialog-init .txt-bocadillo {
     margin-bottom: 10%;
+    text-wrap: pretty;
+    font-size: 97%;
 }
 .bocadillo-dialog-init .txt-bocadillo.ultima-frase {
     margin-bottom: 30%; 
@@ -111,7 +113,7 @@
 
 #dialogoArbolbtnFinal {
     position: absolute;
-    top: 50%;
+    top: 54%;
     left: 10%;
     padding: 2% 3%;
 }
