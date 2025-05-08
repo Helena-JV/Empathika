@@ -125,15 +125,21 @@ function setearPantallaJuego(){
     EstadoJuego.setearPuntos();
     EstadoJuego.cargarPuntos();
     EstadoJuego.cargarEstadoPiedra();
+    EstadoJuego.cargarEstadoPumpum();
+    torreConstruida(); // Al poner esta función, deja de funcionar correctamente el slider
 }
 
 /*=================================================================================================================
 ESTADO DEL JUEGO
 =================================================================================================================*/ 
+
+
+
 const EstadoJuego = {
     // ESTADO INICIAL ------------------------------------------------
     puntos: EstadoDesdeStorage('puntos', 0, parseInt),
     estadoPiedra: EstadoDesdeStorage('estadoPiedra', 'nada', (v) => v),
+    estadoPumpum: EstadoDesdeStorage('estadoPumpum', 'nada', (v) => v),
 
     // PUNTOS ------------------------------------------------
     setearPuntos() {
@@ -159,6 +165,15 @@ const EstadoJuego = {
             const objPiedra = document.querySelector('.objPiedraBrillante');
             objPiedra.classList.remove('oculto');
         }
+    },
+
+    // ESTADO PUMPUM ----------------------------------------------
+    setearEstadoPumpum() {
+        sessionStorage.setItem('estadoPumpum', this.estadoPumpum);
+    },
+
+    cargarEstadoPumpum() {
+        this.estadoPumpum = EstadoDesdeStorage('estadoPumpum', 'nada', (v) => v);
     },
 };
 
@@ -315,7 +330,7 @@ MOVIMIENTO PERSONAJE PRINCIPAL
                     const targetRect = event.target.getBoundingClientRect();
                     const personajeCentroX = personajeRect.left + personajeRect.width / 2;
                     
-                    const targetHalfWidthPorcentaje = (targetRect.width / 2 / generalWrapperRect.width) * 100; //Mitad del ancho del target en % del ancho del contenedor
+                    const targetHalfWidthPorcentaje = (targetRect.width / 2 / generalWrapperRect.width) * 30; //Mitad del ancho del target en % del ancho del contenedor
                     const distanciaPorcentaje = targetHalfWidthPorcentaje + OFFSET_PORCENTAJE; //Distancia total = mitad del ancho del target + offset fijo del 3%
                     const distanciaPx = (distanciaPorcentaje * generalWrapperRect.width) / 100; //Convertir esta distancia de nuevo a px
 
@@ -444,19 +459,22 @@ DIALOGOS JUEGO GENERAL
 
     //ABRIR ----------------------------------------------------
     function abrirDialogo(selector) {
+        //SITUACIONES AVANCE LUMO -----------------------------
+        if (selector === "#btnHablarConLumo") {
+            dialogoLumoExito();
+            dialogoLumoTenerPiedra();
+            dialogoLumoBuscando();
+        }
 
-        //SITUACIONES AVANCE -----------------------------
-        dialogoLumoExito();
-        dialogoLumoTenerPiedra();
-        dialogoLumoBuscando();
+        if (selector === "#btnHablarConPumpum" || selector === '#dialogoPumpum') {
+              dialogoPumpumExito();    
+        }
 
         //-------------------------------------------------
         
         const dialogo = document.querySelector(selector);
         if (dialogo) {
             dialogo.classList.toggle("dialog-close");
-
-            //VARIABLES CREADAS (nuevo código aquí)
             
         
             // ANIMACIÓN TEXTO DIÁLOGO 
@@ -668,11 +686,12 @@ function gestionarRespuestaLumo(respuesta) {
                         const btnNoDecir = crearBoton("No digas nada, igual no se da cuenta.", function() {
                             gestionarRespuestaLumo('noDecir');
                         });dialogoBotonesElement.appendChild(btnNoDecir);
-                        animarBotones();
-                        animarNuevoContenido();
+                        Animaciones.animarTexto(dialogoContenidoElement.children);
+                        Animaciones.animarBotones(dialogoBotonesElement.children);
+
                 }); dialogoBotonesElement.appendChild(btnPuedeEnfadarse);
-            animarNuevoContenido();
-            animarBotones();
+                Animaciones.animarTexto(dialogoContenidoElement.children);
+                Animaciones.animarBotones(dialogoBotonesElement.children);
 
 
         //RESPUESTA: NO DECIR NADA ----------------------------------------------------------------
@@ -690,9 +709,8 @@ function gestionarRespuestaLumo(respuesta) {
                 const btnBuscarJuntos = crearBoton("Vamos a buscarla juntos.", function() {
                     buscarJuntos();
                 }); dialogoBotonesElement.appendChild(btnBuscarJuntos);
-            
-            animarBotones();
-            animarNuevoContenido();
+                Animaciones.animarTexto(dialogoContenidoElement.children);
+                Animaciones.animarBotones(dialogoBotonesElement.children);
         };
 
         //SEGUIR: DECIRSELO A FLORIS ----------------------------------------------------------------
@@ -729,20 +747,24 @@ function gestionarRespuestaLumo(respuesta) {
                             const btnSiguiente4 = crearBoton("Yo te ayudo a buscarla.", function() {
                                 buscarJuntos();
                             }); dialogoBotonesElement.appendChild(btnSiguiente4); 
-                            animarBotones();
-                            animarNuevoContenido();
+                            Animaciones.animarTexto(dialogoContenidoElement.children);
+                            Animaciones.animarBotones(dialogoBotonesElement.children);
+
                         }); dialogoBotonesElement.appendChild(btnSiguiente3); 
-                        animarBotones();
-                        animarNuevoContenido();
+                        Animaciones.animarTexto(dialogoContenidoElement.children);
+                         Animaciones.animarBotones(dialogoBotonesElement.children);
+
                     }); dialogoBotonesElement.appendChild(btnSiguiente2);
-                    animarBotones();
-                    animarNuevoContenido(); 
+                    Animaciones.animarTexto(dialogoContenidoElement.children);
+                    Animaciones.animarBotones(dialogoBotonesElement.children);
+
                 }); dialogoBotonesElement.appendChild(btnSiguiente1); 
-                animarBotones();
-                animarNuevoContenido();
+                Animaciones.animarTexto(dialogoContenidoElement.children);
+                Animaciones.animarBotones(dialogoBotonesElement.children);
+
             }); dialogoBotonesElement.appendChild(btnSeguir);
-            animarBotones();
-            animarNuevoContenido();
+            Animaciones.animarTexto(dialogoContenidoElement.children);
+            Animaciones.animarBotones(dialogoBotonesElement.children);
         };
 
         //SEGUIR: BUSCAR JUNTOS ----------------------------------------------------------------
@@ -759,8 +781,8 @@ function gestionarRespuestaLumo(respuesta) {
             const btnBuscar = crearBoton("¡Vale! Voy a ver si la encuentro", function() {
                 cerrarDialogo('#dialogoLumo'); 
             }); dialogoBotonesElement.appendChild(btnBuscar);
-            animarBotones();
-            animarNuevoContenido();
+            Animaciones.animarTexto(dialogoContenidoElement.children);
+            Animaciones.animarBotones(dialogoBotonesElement.children);
         };
 
         //CAMBIAR DE PERSONAJE ----------------------------------------------------------------
@@ -773,21 +795,217 @@ function gestionarRespuestaLumo(respuesta) {
             nombrePersonaje.textContent = 'Lumo';
         }
 
-        //ANIMACIONES ----------------------------------------------------------------
-        // ANIMACIÓN BOTONES
-        function animarBotones() {
-            gsap.fromTo(dialogoBotonesElement.children,
-                { opacity: 0 },
-                { opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.3, delay: 0.1 }
-            );
-        }
         
-        // ANIMACIÓN CONTENIDO
-        function animarNuevoContenido() {
-            gsap.fromTo(dialogoContenidoElement.children, 
-                { opacity: 0, y: 10 },
-                { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
-            );
-        };
+};
+
+/*=================================================================================================================
+DIALOGOS PUMPUM
+=================================================================================================================*/ 
+function torreConstruida() {
+    if (EstadoJuego.estadoPumpum === 'final') {
+        const imgTorreConstruida = document.querySelector('#pumpum-aqua-container .target');
+        imgTorreConstruida.src = './assets/img/personajes/pumpum-aqua-torre-ok.svg';
+    }
+}
+//DIÁLOGO PUMPUM FINAL ------------------------------------------------------------
+function dialogoPumpumExito() {
+    if (EstadoJuego.estadoPumpum === 'final') {
+
+        const dialogoContenidoElement = document.getElementById('dialog-pumpum-content');
+        const dialogoBotonesElement = document.getElementById('dialog-pumpum-btns');
     
+        dialogoContenidoElement.innerHTML = '';
+        dialogoBotonesElement.innerHTML = '';
+    
+        //Respuesta
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Mira qué torre más chula tenemos ahora!</p><p class="hud">Trabajar en equipo y tener paciencia es la clave.</p>';
+    
+        //Botón
+        const btnSeguir = crearBoton("Veré si puedo ayudar a alguien más", function() {
+            cerrarDialogo('#dialogoPumpum'); 
+        });dialogoBotonesElement.appendChild(btnSeguir); 
+    };
+};
+
+// GESTIONAR RESPUESTA PUMPUM -----------------------------------------------------------------------
+function gestionarRespuestaPumpum() {
+    const personajeQueHabla = document.querySelector(".img-personaje");
+    const nombrePersonaje = document.querySelector(".nombre-personaje");
+
+    const dialogoContenidoElement = document.getElementById('dialog-pumpum-content');
+    const dialogoBotonesElement = document.getElementById('dialog-pumpum-btns');
+
+    //DIALOGO 1 ------------------------------------------------------------------------
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Déjame en paz! Sé cómo usar mi magia de crecimiento.</p><p class="hud">¡Va a ser la torre más alta del bosque!</p>';
+        hablaPumPum();
+
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnUsarMagia = crearBoton("¡Usa toda tu magia para que crezca altísima!", function() {
+            usaTuMagia();
+        }); dialogoBotonesElement.appendChild(btnUsarMagia);
+
+        const btnDespacio = crearBoton("Si lo haces despacio, será más segura.", function() {
+            tenCuidado();
+        }); dialogoBotonesElement.appendChild(btnDespacio);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    
+
+    //DIALOGO USA TU MAGIA ------------------------------------------------------------------------
+    function usaTuMagia() {
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">Aqua, no te voy a escuchar.</p><p class="hud">¡Mira qué poderoso soy!</p>';
+        
+        //SIGUIENTE 1
+        dialogoBotonesElement.innerHTML = '';
+        const btnUsarMagia = crearBoton("¡Eso, eso!", function() {
+
+            //SIGUIENTE 2
+            dialogoContenidoElement.innerHTML = '<p class="hud">«Brrum ¡Plof!»</p><p class="hud">Oh no… se ha caído la torre.</p>';
+            hablaAqua(); 
+            dialogoBotonesElement.innerHTML = '';
+            const btnOhNo = crearBoton("Oh no...", function() {
+
+                //SIGUIENTE 3
+                dialogoContenidoElement.innerHTML = '<p class="hud">¡Jope!</p><p class="hud">Con lo que me he esforzado en hacerla crecer…</p>';
+                hablaPumPum();
+                dialogoBotonesElement.innerHTML = '';
+                const loSientoPumpum = crearBoton("Vaya, lo siento mucho, Pumpum", function() {
+
+                    //SIGUIENTE 4
+                    dialogoContenidoElement.innerHTML = '<p class="hud">¿Qué podemos hacer ahora para que no se vualva a caer la torre?</p>';
+                    dialogoBotonesElement.innerHTML = '';
+                    const magiaCuidado = crearBoton("Usa tu magia con cuidado", function() {
+                        tenCuidado();
+                    });dialogoBotonesElement.appendChild(magiaCuidado);
+
+                    const noHagasCaso = crearBoton("No hagas caso, vuelve a hacerlo igual", function() {
+                        usaTuMagia();
+                    });dialogoBotonesElement.appendChild(noHagasCaso);
+                    Animaciones.animarTexto(dialogoContenidoElement.children);
+                    Animaciones.animarBotones(dialogoBotonesElement.children);
+
+                }); dialogoBotonesElement.appendChild(loSientoPumpum);
+                Animaciones.animarTexto(dialogoContenidoElement.children);
+                Animaciones.animarBotones(dialogoBotonesElement.children);
+                
+            }); dialogoBotonesElement.appendChild(btnOhNo);
+            Animaciones.animarTexto(dialogoContenidoElement.children);
+            Animaciones.animarBotones(dialogoBotonesElement.children);
+            
+        }); dialogoBotonesElement.appendChild(btnUsarMagia);
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    };
+
+    //DIALOGO TEN CUIDADO ------------------------------------------------------------------------
+    function tenCuidado() {
+        dialogoContenidoElement.innerHTML = '<p class="hud">Mmm... quizás tengáis razón.</p><p class="hud">A veces me emociono demasiado con mi magia.</p>';
+        hablaPumPum();
+
+        //SIGUIENTE 1
+        dialogoBotonesElement.innerHTML = '';
+        const trabajemosJuntos = crearBoton("¡Trabajemos juntos!", function() {
+        
+            //SIGUIENTE 2
+            dialogoContenidoElement.innerHTML = '<p class="hud">¡Es es!</p><p class="hud">Cuando trabajamos juntos y escuchamos los consejos de los demás, las cosas salen mejor.</p>';
+            hablaAqua();
+            dialogoBotonesElement.innerHTML = '';
+
+            //Btn1
+            const ramaSuelta = crearBoton("Mira, esa rama está suelta.", function() {
+                dialogoPumpumFinal();
+            });dialogoBotonesElement.appendChild(ramaSuelta);
+
+            //Btn2
+            const refuerzaBase = crearBoton("Refuerza la base.", function() {
+                dialogoPumpumFinal();
+            });dialogoBotonesElement.appendChild(refuerzaBase);
+            Animaciones.animarTexto(dialogoContenidoElement.children);
+            Animaciones.animarBotones(dialogoBotonesElement.children);
+                    
+        });dialogoBotonesElement.appendChild(trabajemosJuntos);
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    };
+
+    //DIALOGO FINAL ------------------------------------------------------------------------
+    function dialogoPumpumFinal() {
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Oh! No me había dado cuenta.</p><p class="hud">¡Gracias por avisarme! Mi entusiasmo a veces me hace olvidar los detalles.</p>';
+        hablaPumPum();
+        dialogoBotonesElement.innerHTML = '';
+        const dialogFinalPumpum1 = crearBoton("Claro. Aquí estamos para ayudar.", function() {
+
+            //SIGUIENTE 1
+            dialogoContenidoElement.innerHTML = '<p class="hud">Una buena observación puede evitar muchos problemas, ¡bien hecho!</p>';
+            hablaAqua();
+            dialogoBotonesElement.innerHTML = '';
+            const dialogFinalPumpum2 = crearBoton("¡Está quedando genial!", function() {
+
+                //SIGUIENTE 2
+                dialogoContenidoElement.innerHTML = '<p class="hud">¡Mira! Ahora es alta y segura. ¡La clave: colaboración y paciencia!</p><p class="hud">Has conseguido una <img class="estrellatxt" src="./assets/img/hud/star.svg" alt="Estrella"></p>';
+                const imgTorreConstruida = document.querySelector('#pumpum-aqua-container .target');
+                imgTorreConstruida.src = './assets/img/personajes/pumpum-aqua-torre-ok.svg';
+
+                //Botón
+                dialogoBotonesElement.innerHTML = '';
+                const dialogFinalPumpum3 = crearBoton("¡Genial!", function() {
+                    cerrarDialogo('#dialogoPumpum'); 
+                }); dialogoBotonesElement.appendChild(dialogFinalPumpum3);
+                Animaciones.animarTexto(dialogoContenidoElement.children);
+                Animaciones.animarBotones(dialogoBotonesElement.children);
+
+                //NUEVO STADO _____________________________
+                EstadoJuego.estadoPumpum = 'final';
+                EstadoJuego.setearEstadoPumpum();
+
+                //SETEAR PUNTOS _____________________________
+                EstadoJuego.puntos = EstadoJuego.puntos + 1;
+                EstadoJuego.setearPuntos();   
+    
+            });dialogoBotonesElement.appendChild(dialogFinalPumpum2);
+            Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+
+        });dialogoBotonesElement.appendChild(dialogFinalPumpum1);
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+
+    };
+        
+        
+
+    //CAMBIAR DE PERSONAJE ----------------------------------------------------------------
+    function hablaAqua() {
+        personajeQueHabla.src = './assets/img/personajes/aqua.svg';
+        nombrePersonaje.textContent = 'Aqua';
+    }
+    function hablaPumPum() {
+        personajeQueHabla.src = './assets/img/personajes/pumpum.svg';
+        nombrePersonaje.textContent = 'Pumpum';
+    }
+};
+
+/*=================================================================================================================
+ANIMACIONES DIÁLOGOS
+=================================================================================================================*/ 
+const Animaciones = {
+    // Animación para botones
+    animarBotones: function(elementos) {
+        gsap.fromTo(elementos,
+            { opacity: 0 },
+            { opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.3, delay: 0.1 }
+        );
+    },
+    
+    // Animación para contenido
+    animarTexto: function(elementos) {
+        gsap.fromTo(elementos, 
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
+        );
+    }
 };

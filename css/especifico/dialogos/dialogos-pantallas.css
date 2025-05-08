@@ -33,8 +33,11 @@
     .dialog .dialog-wrapper .dialog-container .img-personaje {
         pointer-events: none;
         position: absolute;
-        width: 40%;
-        right: -5%;
+        transform-origin: center center;
+        width: 100%;
+        max-width: 40%;
+        max-height: 115%;
+        right: -3%;
     }
 
 

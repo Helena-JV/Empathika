@@ -1,14 +1,22 @@
 /*FONDO ========================================================================*/
 /*NUBES ----------------------------------------------*/ 
-#bg-nubes {
+#bg-nubes2-1 {
     position: absolute;
     top: 4%;
-    width: 68%;
-    right: -4%;
-    animation: nubes 5s ease-in-out infinite alternate;
+    width: 18%;
+    left: 65%;
+    animation: nubes2 5s ease-in-out infinite alternate;
 }
 
-@keyframes nubes {
+#bg-nubes2-2 {
+    position: absolute;
+    top: 6%;
+    width: 20%;
+    left: 22%;
+    animation: nubes2 7s ease-in-out infinite alternate;
+}
+
+@keyframes nubes2 {
     0% {
         transform: translateY(-8%);
     }
@@ -18,26 +26,31 @@
 }
 
 /*MONTAÑAS ----------------------------------------------*/ 
-#bg-back {
+#bg-mountains2 {
     position: absolute;
-    top: 8%;
-    right: 3%;
+    top: 9%;
     width: 100%;
-    transform: scale(1.2);
 }
 
 /*ÁRBOLES Y RAYOS ----------------------------------------------*/ 
-#bg-mid {
+#bg-monticulo2 {
     position: absolute;
-    top: 4%;
-    left: -15%;
-    width: 80%;
+    top: 5%;
+    left: 32%;
+    width: 68%;
 }
 
-#bg-rayos {
+#bg-arbol2 {
+    position: absolute;
+    width: 40%;
+    left: 1%;
+
+}
+
+#bg-rayos2 {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0%;
     width: 70%;
     mix-blend-mode: color-dodge;
     opacity: 0.3;
@@ -45,9 +58,10 @@
 }
 
 /*SUELO BOSQUE ----------------------------------------------*/ 
-#bg-front {
+#bg-suelo2 {
     position: absolute;
-    height: 100%;
+    width: 100%;
+    bottom: 0;
 }  
 
 /*LUMO Y FLORA ========================================================================*/
@@ -59,35 +73,6 @@
     display: block;
     user-select: none;
     cursor: pointer;
-}
-
-/*ARBUSTO Y PRIEDRA BRILLANTE ========================================================================*/
-#arbusto1 {
-    position: absolute;
-    bottom: 29%;
-    left: 26%;
-    width: 22%;
-}
-
-#piedraBrillanteArbusto {
-    position: absolute;
-    transform-origin: center center;
-    top: 50%;
-    left: 32%;
-    width: 11%;
-    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-}
-
-.popObjetoOculto {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0);
-}
-
-.popObjetoMostrar {
-    opacity: 1;
-    pointer-events: all;
-    transform: scale(1);
 }
 
 /*BOTÓN BOCADILLO DIÁLOGO ========================================================================*/
