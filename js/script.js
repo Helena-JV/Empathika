@@ -66,6 +66,7 @@ BARBA JS
                 namespace: 'pantalla-juego-2',
                 beforeEnter() {
                     setearPantallaJuego();
+                    torreConstruida(); 
                 },
                 afterEnter() {
                     setearPantallaJuego();
@@ -126,7 +127,6 @@ function setearPantallaJuego(){
     EstadoJuego.cargarPuntos();
     EstadoJuego.cargarEstadoPiedra();
     EstadoJuego.cargarEstadoPumpum();
-    torreConstruida(); // Al poner esta función, deja de funcionar correctamente el slider
 }
 
 /*=================================================================================================================
