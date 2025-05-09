@@ -460,13 +460,14 @@ DIALOGOS JUEGO GENERAL
     //ABRIR ----------------------------------------------------
     function abrirDialogo(selector) {
         //SITUACIONES AVANCE LUMO -----------------------------
-        if (selector === "#btnHablarConLumo") {
+
+        if (selector === "#dialogoLumo") {
             dialogoLumoExito();
             dialogoLumoTenerPiedra();
             dialogoLumoBuscando();
         }
 
-        if (selector === "#btnHablarConPumpum" || selector === '#dialogoPumpum') {
+        if (selector === '#dialogoPumpum') {
               dialogoPumpumExito();    
         }
 
