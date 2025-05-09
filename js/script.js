@@ -76,6 +76,7 @@ BARBA JS
                 namespace: 'pantalla-juego-3',
                 beforeEnter() {
                     setearPantallaJuego();
+                    ImgTikiFeliz();
                 },
                 afterEnter() {
                     setearPantallaJuego();
@@ -92,6 +93,7 @@ BARBA JS
           dialogoArbol();
         } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2'||namespace === 'pantalla-juego-3') {
             setearPantallaJuego();
+
         }
       });
 
@@ -127,14 +129,12 @@ function setearPantallaJuego(){
     EstadoJuego.cargarPuntos();
     EstadoJuego.cargarEstadoPiedra();
     EstadoJuego.cargarEstadoPumpum();
+    EstadoJuego.cargarEstadoTiki();
 }
 
 /*=================================================================================================================
 ESTADO DEL JUEGO
 =================================================================================================================*/ 
-
-
-
 const EstadoJuego = {
     // ESTADO INICIAL ------------------------------------------------
     puntos: EstadoDesdeStorage('puntos', 0, parseInt),
@@ -174,6 +174,15 @@ const EstadoJuego = {
 
     cargarEstadoPumpum() {
         this.estadoPumpum = EstadoDesdeStorage('estadoPumpum', 'nada', (v) => v);
+    },
+
+    // ESTADO TIKI ----------------------------------------------
+    setearEstadoTiki() {
+        sessionStorage.setItem('estadoTiki', this.estadoTiki);
+    },
+
+    cargarEstadoTiki() {
+        this.estadoTiki = EstadoDesdeStorage('estadoTiki', 'nada', (v) => v);
     },
 };
 
@@ -295,6 +304,7 @@ MOVIMIENTO PERSONAJE PRINCIPAL
 =================================================================================================================*/ 
 
     function movPersonaje(){
+
         //VARIABLES -----------------------------------------------------------------------
         const personaje_principal = document.querySelector("#protagonista-container");
         const personaje_principal_img = document.querySelector("#protagonista-container img");
@@ -311,8 +321,10 @@ MOVIMIENTO PERSONAJE PRINCIPAL
         });
 
         // MOVER EL PERSONAJE CON CLICK ----------------------------------------
+        console.log(generalWrapperContainer)
+
             generalWrapperContainer.addEventListener("click", (event) => {
-                
+                console.log('click', event.target.classList.contains("target"), event.target.classList)
                 //No hacer nada si se hace click en un elemento HUD
                 if (event.target.classList.contains('hud')) {
                     return;
@@ -327,6 +339,7 @@ MOVIMIENTO PERSONAJE PRINCIPAL
                 
                 //AJUSTAR EL DESTINO EN OBJETO TARGET
                 if (event.target.classList.contains("target")) {
+                    console.log(1)
                     const targetRect = event.target.getBoundingClientRect();
                     const personajeCentroX = personajeRect.left + personajeRect.width / 2;
                     
@@ -470,6 +483,10 @@ DIALOGOS JUEGO GENERAL
         if (selector === '#dialogoPumpum') {
               dialogoPumpumExito();    
         }
+
+        if (selector === '#dialogoTiki') {
+            dialogoTikiExito();    
+      }
 
         //-------------------------------------------------
         
@@ -957,7 +974,7 @@ function gestionarRespuestaPumpum() {
                 Animaciones.animarTexto(dialogoContenidoElement.children);
                 Animaciones.animarBotones(dialogoBotonesElement.children);
 
-                //NUEVO STADO _____________________________
+                //NUEVO ESTADO _____________________________
                 EstadoJuego.estadoPumpum = 'final';
                 EstadoJuego.setearEstadoPumpum();
 
@@ -972,10 +989,7 @@ function gestionarRespuestaPumpum() {
         });dialogoBotonesElement.appendChild(dialogFinalPumpum1);
         Animaciones.animarTexto(dialogoContenidoElement.children);
         Animaciones.animarBotones(dialogoBotonesElement.children);
-
-    };
-        
-        
+    };  
 
     //CAMBIAR DE PERSONAJE ----------------------------------------------------------------
     function hablaAqua() {
@@ -987,6 +1001,193 @@ function gestionarRespuestaPumpum() {
         nombrePersonaje.textContent = 'Pumpum';
     }
 };
+
+
+
+/*=================================================================================================================
+DIALOGOS TIKI
+=================================================================================================================*/ 
+function ImgTikiFeliz() {
+    if (EstadoJuego.estadoTiki === 'final') {
+        const imgTikiFeliz = document.getElementById('tiki-cuerpo');
+        imgTikiFeliz.src = './assets/img/personajes/Tiki-cuerpo-feliz.svg';
+
+        const tikiParaAnim = document.getElementById('tiki-img');
+        tikiParaAnim.classList.add('tiki-anim');
+    }
+}
+//DIÁLOGO TIKI FINAL ------------------------------------------------------------
+function dialogoTikiExito() {
+    if (EstadoJuego.estadoTiki === 'final') {
+        const personajeQueHabla = document.querySelector(".img-personaje");
+        personajeQueHabla.src = './assets/img/personajes/tiki-contento.svg';
+
+        const dialogoContenidoElement = document.getElementById('dialog-tiki-content');
+        const dialogoBotonesElement = document.getElementById('dialog-tiki-btns');
+    
+        dialogoContenidoElement.innerHTML = '';
+        dialogoBotonesElement.innerHTML = '';
+    
+        //Respuesta
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias por ayudarme a superiar mis miedos!</p><p class="hud">Nada asusta mucho si lo afrontas poco a poco.</p>';
+    
+        //Botón
+        const btnSeguirExitoTiki = crearBoton("Veré si puedo ayudar a alguien más.", function() {
+            cerrarDialogo('#dialogoTiki'); 
+        });dialogoBotonesElement.appendChild(btnSeguirExitoTiki); 
+    };
+};
+
+// GESTIONAR RESPUESTA TIKI -----------------------------------------------------------------------
+function gestionarRespuestaTiki(respuesta) {
+    const personajeQueHabla = document.querySelector(".img-personaje");
+
+    const dialogoContenidoElement = document.getElementById('dialog-tiki-content');
+    const dialogoBotonesElement = document.getElementById('dialog-tiki-btns');
+
+    //PREGUNTAR MIEDOS ------------------------------------------------------------------------
+    if (respuesta === 'preguntarMiedos'){
+        dialogoContenidoElement.innerHTML = '<p class="hud">Si intento volar seguro que me caigo.</p><p class="hud">No... no puedo hacerlo.</p>';
+
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnCercaSuelo = crearBoton("Intenta volar primero cerca del suelo.", function() {
+            cercaDelSuelo();
+        }); dialogoBotonesElement.appendChild(btnCercaSuelo);
+
+        const btnVerAlgo = crearBoton("¿No te gustaría ver algo desde el cielo?", function() {
+            verCielo();
+        }); dialogoBotonesElement.appendChild(btnVerAlgo);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+
+    //INCREPAR ------------------------------------------------------------------------
+    }else if (respuesta === 'increpar'){
+        dialogoContenidoElement.innerHTML = '<p class="hud">¿Por qué me dices eso?</p><p class="hud">¡No es divertido! Da mucho miedo.</p>';
+
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnDisculpa1 = crearBoton("Lo siento… no lo había pensado.", function() {
+            postDisculpa();
+        }); dialogoBotonesElement.appendChild(btnDisculpa1);
+
+        const btnDisculpa2 = crearBoton("Tienes razón. No debería llamarte miedica.", function() {
+            postDisculpa();
+        }); dialogoBotonesElement.appendChild(btnDisculpa2);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    };
+
+    //DIALOGO VOLAR CERCA DEL SUELO ------------------------------------------------------------------------
+    function cercaDelSuelo() {
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">Bueno… podría probar despacito.</p><p class="hud">Eso no me da tanto miedo.</p>';
+        
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnIntentalo = crearBoton("¡Vamos, intentalo!", function() {
+            intentarlo();
+        }); dialogoBotonesElement.appendChild(btnIntentalo);
+
+        const btnPocoAPoco = crearBoton("Sí. Hazlo poco a poco.", function() {
+            intentarlo();
+        }); dialogoBotonesElement.appendChild(btnPocoAPoco);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+
+        //NUEVO ESTADO _____________________________
+        EstadoJuego.estadoTiki = 'final';
+        EstadoJuego.setearEstadoTiki();
+
+        //SETEAR PUNTOS _____________________________
+        EstadoJuego.puntos = EstadoJuego.puntos + 1;
+        EstadoJuego.setearPuntos();  
+    };
+
+    //DIALOGO VER DESDE EL CIELO ------------------------------------------------------------------------
+    function verCielo() {
+
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">La verdad... siempre he querido ver el Lago Espejo desde arriba.</p><p class="hud">Dicen que se ve la forma de la luna reflejada incluso durante el día…</p>';
+
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnIntentalo = crearBoton("Ve despacito y para si te asustas.", function() {
+            cercaDelSuelo();
+        }); dialogoBotonesElement.appendChild(btnIntentalo);
+
+        const btnPocoAPoco = crearBoton("Vuela primero cerca del suelo.", function() {
+            cercaDelSuelo();
+        }); dialogoBotonesElement.appendChild(btnPocoAPoco);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    };
+
+    //DIALOGO INTENTARLO ------------------------------------------------------------------------
+    function intentarlo() {
+        tikiFeliz();
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Mira, lo estoy consiguiendo!</p><p class="hud">Lo he intentado poquito a poco y ahora creo que puedo subir más.</p>';
+        
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnIntentalo = crearBoton("Hazlo solo si estás a gusto haciéndolo.", function() {
+            volarEstrella();
+        }); dialogoBotonesElement.appendChild(btnIntentalo);
+
+        const btnPocoAPoco = crearBoton("¡Tú puedes! Yo creo en ti.", function() {
+            volarEstrella();
+        }); dialogoBotonesElement.appendChild(btnPocoAPoco);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    };
+
+    //DIALOGO VOLAR ESTRELLA ------------------------------------------------------------------------
+    function volarEstrella() {
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Mira, estoy subiendo! Ohhh. Se ve el Lago espejo. ¡Es precioso!</p><p class="hud">Has conseguido una <img class="estrellatxt" src="./assets/img/hud/star.svg" alt="Estrella"></p>';
+        
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const dialogFinalTiki = crearBoton("¡Genial!", function() {
+            cerrarDialogo('#dialogoTiki'); 
+        }); dialogoBotonesElement.appendChild(dialogFinalTiki);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    };
+
+    //DIALOGO POST DISCULPA ------------------------------------------------------------------------
+    function postDisculpa() {
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">Bueno… acepto tus disculpas.</p><p class="hud">Pero sigo teniendo mucho miedo a volar.</p>';
+        
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnIntentalo = crearBoton("Intenta volar primero cerca del suelo.", function() {
+            cercaDelSuelo();
+        }); dialogoBotonesElement.appendChild(btnIntentalo);
+
+        const btnPocoAPoco = crearBoton("¿No te gustaría ver algo desde el cielo?", function() {
+            verCielo();
+        }); dialogoBotonesElement.appendChild(btnPocoAPoco);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+       
+    };
+
+    //CAMBIAR DE PERSONAJE ----------------------------------------------------------------
+    function tikiFeliz() {
+        personajeQueHabla.src = './assets/img/personajes/tiki-contento.svg';
+    }
+}
+    
 
 /*=================================================================================================================
 ANIMACIONES DIÁLOGOS

@@ -20,7 +20,7 @@
 /*MONTAÑAS ----------------------------------------------*/ 
 #bg-back {
     position: absolute;
-    top: 8%;
+    top: 14%;
     right: 3%;
     width: 100%;
     transform: scale(1.2);
@@ -32,16 +32,6 @@
     top: 4%;
     left: -15%;
     width: 80%;
-}
-
-#bg-rayos2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 70%;
-    mix-blend-mode: color-dodge;
-    opacity: 0.3;
-    fill: rgb(216, 203, 57);
 }
 
 /*SUELO BOSQUE ----------------------------------------------*/ 

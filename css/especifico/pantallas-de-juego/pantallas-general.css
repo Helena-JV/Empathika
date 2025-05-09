@@ -17,6 +17,17 @@
     transform: scaleX(-1);
 }
 
+/*ELEMENTOS =========================================================*/
+.bg-rayos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    mix-blend-mode: color-dodge;
+    opacity: 0.3;
+    fill: rgb(216, 203, 57);
+}
+
 /*ANIMACIÓN ENTRADA ----------------------------------------------*/ 
     @keyframes entrada {
         0% {

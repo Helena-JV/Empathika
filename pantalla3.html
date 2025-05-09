@@ -39,14 +39,13 @@
 
         <!--CONTENEDOR===========================================================================================-->
         <div class="sky sky-juego" data-barba="container" data-barba-namespace="pantalla-juego-3">
-
-            <div class="DIVMUESTRA">PANTALLA 3</div>
+            
             <!--BG_____________________________________________________________-->
             <div class="bg-container">
                 <img id="bg-nubes" src="./assets/img/bg/bg-nubes.svg" alt="Fondo con montículos y árboles">
                 <img id="bg-back" src="./assets/img/bg/bg-back.svg" alt="Fondo con montículos y árboles">
                 <img id="bg-mid" src="./assets/img/bg/bg-mid.svg" alt="Fondo con montículos y árboles">
-                <svg id="bg-rayos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1689.88 1082.79">
+                <svg class="bg-rayos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1689.88 1082.79">
                     <g>
                       <polygon points="1689.88 1033.25 1255.66 1082.79 372.8 0 515.29 0 1689.88 1033.25" />
                       <polygon points="1135.05 1082.53 290.83 1066.73 0 0 219.47 0 1135.05 1082.53" />
@@ -69,31 +68,41 @@
             <div id="protagonista-container" class="personaje-container">
                 <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
             </div>
-            <!--LUMO Y FLORA_______________________________________________________-->
-            <div onclick="abrirDialogo('#dialogoLumo')" id="lumo-flora-container" class="personaje-container personaje">
-                <img class="target" src="./assets/img/personajes/lumo-flora.svg" alt="Lumo y Flora. Dos seres mágicos. Flora está dormida sobre Lumo">
+            <!--TIKI_______________________________________________________-->
+  
+
+            
+            <div id="Tiki-container" class="personaje-container personaje" onclick="log()">
+                <img onclick="abrirDialogo('#dialogoTiki')" class="btn-hablar hud" id="btnHablarConTiki" src="./assets/img/hud/bocadillo.svg" alt="Botón hablar">
+                <div id="tiki-img"> <!--class="tiki-anim"-->
+                    <div onclick="mostrarBocadillo('#btnHablarConTiki')" id="tiki-hitbox" class="target"></div>
+                    <div id="tiki-alas">
+                        <img id="tiki-ala-izda" class="tiki-ala" src="./assets/img/personajes/Tiki-ala-izda.svg" alt="">
+                        <img id="tiki-ala-dcha" class="tiki-ala" src="./assets/img/personajes/Tiki-ala-dcha.svg" alt="">
+                    </div>
+                    <img id="tiki-cuerpo" src="./assets/img/personajes/Tiki-cuerpo-triste.svg" alt="Tiki">
+                </div>
             </div>
 
             <!--DIALOGOS__________________________________________________________-->
-            <div onclick="cerrarSiFondo(event, this)" id="dialogoLumo" class="dialog dialog-close hud">
+            <div onclick="cerrarSiFondo(event, this)" id="dialogoTiki" class="dialog dialog-close hud">
                 <img class="dialog-fondo-hierba" src="./assets/img/dialogos/dialog-hierba.svg" alt="Fondo de hierba">
                 <div class="dialog-wrapper">
                 
                 <!-- TEXTO DEL DIÁLOGO -->
                 <div class="dialog-container hud">
-                    <div class="nombre-personaje">Lumo</div>
-                    <div id="dialog-lumo-content" class="dialogo-txt hud">
-                        <p class="hud">Oh no… He perdido la piedra brillante de Floris. Me la prestó un momento y no sé dónde está…</p>
-                        <p class="hud">— ¿Qué hago ahora?</p>
+                    <div class="nombre-personaje">Tiki</div>
+                    <div id="dialog-tiki-content" class="dialogo-txt hud">
+                        <p class="hud">Hace tiempo que me crecieron las alas, pero nunca he volado.</p>
+                        <p class="hud">Debería poder hacerlo, pero me da mucho miedo.</p>
                     </div>
-                    <img class="img-personaje hud" src="./assets/img/personajes/lumo.svg" alt="">
+                    <img id="img-tiki-dialog" class="img-personaje hud" src="./assets/img/personajes/tiki-triste.svg" alt="">
                 </div>
                 
                 <!-- BOTONES -->
-                <div id="dialog-lumo-btns" class="dialog-btns-container hud">
-                    <button onclick="gestionarRespuestaLumo('buscar')" class="hud">Vamos a buscarla juntos.</button>
-                    <button onclick="gestionarRespuestaLumo('decir')" class="hud">Díselo a Floris, seguro que lo entiende.</button>
-                    <button onclick="gestionarRespuestaLumo('noDecir')" class="hud">No digas nada, igual no se da cuenta.</button>
+                <div id="dialog-tiki-btns" class="dialog-btns-container hud">
+                    <button onclick="gestionarRespuestaTiki('preguntarMiedos')" class="hud">¿Por qué te asusta volar?</button>
+                    <button onclick="gestionarRespuestaTiki('increpar')" class="hud">Anda, ¡no seas miedica!</button>
                 </div>
             </div>
 </div>

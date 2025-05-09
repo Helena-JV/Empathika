@@ -1,0 +1,125 @@
+/*FONDO ========================================================================*/
+/*NUBES ----------------------------------------------*/ 
+#bg-nubes {
+    position: absolute;
+    top: 4%;
+    width: 68%;
+    right: -4%;
+    animation: nubes 5s ease-in-out infinite alternate;
+}
+
+@keyframes nubes {
+    0% {
+        transform: translateY(-8%);
+    }
+    100% {
+        transform: translateY(8%);
+    }
+}
+
+/*MONTAÑAS ----------------------------------------------*/ 
+#bg-back {
+    position: absolute;
+    top: 14%;
+    right: 3%;
+    width: 100%;
+    transform: scale(1.2);
+}
+
+/*ÁRBOLES Y RAYOS ----------------------------------------------*/ 
+#bg-mid {
+    position: absolute;
+    top: 4%;
+    left: -15%;
+    width: 80%;
+}
+
+/*SUELO BOSQUE ----------------------------------------------*/ 
+#bg-front {
+    position: absolute;
+    height: 100%;
+}  
+
+/*TIKI ========================================================================*/
+#Tiki-container {
+    right: 10%;
+    width: 18%;
+    height: auto;
+    display: block;
+    user-select: none;
+    cursor: pointer;
+}
+
+#tiki-hitbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+  }
+
+#tiki-cuerpo {
+    position: relative;
+}
+#tiki-alas {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: -10%;
+}
+
+#tiki-ala-dcha {
+    transform-origin: left bottom;
+}
+
+#tiki-ala-izda {
+    transform-origin: right bottom;
+}
+
+
+/*ANIMACIÓN TIKI ----------------------------------------------*/ 
+.tiki-anim {
+    --tiempo-alas: 0.3s;
+    --tiempo-cuerpo: 1s;
+    --rotation-init: 7deg;
+    --rotation-final: 15deg;
+    animation: tiki-anim var(--tiempo-cuerpo) ease-in-out infinite alternate;
+
+}
+
+@keyframes tiki-anim {
+    0% {transform: translateY(-30%);}
+    100% {transform: translateY(-20%);}
+    
+}
+
+.tiki-anim #tiki-ala-dcha {
+    animation: ala-dcha var(--tiempo-alas) ease-in-out infinite alternate;
+}
+
+.tiki-anim #tiki-ala-izda {
+    animation: ala-izda var(--tiempo-alas) ease-in-out infinite alternate;
+}
+
+@keyframes ala-dcha {
+    0%{transform: rotate(calc(var(--rotation-init)*(-1)));}
+    100%{transform: rotate(var(--rotation-final));}
+}
+
+@keyframes ala-izda {
+    0%{transform: rotate(var(--rotation-init));}
+    100%{transform: rotate(calc(var(--rotation-final)*(-1)));}
+}
+
+/*DIÁLOGO ========================================================================*/
+#img-tiki-dialog {
+    width: 37%;
+}
+
+#btnHablarConTiki {
+    left: 30%;
+    top: -30%;
+    z-index: 100;
+}
+

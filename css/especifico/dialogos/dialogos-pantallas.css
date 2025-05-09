@@ -17,6 +17,7 @@
     .dialog .dialog-wrapper .dialog-container {
         width: 80%;
         height:fit-content;
+        max-height: 58%;
         min-height: 50%;
         padding: 3% 5%;
         position: absolute;

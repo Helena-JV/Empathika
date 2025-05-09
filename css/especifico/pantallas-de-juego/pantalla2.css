@@ -47,16 +47,6 @@
 
 }
 
-#bg-rayos2 {
-    position: absolute;
-    top: 0;
-    left: 0%;
-    width: 70%;
-    mix-blend-mode: color-dodge;
-    opacity: 0.3;
-    fill: rgb(216, 203, 57);
-}
-
 /*SUELO BOSQUE ----------------------------------------------*/ 
 #bg-suelo2 {
     position: absolute;
