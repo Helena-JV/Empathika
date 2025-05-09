@@ -11,13 +11,13 @@
 }
 
 #empathika-logo h2 {
-    font-size: 200%;
+    
     color: #fff;
     text-align: center;
     margin: 0;
     font-family: "Grandstander", Arial, Helvetica, sans-serif;
     font-weight: 700;
-    font-size: 275%;
+    font-size: 240%;
     white-space: nowrap;
 }
 
@@ -35,6 +35,7 @@
 
 #burbuja-index::before {
     content: "Para edades de 5 a 8 años";
+    font-size: 95%;
     position: absolute;
     text-align: center;
     margin: 15%;

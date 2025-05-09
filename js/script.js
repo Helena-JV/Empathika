@@ -563,7 +563,7 @@ function dialogoLumoExito() {
         dialogoContenidoElement.innerHTML = '<p class="hud">¡Gracias por ayudarnos!</p><p class="hud">Ahora Floris tiene su piedra.</p>';
     
         //Botón
-        const btnSeguir = crearBoton("Veré si puedo ayudar a alguien más", function() {
+        const btnSeguir = crearBoton("Veré si puedo ayudar a alguien más.", function() {
             cerrarDialogo('#dialogoLumo'); 
         }); dialogoBotonesElement.appendChild(btnSeguir);
         
@@ -794,9 +794,7 @@ function gestionarRespuestaLumo(respuesta) {
         function hablaLumo() {
             personajeQueHabla.src = './assets/img/personajes/lumo.svg';
             nombrePersonaje.textContent = 'Lumo';
-        }
-
-        
+        } 
 };
 
 /*=================================================================================================================
@@ -822,7 +820,7 @@ function dialogoPumpumExito() {
         dialogoContenidoElement.innerHTML = '<p class="hud">¡Mira qué torre más chula tenemos ahora!</p><p class="hud">Trabajar en equipo y tener paciencia es la clave.</p>';
     
         //Botón
-        const btnSeguir = crearBoton("Veré si puedo ayudar a alguien más", function() {
+        const btnSeguir = crearBoton("Veré si puedo ayudar a alguien más.", function() {
             cerrarDialogo('#dialogoPumpum'); 
         });dialogoBotonesElement.appendChild(btnSeguir); 
     };
@@ -879,11 +877,11 @@ function gestionarRespuestaPumpum() {
                     //SIGUIENTE 4
                     dialogoContenidoElement.innerHTML = '<p class="hud">¿Qué podemos hacer ahora para que no se vualva a caer la torre?</p>';
                     dialogoBotonesElement.innerHTML = '';
-                    const magiaCuidado = crearBoton("Usa tu magia con cuidado", function() {
+                    const magiaCuidado = crearBoton("Usa tu magia con cuidado.", function() {
                         tenCuidado();
                     });dialogoBotonesElement.appendChild(magiaCuidado);
 
-                    const noHagasCaso = crearBoton("No hagas caso, vuelve a hacerlo igual", function() {
+                    const noHagasCaso = crearBoton("No hagas caso, vuelve a hacerlo igual.", function() {
                         usaTuMagia();
                     });dialogoBotonesElement.appendChild(noHagasCaso);
                     Animaciones.animarTexto(dialogoContenidoElement.children);
@@ -912,7 +910,7 @@ function gestionarRespuestaPumpum() {
         const trabajemosJuntos = crearBoton("¡Trabajemos juntos!", function() {
         
             //SIGUIENTE 2
-            dialogoContenidoElement.innerHTML = '<p class="hud">¡Es es!</p><p class="hud">Cuando trabajamos juntos y escuchamos los consejos de los demás, las cosas salen mejor.</p>';
+            dialogoContenidoElement.innerHTML = '<p class="hud">¡Eso es!</p><p class="hud">Cuando trabajamos juntos y escuchamos los consejos de los demás, las cosas salen mejor.</p>';
             hablaAqua();
             dialogoBotonesElement.innerHTML = '';
 
