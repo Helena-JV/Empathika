@@ -1096,7 +1096,7 @@ function gestionarRespuestaTiki(respuesta) {
             postDisculpa();
         }); dialogoBotonesElement.appendChild(btnDisculpa1);
 
-        const btnDisculpa2 = crearBoton("Tienes razón. No debería llamarte miedica.", function() {
+        const btnDisculpa2 = crearBoton("Tienes razón... No debería llamarte miedica.", function() {
             postDisculpa();
         }); dialogoBotonesElement.appendChild(btnDisculpa2);
 
@@ -1121,14 +1121,6 @@ function gestionarRespuestaTiki(respuesta) {
 
         Animaciones.animarTexto(dialogoContenidoElement.children);
         Animaciones.animarBotones(dialogoBotonesElement.children);
-
-        //NUEVO ESTADO _____________________________
-        EstadoJuego.estadoTiki = 'final';
-        EstadoJuego.setearEstadoTiki();
-
-        //SETEAR PUNTOS _____________________________
-        EstadoJuego.puntos = EstadoJuego.puntos + 1;
-        EstadoJuego.setearPuntos();  
     };
 
     //DIALOGO VER DESDE EL CIELO ------------------------------------------------------------------------
@@ -1184,6 +1176,15 @@ function gestionarRespuestaTiki(respuesta) {
 
         Animaciones.animarTexto(dialogoContenidoElement.children);
         Animaciones.animarBotones(dialogoBotonesElement.children);
+
+         //NUEVO ESTADO _____________________________
+         EstadoJuego.estadoTiki = 'final';
+         EstadoJuego.setearEstadoTiki();
+         ImgTikiFeliz();
+ 
+         //SETEAR PUNTOS _____________________________
+         EstadoJuego.puntos = EstadoJuego.puntos + 1;
+         EstadoJuego.setearPuntos();  
     };
 
     //DIALOGO POST DISCULPA ------------------------------------------------------------------------
