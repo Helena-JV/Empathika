@@ -12,9 +12,21 @@ BARBA JS
         }, 
         {
             name: 'empujar',
-            to: {namespace: ['pantalla-juego-1', 'pantalla-juego-2', 'pantalla-juego-3']},
+            to: {namespace: ['pantalla-juego-1', 'pantalla-juego-2', 'pantalla-juego-3', 'pantalla-juego-4']},
             leave() {},
-            enter() {},
+
+            enter({ next }) {
+                return new Promise((resolve) => {
+                const el = next.container;
+                void el.offsetWidth; // Fuerza reflow
+
+                // Esperar 100 ms antes de resolver (puedes ajustar este valor)
+                setTimeout(() => {
+                    resolve();
+                }, 1000);
+                });
+            },
+
             sync: true,
             
             beforeLeave(data) {
@@ -81,6 +93,15 @@ BARBA JS
                 afterEnter() {
                     setearPantallaJuego();
                 }
+            },
+            {
+                namespace: 'pantalla-juego-4',
+                beforeEnter() {
+                    setearPantallaJuego();
+                },
+                afterEnter() {
+                    setearPantallaJuego();
+                }
             }
         ],
     });
@@ -91,7 +112,7 @@ BARBA JS
       
         if (namespace === 'dialogo-inicial') {
           dialogoArbol();
-        } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2'||namespace === 'pantalla-juego-3') {
+        } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2'||namespace === 'pantalla-juego-3'||namespace === 'pantalla-juego-4') {
             setearPantallaJuego();
 
         }
@@ -135,6 +156,7 @@ function setearPantallaJuego(){
 /*=================================================================================================================
 ESTADO DEL JUEGO
 =================================================================================================================*/ 
+const MaxEstrellas = 3;
 const EstadoJuego = {
     // ESTADO INICIAL ------------------------------------------------
     puntos: EstadoDesdeStorage('puntos', 0, parseInt),
@@ -244,7 +266,7 @@ function mostrarHud() {
             flechaIzda.style.visibility = numeroActual === 1 ? 'hidden' : 'visible';
         }
         if (flechaDcha) {
-            flechaDcha.style.visibility = numeroActual === 3 ? 'hidden' : 'visible';
+            flechaDcha.style.visibility = numeroActual === (MaxEstrellas + 1) ? 'hidden' : 'visible';
         }
     }
     

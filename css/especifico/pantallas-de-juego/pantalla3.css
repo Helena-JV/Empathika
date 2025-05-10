@@ -1,10 +1,10 @@
 /*FONDO ========================================================================*/
 /*NUBES ----------------------------------------------*/ 
-#bg-nubes {
+#bg-nubes-3 {
     position: absolute;
-    top: 4%;
-    width: 68%;
-    right: -4%;
+    top: 16%;
+    width: 14%;
+    right: 22%;
     animation: nubes 5s ease-in-out infinite alternate;
 }
 
@@ -18,26 +18,37 @@
 }
 
 /*MONTAÑAS ----------------------------------------------*/ 
-#bg-back {
+#bg-mountains-3 {
     position: absolute;
-    top: 14%;
-    right: 3%;
+    top: 18%;
     width: 100%;
-    transform: scale(1.2);
 }
 
-/*ÁRBOLES Y RAYOS ----------------------------------------------*/ 
-#bg-mid {
+/*MONTICULOS ----------------------------------------------*/ 
+#bg-monticulos-3 {
     position: absolute;
-    top: 4%;
-    left: -15%;
-    width: 80%;
+    top: 20%;
+    left: 3%;
+    width: 93%;
 }
 
+/*PLANTA ----------------------------------------------------*/
+#arbusto3 {
+    position: absolute;
+    width: 9.5%;
+    top: 51%;
+    left: 25%;
+}
 /*SUELO BOSQUE ----------------------------------------------*/ 
-#bg-front {
+#bg-plantas-suelo3 {
     position: absolute;
-    height: 100%;
+    width: 96%;
+    left: 2%;
+}
+#bg-suelo3 {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }  
 
 /*TIKI ========================================================================*/

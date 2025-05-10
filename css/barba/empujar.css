@@ -3,6 +3,10 @@
     transform: translateX(0);
     position: absolute;
     width: 100%;
+    top: 0;
+    left: 0;
+    will-change: transform; /* Optimización para rendimiento */
+    backface-visibility: hidden; /* Reduce parpadeos */
 }
 
 .empujar-leave-active {
@@ -16,8 +20,13 @@
 /*ANIMACIÓN DE ENTRADA--------------------------*/
 .empujar-enter {
     transform: translateX(100%);
+    opacity: 0;
     position: absolute;
     width: 100%;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .empujar-enter-active {
@@ -26,6 +35,7 @@
 
 .empujar-enter-to {
     transform: translateX(0);
+    opacity: 1;
 }
 
 /*ANIMACIÓN INVERSA (pantalla2 a pantalla1)--------------------------*/

@@ -17,7 +17,7 @@
         <!--HUD===========================================================================================-->
         <!--HUD INFERIOR_____________________________________________________________-->
         <div class="hud-inferior">
-            <a class="flecha flecha-izda hud anim-btn-hud" href="./pantalla2.html"><img src="./assets/img/hud/flecha-izda.svg" alt="Ir a la izquierda"></a>
+            <a class="flecha flecha-izda hud anim-btn-hud" href="./pantalla3.html"><img src="./assets/img/hud/flecha-izda.svg" alt="Ir a la izquierda"></a>
             <div class="usables-container">
                 <div class="usable">
                     <img class="objPiedraBrillante oculto" src="./assets/img/objetos/piedra-brillante.svg" alt="Piedra brillante">
@@ -25,7 +25,7 @@
                 <div class="usable"></div>
                 <div class="usable"></div>
             </div>
-            <a class="flecha flecha-dcha hud anim-btn-hud" href="./pantalla4.html"><img src="./assets/img/hud/flecha-dcha.svg" alt="Ir a la derecha"></a>
+            <a class="flecha flecha-dcha hud anim-btn-hud" href="./pantalla2.html"><img src="./assets/img/hud/flecha-dcha.svg" alt="Ir a la derecha"></a>
         </div>
 
         <!--HUD SUPERIOR_____________________________________________________________-->
@@ -38,22 +38,21 @@
         </div>
 
         <!--CONTENEDOR===========================================================================================-->
-        <div class="sky sky-juego" data-barba="container" data-barba-namespace="pantalla-juego-3">
+        <div class="sky sky-juego" data-barba="container" data-barba-namespace="pantalla-juego-4">
             
             <!--BG_____________________________________________________________-->
             <div class="bg-container">
-                <img id="bg-nubes-3" src="./assets/img/bg/pantalla3/bg-nube.svg" alt="Fondo nubes">
-                <img id="bg-mountains-3" src="./assets/img/bg/pantalla3/bg-mountains.svg" alt="Fondo con montañas"> 
-                <img id="bg-monticulos-3" src="./assets/img/bg/pantalla3/bg-monticulos.svg" alt="Fondo con montículos y árboles"> 
+                <img id="bg-nubes" src="./assets/img/bg/bg-nubes.svg" alt="Fondo con montículos y árboles">
+                <img id="bg-back" src="./assets/img/bg/bg-back.svg" alt="Fondo con montículos y árboles">
+                <img id="bg-mid" src="./assets/img/bg/bg-mid.svg" alt="Fondo con montículos y árboles">
                 <svg class="bg-rayos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1689.88 1082.79">
                     <g>
                       <polygon points="1689.88 1033.25 1255.66 1082.79 372.8 0 515.29 0 1689.88 1033.25" />
                       <polygon points="1135.05 1082.53 290.83 1066.73 0 0 219.47 0 1135.05 1082.53" />
                     </g>
                 </svg>
-                <img id="bg-suelo3" src="./assets/img/bg/pantalla3/bg-suelo.svg" alt="Fondo y suelo del bosque">
-                <img id="bg-plantas-suelo3" src="./assets/img/bg/pantalla3/bg-plantas.svg" alt="Plantas del suelo">
-                <img id="arbusto3" class="anim-skew" src="./assets/img/bg/pantalla3/bg-planta-1.svg" alt="Arbusto que se mueve al viento">
+                <img id="bg-front" src="./assets/img/bg/bg-front.svg" alt="Fondo y suelo del bosque">
+                <img id="arbusto1" class="anim-skew" src="./assets/img/bg/arbusto1.svg" alt="Arbusto que se mueve al viento">
             </div>
             
 
@@ -69,43 +68,13 @@
             <div id="protagonista-container" class="personaje-container">
                 <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
             </div>
-            <!--TIKI_______________________________________________________-->
+            <!--ÁRBOL SABIO_______________________________________________________-->
   
 
             
-            <div id="Tiki-container" class="personaje-container personaje" onclick="log()">
-                <img onclick="abrirDialogo('#dialogoTiki')" class="btn-hablar hud" id="btnHablarConTiki" src="./assets/img/hud/bocadillo.svg" alt="Botón hablar">
-                <div id="tiki-img"> <!--class="tiki-anim"-->
-                    <div onclick="mostrarBocadillo('#btnHablarConTiki')" id="tiki-hitbox" class="target"></div>
-                    <div id="tiki-alas">
-                        <img id="tiki-ala-izda" class="tiki-ala" src="./assets/img/personajes/Tiki-ala-izda.svg" alt="">
-                        <img id="tiki-ala-dcha" class="tiki-ala" src="./assets/img/personajes/Tiki-ala-dcha.svg" alt="">
-                    </div>
-                    <img id="tiki-cuerpo" src="./assets/img/personajes/Tiki-cuerpo-triste.svg" alt="Tiki">
-                </div>
-            </div>
 
             <!--DIALOGOS__________________________________________________________-->
-            <div onclick="cerrarSiFondo(event, this)" id="dialogoTiki" class="dialog dialog-close hud">
-                <img class="dialog-fondo-hierba" src="./assets/img/dialogos/dialog-hierba.svg" alt="Fondo de hierba">
-                <div class="dialog-wrapper">
-                
-                <!-- TEXTO DEL DIÁLOGO -->
-                <div class="dialog-container hud">
-                    <div class="nombre-personaje">Tiki</div>
-                    <div id="dialog-tiki-content" class="dialogo-txt hud">
-                        <p class="hud">Hace tiempo que me crecieron las alas, pero nunca he volado.</p>
-                        <p class="hud">Debería poder hacerlo, pero me da mucho miedo.</p>
-                    </div>
-                    <img id="img-tiki-dialog" class="img-personaje hud" src="./assets/img/personajes/tiki-triste.svg" alt="">
-                </div>
-                
-                <!-- BOTONES -->
-                <div id="dialog-tiki-btns" class="dialog-btns-container hud">
-                    <button onclick="gestionarRespuestaTiki('preguntarMiedos')" class="hud">¿Por qué te asusta volar?</button>
-                    <button onclick="gestionarRespuestaTiki('increpar')" class="hud">Anda, ¡no seas miedica!</button>
-                </div>
-            </div>
+            
 </div>
 
         </div>
