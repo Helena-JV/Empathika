@@ -72,3 +72,11 @@
     top: 2%;
 }
 
+#img-arbol-dialog {
+    bottom: -2%;
+    right: -30%;
+    height: 150%;
+    max-width: none;
+    max-height: none;
+}
+

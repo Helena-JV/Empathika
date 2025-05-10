@@ -237,19 +237,6 @@ button:active {
 
 /*ANIMATIONS =====================================================================*/
 
-/*SKEW---------------------------*/
-.anim-skew {
-  animation: skew 5s ease-in-out infinite alternate;
-}
-@keyframes skew {
-  70% {
-      transform: skew(0) translateX(0);
-  }
-  100% {
-      transform: skew(-5deg) translateX(2%);
-  }
-}
-
 /*APARECER------------------------*/
 .anim-aparecer {
   animation: aparecer 1s ease-in-out;

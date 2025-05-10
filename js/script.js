@@ -6,7 +6,7 @@ BARBA JS
     barba.init({
         transitions: [{
             name: 'fade',
-            to: {namespace: ['dialogo-inicial']},
+            to: {namespace: ['dialogo-inicial', 'pantalla-final']},
             leave() {},
             enter() {}
         }, 
@@ -95,14 +95,21 @@ BARBA JS
                 }
             },
             {
-                namespace: 'pantalla-juego-4',
+                namespace: 'pantalla-juego-4', //Final arbol
                 beforeEnter() {
                     setearPantallaJuego();
+                    dialogoFinal();
                 },
                 afterEnter() {
                     setearPantallaJuego();
                 }
-            }
+            },{
+                namespace: 'pantalla-final',
+                beforeEnter() {
+                    //dialogoArbol();
+                    ocultarHud();
+                },
+            },
         ],
     });
 
@@ -1235,6 +1242,32 @@ function gestionarRespuestaTiki(respuesta) {
     }
 }
     
+
+/*=================================================================================================================
+DIALOGO FINAL
+=================================================================================================================*/ 
+function dialogoFinal() {
+    const puntosTexto = document.getElementById('puntos-arbol');
+    puntosTexto.textContent = MaxEstrellas - EstadoJuego.puntos;
+
+    if (EstadoJuego.puntos == MaxEstrellas) {
+        const dialogoContenidoElement = document.getElementById('dialog-arbol-content');
+        const dialogoBotonesElement = document.getElementById('dialog-arbol-btns');
+
+        //Parrafo
+        dialogoContenidoElement.innerHTML = '<p class="hud">¡Ho ho! Parece que has ayudado a mucha gente.</p><p class="hud">Entregame las estrellas y bosque volverá a brillar.</p>';
+        
+        //Botones
+        dialogoBotonesElement.innerHTML = '';
+        const btnIntentalo = crearBoton("Toma, te las doy.", function() {
+            barba.go('pantalla-final.html');
+        }); dialogoBotonesElement.appendChild(btnIntentalo);
+
+        Animaciones.animarTexto(dialogoContenidoElement.children);
+        Animaciones.animarBotones(dialogoBotonesElement.children);
+    };
+}
+
 
 /*=================================================================================================================
 ANIMACIONES DIÁLOGOS

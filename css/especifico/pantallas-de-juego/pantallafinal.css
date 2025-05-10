@@ -1,0 +1,53 @@
+/*FONDO ========================================================================*/
+/*NUBES ----------------------------------------------*/ 
+#bg-nubes-end {
+    position: absolute;
+    top: 5%;
+    width: 18%;
+    left: 2%;
+    animation: nubes 5s ease-in-out infinite alternate;
+}
+
+/*MONTAÑAS ----------------------------------------------*/ 
+#bg-mountains-end {
+    position: absolute;
+    top: 13%;
+    width: 100%;
+}
+/*MONTICULOS ----------------------------------------------*/ 
+#bg-monticulos-end {
+    position: absolute;
+    top: 29%;
+    left: 7%;
+    width: 45%;
+}
+
+/*SUELO BOSQUE ----------------------------------------------*/ 
+#bg-plantas-suelo-end {
+    position: absolute;
+    width: 97%;
+    right: 0;
+}
+#bg-suelo-end {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}  
+
+/*ARBOL SABIO ========================================================================*/
+#arbol-container {
+    right: 1%;
+    bottom: 22%;
+    width: 53%;
+    height: auto;
+    display: block;
+    user-select: none;
+    cursor: pointer;
+}
+
+/*BOTÓN BOCADILLO DIÁLOGO ========================================================================*/
+
+#btnHablarConArbol {
+    left: 32%;
+    top: 13%;
+}

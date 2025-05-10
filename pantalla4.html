@@ -42,17 +42,17 @@
             
             <!--BG_____________________________________________________________-->
             <div class="bg-container">
-                <img id="bg-nubes" src="./assets/img/bg/bg-nubes.svg" alt="Fondo con montículos y árboles">
-                <img id="bg-back" src="./assets/img/bg/bg-back.svg" alt="Fondo con montículos y árboles">
-                <img id="bg-mid" src="./assets/img/bg/bg-mid.svg" alt="Fondo con montículos y árboles">
+                <img id="bg-nubes-end" src="./assets/img/bg/pantalla-arbol-final/nube.svg" alt="Fondo nubes">
+                <img id="bg-mountains-end" src="./assets/img/bg/pantalla-arbol-final/mountains.svg" alt="Fondo con montañas"> 
+                <img id="bg-monticulos-end" src="./assets/img/bg/pantalla-arbol-final/monticulo.svg" alt="Fondo con montículos y árboles"> 
                 <svg class="bg-rayos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1689.88 1082.79">
                     <g>
                       <polygon points="1689.88 1033.25 1255.66 1082.79 372.8 0 515.29 0 1689.88 1033.25" />
                       <polygon points="1135.05 1082.53 290.83 1066.73 0 0 219.47 0 1135.05 1082.53" />
                     </g>
                 </svg>
-                <img id="bg-front" src="./assets/img/bg/bg-front.svg" alt="Fondo y suelo del bosque">
-                <img id="arbusto1" class="anim-skew" src="./assets/img/bg/arbusto1.svg" alt="Arbusto que se mueve al viento">
+                <img id="bg-suelo-end" src="./assets/img/bg/pantalla-arbol-final/bg-suelo.svg" alt="Fondo y suelo del bosque">
+                <img id="bg-plantas-suelo-end" src="./assets/img/bg/pantalla-arbol-final/bg-plantas.svg" alt="Plantas del suelo">
             </div>
             
 
@@ -68,17 +68,37 @@
             <div id="protagonista-container" class="personaje-container">
                 <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
             </div>
-            <!--ÁRBOL SABIO_______________________________________________________-->
-  
 
-            
+            <!--ÁRBOL SABIO_______________________________________________________-->
+            <div id="arbol-container" class="personaje-container personaje">
+                <img onclick="abrirDialogo('#dialogoArbol')" class="btn-hablar hud" id="btnHablarConArbol" src="./assets/img/hud/bocadillo.svg" alt="Botón hablar">
+                <img onclick="mostrarBocadillo('#btnHablarConArbol')" class="target" id="img-arbol-final" src="./assets/img/personajes/arbol-sabio.svg" alt="Árbol sabio">
+            </div>
 
             <!--DIALOGOS__________________________________________________________-->
+            <div onclick="cerrarSiFondo(event, this)" id="dialogoArbol" class="dialog dialog-close hud">
+                <img class="dialog-fondo-hierba" src="./assets/img/dialogos/dialog-hierba.svg" alt="Fondo de hierba">
+                <div class="dialog-wrapper">
+                
+                <!-- TEXTO DEL DIÁLOGO -->
+                <div class="dialog-container hud">
+                    <div class="nombre-personaje">Árbol Sabio</div>
+                    <div id="dialog-arbol-content" class="dialogo-txt hud">
+                        <p class="hud">Ho ho. Parece que todavía hay habitantes del bosque que necesitan de tu ayuda.</p>
+                        <p class="hud">Te falta conseguir <span id="puntos-arbol">3</span> <img class="estrellatxt" src="./assets/img/hud/star.svg" alt="Estrella"></p>
+                    </div>
+                    <img id="img-arbol-dialog" class="img-personaje hud" src="./assets/img/personajes/arbol-sabio-dialog.svg" alt="">
+                </div>
+                
+                <!-- BOTONES -->
+                <div id="dialog-arbol-btns" class="dialog-btns-container hud">
+                    <button onclick="cerrarDialogo('#dialogoArbol')" class="hud">Seguiré buscando.</button>
+                </div>
+            </div>
             
-</div>
-
         </div>
     </main>
+    
     <!--GSAP-->
     <script src="./js/gsap/gsap.min.js"></script>
 

@@ -8,15 +8,6 @@
     animation: nubes 5s ease-in-out infinite alternate;
 }
 
-@keyframes nubes {
-    0% {
-        transform: translateY(-8%);
-    }
-    100% {
-        transform: translateY(8%);
-    }
-}
-
 /*MONTAÑAS ----------------------------------------------*/ 
 #bg-back {
     position: absolute;

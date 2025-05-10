@@ -69,11 +69,9 @@
             <div id="protagonista-container" class="personaje-container">
                 <img src="./assets/img/personajes/main-personaje.svg" alt="Personaje principal">
             </div>
-            <!--TIKI_______________________________________________________-->
-  
 
-            
-            <div id="Tiki-container" class="personaje-container personaje" onclick="log()">
+            <!--TIKI_______________________________________________________-->
+            <div id="Tiki-container" class="personaje-container personaje">
                 <img onclick="abrirDialogo('#dialogoTiki')" class="btn-hablar hud" id="btnHablarConTiki" src="./assets/img/hud/bocadillo.svg" alt="Botón hablar">
                 <div id="tiki-img"> <!--class="tiki-anim"-->
                     <div onclick="mostrarBocadillo('#btnHablarConTiki')" id="tiki-hitbox" class="target"></div>
@@ -106,10 +104,9 @@
                     <button onclick="gestionarRespuestaTiki('increpar')" class="hud">Anda, ¡no seas miedica!</button>
                 </div>
             </div>
-</div>
-
         </div>
     </main>
+
     <!--GSAP-->
     <script src="./js/gsap/gsap.min.js"></script>
 

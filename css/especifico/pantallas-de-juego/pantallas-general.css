@@ -28,12 +28,36 @@
     fill: rgb(216, 203, 57);
 }
 
-/*ANIMACIÓN ENTRADA ----------------------------------------------*/ 
+/*ANIMACIONES =========================================================*/
+/*ANIMACIÓN ENTRADA --------------*/ 
     @keyframes entrada {
         0% {
             left: -25%;
         }
         100% {
             left: var(--distancia-personaje-izda);
+        }
+    }
+
+    /*NUBES---------------------------*/
+    @keyframes nubes {
+        0% {
+            transform: translateY(-8%);
+        }
+        100% {
+            transform: translateY(8%);
+        }
+    }
+
+    /*SKEW---------------------------*/
+    .anim-skew {
+        animation: skew 5s ease-in-out infinite alternate;
+    }
+    @keyframes skew {
+        70% {
+            transform: skew(0) translateX(0);
+        }
+        100% {
+            transform: skew(-5deg) translateX(2%);
         }
     }

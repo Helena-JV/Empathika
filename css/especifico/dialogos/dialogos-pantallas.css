@@ -48,7 +48,7 @@
         position: absolute;
         top: -10%;
         left: 4%;
-        padding: 1% 6%;
+        padding: 1.5% 6% 1%;
         background-color: var(--azul-detalle);
         border: var(--tamaño-bordes) solid var(--azul-detalle-claro);
         color: white;
