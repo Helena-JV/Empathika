@@ -170,6 +170,7 @@ const EstadoJuego = {
     puntos: EstadoDesdeStorage('puntos', 0, parseInt),
     estadoPiedra: EstadoDesdeStorage('estadoPiedra', 'nada', (v) => v),
     estadoPumpum: EstadoDesdeStorage('estadoPumpum', 'nada', (v) => v),
+    estadoTiki: EstadoDesdeStorage('estadoTiki', 'nada', (v) => v),
 
     // PUNTOS ------------------------------------------------
     setearPuntos() {
@@ -237,10 +238,8 @@ function limpiarSeteoJuego(){
     EstadoJuego.setearEstadoPiedra(); 
     EstadoJuego.estadoPumpum = 'nada';
     EstadoJuego.setearEstadoPumpum();
-    EstadoJuego.EstadoTiki = 'nada';
-    EstadoJuego.setearEstadoTiki();
-        
-    
+    EstadoJuego.estadoTiki = 'nada';
+         EstadoJuego.setearEstadoTiki();
 };
 
 /*=================================================================================================================
@@ -721,7 +720,7 @@ function dialogoLumoBuscando() {
         dialogoBotonesElement.innerHTML = '';
     
         //Respuesta
-        dialogoContenidoElement.innerHTML = '<p class="hud">¿Has visto la piedra brillante de Floris?</p><p class="hud">Debe estar entre las plantas.</p>';
+        dialogoContenidoElement.innerHTML = '<p class="hud">¿Has visto la piedra brillante de Floris?</p><p class="hud">Haz click entre las plantas.</p>';
     
         //Botón
         const btnSeguir = crearBoton("¡Sigo buscando!", function() {
@@ -961,7 +960,7 @@ function gestionarRespuestaPumpum() {
                 const loSientoPumpum = crearBoton("Vaya, lo siento mucho, Pumpum", function() {
 
                     //SIGUIENTE 4
-                    dialogoContenidoElement.innerHTML = '<p class="hud">¿Qué podemos hacer ahora para que no se vualva a caer la torre?</p>';
+                    dialogoContenidoElement.innerHTML = '<p class="hud">¿Qué podemos hacer ahora para que no se vuelva a caer la torre?</p>';
                     dialogoBotonesElement.innerHTML = '';
                     const magiaCuidado = crearBoton("Usa tu magia con cuidado.", function() {
                         tenCuidado();
