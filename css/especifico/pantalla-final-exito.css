@@ -1,0 +1,155 @@
+/*BOTÓN INFO ----------------------------------------------*/ 
+#exito-btn-info {
+    position: absolute;
+    top: 5%;
+    left: 3%;
+    width: 8%;
+}
+
+/*BOTÓN JUGAR ----------------------------------------------*/ 
+#exito-btn-jugar {
+    position: absolute;
+    bottom: 14%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30%;
+    height: 13%;
+    font-size: 150%;
+}
+
+/*FONDO ========================================================================*/
+/*MONTICULO----------------------------------------------*/
+#exito-monticulo img {
+    width: 39%;
+    position: absolute;
+    bottom: 27%;
+}
+
+/*MONTAÑAS----------------------------------------------*/
+#exito-mountain {
+    position: absolute;
+    width: 100%;
+    top: 29%;
+}
+
+/*SUELO----------------------------------------------*/
+#exito-suelo {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+/*PLANTA VERDE----------------------------------------------*/ 
+#exito-plantaverde > * {
+    width: 14%;
+    position: absolute;
+    bottom: 0;
+}
+
+#exito-plantaverde > img:first-child {
+    left: 0;
+}
+
+#exito-plantaverde img {
+    transform-origin: 0% 100%; 
+}
+
+/*ÁRBOLES----------------------------------------------*/ 
+#exito-arboles {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#exito-arboles img{
+    width: 38%;
+    position: absolute;
+}
+
+/*PLANTITA CONTENEDOR----------------------------------------------*/ 
+#exito-plantita-contenedor {
+    top: 65%;
+    width: 60%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+#exito-plantita-contenedor img{
+    width: 15%;
+    position: absolute;
+}
+
+/*NUBES----------------------------------------------*/ 
+#exito-nubes {
+    top: 2%;
+    width: 32%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+#exito-nubes img{
+    width: 33%;
+    position: absolute;
+}
+
+/*PLANTAS GROW ----------------------------------------------*/ 
+
+    #exito-plantagrow {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+    #exito-plantagrow svg {
+        position: absolute;
+        width: 28%;
+        bottom: -3%;
+    }
+
+    #exito-plantagrow svg:first-child {
+        left: -1%;
+    }
+
+    #exito-plantagrow svg:last-child {
+        right: -1%;
+    }
+
+/*CONTENEDOR ========================================================================*/
+#exito-contenedor-central {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 17%;
+    margin: 0 auto;
+    width: 54%;
+    height: 63%;
+    border-radius: 1em;
+    background-color: white;
+}
+
+#exito-contenedor-central #exito-contenedor-central-txt {
+    margin: 23% 20% 0%;
+}
+
+#exito-contenedor-central #exito-contenedor-central-txt h2 {
+    text-align: center;
+    margin: 5% 0;
+    font-family: "Grandstander", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 240%;
+    white-space: nowrap;
+    color: var(--rojo);
+}
+
+#exito-contenedor-central #exito-contenedor-central-txt p {
+    text-align: center;
+    margin: 0;
+    font-size: 125%;
+}
+
+/*ESTRELLAS----------------------------------------------*/ 

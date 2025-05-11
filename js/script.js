@@ -6,7 +6,7 @@ BARBA JS
     barba.init({
         transitions: [{
             name: 'fade',
-            to: {namespace: ['dialogo-inicial', 'pantalla-final']},
+            to: {namespace: ['dialogo-inicial', 'pantalla-final-exito']},
             leave() {},
             enter() {}
         }, 
@@ -104,9 +104,9 @@ BARBA JS
                     setearPantallaJuego();
                 }
             },{
-                namespace: 'pantalla-final',
+                namespace: 'pantalla-final-exito',
                 beforeEnter() {
-                    //dialogoArbol();
+                    crecerPlantas();
                     ocultarHud();
                 },
             },
@@ -121,8 +121,9 @@ BARBA JS
           dialogoArbol();
         } else if (namespace === 'pantalla-juego-1'||namespace === 'pantalla-juego-2'||namespace === 'pantalla-juego-3'||namespace === 'pantalla-juego-4') {
             setearPantallaJuego();
-
-        }
+        } else if (namespace === 'pantalla-final-exito') {
+            crecerPlantas();
+          } 
       });
 
 
@@ -1260,7 +1261,7 @@ function dialogoFinal() {
         //Botones
         dialogoBotonesElement.innerHTML = '';
         const btnIntentalo = crearBoton("Toma, te las doy.", function() {
-            barba.go('pantalla-final.html');
+            barba.go('pantalla-final-exito.html');
         }); dialogoBotonesElement.appendChild(btnIntentalo);
 
         Animaciones.animarTexto(dialogoContenidoElement.children);
@@ -1289,3 +1290,32 @@ const Animaciones = {
         );
     }
 };
+
+
+/*=================================================================================================================
+PANTALLA FINAL
+=================================================================================================================*/ 
+// ANIMACIÓN CRECIMIENTO PLANTAS ===========================================================
+gsap.registerPlugin(DrawSVGPlugin);
+function crecerPlantas() {
+    let stagger_plantas = 0.2;
+    let duracion_anim_hojas = 1;
+    let duracion_anim_lineas = 3;
+    
+    // Animación de líneas
+    gsap.fromTo(
+        document.querySelectorAll(`#exito-plantagrow svg .plant1-linea`),
+        { drawSVG: "0%" },
+        { drawSVG: "100%", duration: duracion_anim_lineas, ease: "power1.inOut" }
+    );
+
+    // Animación de hojas
+    for (let j = 1; j <= 2; j++) {
+        gsap.fromTo(
+            document.querySelectorAll(`#exito-plantagrow .plant1-${j} .plant-1-hoja`),
+            { scale: "0" },
+            { scale: "1", duration: duracion_anim_hojas, ease: "power1.inOut", stagger: stagger_plantas }
+        );
+    }
+   
+    }

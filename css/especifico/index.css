@@ -72,11 +72,6 @@
     bottom: 0;
 }
 
-.espejar-img {
-    transform: scale(-1, 1);
-    right: 0;
-}
-
 /*PLANTAS GROW ----------------------------------------------*/ 
 /*PLANTA 1*/
     .plantagrow-index-1 {

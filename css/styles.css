@@ -5,6 +5,7 @@
 
 /*ESTILOS ESPECÍFICOS --------------------------------*/
 @import url("./especifico/index.css");
+@import url("./especifico/pantalla-final-exito.css");
 
 /*DIALOGOS --------------------------------*/
 @import url("./especifico/dialogos/dialogo-inicial.css");
@@ -15,7 +16,7 @@
 @import url("./especifico/pantallas-de-juego/pantalla1.css");
 @import url("./especifico/pantallas-de-juego/pantalla2.css");
 @import url("./especifico/pantallas-de-juego/pantalla3.css");
-@import url("./especifico/pantallas-de-juego/pantallafinal.css");
+@import url("./especifico/pantallas-de-juego/pantallafinalArbol.css");
 
 /*ANIMACIONES ----------------------------*/
 @import url("./barba/clip.css");
