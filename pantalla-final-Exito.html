@@ -14,7 +14,7 @@
 <!--BODY===========================================================================================-->
 <body>
     <main class="general-wrapper" data-barba="wrapper">
-
+        
         <!--CONTENEDOR===========================================================================================-->
         <div class="sky sky-juego" data-barba="container" data-barba-namespace="pantalla-final-exito">           
             <!--BG===========================================================================================-->
@@ -41,13 +41,24 @@
                 <!--CONTENEDOR____________________________________-->
                 <div id="exito-contenedor-central">
                     <div id="exito-contenedor-central-txt">
+                        <div id="exito-estrellas">
+                            <div class="estrella-container">
+                                <img class="estrella-small" src="./assets/img/pantalla-final-exito/estrella-lateral.svg" alt="">
+                            </div>
+                            
+                            <img  class="estrella-central" src="./assets/img/pantalla-final-exito/estrella-central.svg" alt="">
+    
+                            <div class="estrella-container estrella-espejo">
+                                <img class="estrella-small" src="./assets/img/pantalla-final-exito/estrella-lateral.svg" alt="">
+                            </div>
+                        </div>
                         <h2>¡Muy bien!</h2>
                         <p>Has devuelto el equilibrio al bosque de Empathika.</p>
                     </div>
                 </div>
 
                 <!--BOTÓN____________________________________-->
-                <a href="./index.html"><button id="exito-btn-jugar">JUGAR OTRA VEZ</button></a>
+                <a href="./index.html"><button onclick="limpiarSeteoJuego()" id="exito-btn-jugar">JUGAR OTRA VEZ</button></a>
 
             <!--VEGETACIÓN===========================================================================================-->
             <!--PLANTITA CONTENEDOR_____________________________________________________________-->
@@ -111,7 +122,7 @@
                 <img onclick="abrirModal('#exito-modal-info')" id="exito-btn-info" class="anim-btn-hud" src="./assets/img/index-elem/info-btn.svg" alt="Botón de información">
                     
                 <!--INFO MODAL____________________________________-->
-                <div onclick="cerrarModalFondo(event, this)" class="modal display-none" id="#exito-modal-info">
+                <div onclick="cerrarModalFondo(event, this)" class="modal display-none" id="exito-modal-info">
                     <div class="modal-content">
                     <p>Empathika es un juego de point&click conversacional que ayuda a niños y niñas de 5 a 8 años a trabajar su resolución de conflictos y empatía.</p>
                     <p>Copyright © 2025 Helena de Juan</p>

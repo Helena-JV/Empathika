@@ -16,6 +16,7 @@
     width: 30%;
     height: 13%;
     font-size: 150%;
+    z-index: 3;
 }
 
 /*FONDO ========================================================================*/
@@ -121,7 +122,6 @@
 /*CONTENEDOR ========================================================================*/
 #exito-contenedor-central {
     position: absolute;
-
     left: 0;
     right: 0;
     top: 17%;
@@ -133,7 +133,7 @@
 }
 
 #exito-contenedor-central #exito-contenedor-central-txt {
-    margin: 23% 20% 0%;
+    margin: 21% 20% 0%;
 }
 
 #exito-contenedor-central #exito-contenedor-central-txt h2 {
@@ -153,3 +153,66 @@
 }
 
 /*ESTRELLAS----------------------------------------------*/ 
+#exito-estrellas {
+    left: 0;
+    right: 0;
+    top: -10%;
+    margin: 0 auto;
+    width: 48%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.estrella-container {
+    height: fit-content;
+    position: relative;
+    margin-top: 22%;
+}
+
+.estrella-espejo {
+    transform: scaleX(-1); 
+}
+
+.estrella-small {
+    animation: anim-estrella 1s ease-in-out 0.2s backwards;
+    
+}
+
+@keyframes anim-estrella {
+    0% {
+        opacity: 0;
+        transform: rotate(360deg) scale(0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: rotate(-20deg) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.estrella-central {
+    animation: anim-estrella-central 1s ease-in-out;
+}
+
+@keyframes anim-estrella-central {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
