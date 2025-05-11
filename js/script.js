@@ -1276,7 +1276,7 @@ function dialogoFinal() {
         //Botones
         dialogoBotonesElement.innerHTML = '';
         const btnIntentalo = crearBoton("Toma, te las doy.", function() {
-            barba.go('pantalla-final-Exito.html');
+            barba.go('pantalla-final-exito.html');
         }); dialogoBotonesElement.appendChild(btnIntentalo);
 
         Animaciones.animarTexto(dialogoContenidoElement.children);
