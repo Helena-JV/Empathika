@@ -6,7 +6,7 @@ BARBA JS
     barba.init({
         transitions: [{
             name: 'fade',
-            to: {namespace: ['dialogo-inicial', 'pantalla-final-exito']},
+            to: {namespace: ['dialogo-inicial', 'pantalla-final-exito', 'index']},
             leave() {},
             enter() {}
         }, 
@@ -143,7 +143,7 @@ function obtenerNumeroPantalla() {
     }
     
     return numeroActual;
-}
+};
 
 
 
@@ -159,7 +159,7 @@ function setearPantallaJuego(){
     EstadoJuego.cargarEstadoPiedra();
     EstadoJuego.cargarEstadoPumpum();
     EstadoJuego.cargarEstadoTiki();
-}
+};
 
 /*=================================================================================================================
 ESTADO DEL JUEGO
@@ -227,6 +227,21 @@ const EstadoJuego = {
         return valor === 'true';
     }
 
+/*=================================================================================================================
+LIMPIAR JUEGO
+=================================================================================================================*/ 
+function limpiarSeteoJuego(){
+    EstadoJuego.puntos = 0;
+    EstadoJuego.setearPuntos();  
+    EstadoJuego.estadoPiedra = 'nada';
+    EstadoJuego.setearEstadoPiedra(); 
+    EstadoJuego.estadoPumpum = 'nada';
+    EstadoJuego.setearEstadoPumpum();
+    EstadoJuego.EstadoTiki = 'nada';
+    EstadoJuego.setearEstadoTiki();
+        
+    
+};
 
 /*=================================================================================================================
 HUD
